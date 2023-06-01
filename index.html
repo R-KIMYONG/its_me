@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.transform2d.js"></script>
+    <link rel="stylesheet" href="css/full.css">
+    <script src="js/actionfull.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Dodum&family=Montserrat:wght@300&family=Nanum+Gothic+Coding&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,0,-25" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
+
+    <title>It's Me</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            var elm = "#main>div";
+            $(elm).each(function (index) {
+                // 개별적으로 Wheel 이벤트 적용
+                $(this).on("mousewheel DOMMouseScroll", function (e) {
+                    e.preventDefault();
+                    var delta = 0;
+                    if (!event) event = window.event;
+                    if (event.wheelDelta) {
+                        delta = event.wheelDelta / 120;
+                        if (window.opera) delta = -delta;
+                    }
+                    else if (event.detail)
+                        delta = -event.detail / 3;
+                    var moveTop = $(window).scrollTop();
+                    var elmSelecter = $(elm).eq(index);
+                    // 마우스휠을 위에서 아래로
+                    if (delta < 0) {
+                        if ($(elmSelecter).next() != undefined) {
+                            try {
+                                moveTop = $(elmSelecter).next().offset().top;
+                            } catch (e) { }
+                        }
+                        // 마우스휠을 아래에서 위로
+                    } else {
+                        if ($(elmSelecter).prev() != undefined) {
+                            try {
+                                moveTop = $(elmSelecter).prev().offset().top;
+                            } catch (e) { }
+                        }
+                    }
+
+                    // 화면 이동 0.8초(800)
+                    $("html,body").stop().animate({
+                        scrollTop: moveTop + 'px'
+                    }, {
+                        duration: 800, complete: function () {
+                        }
+                    });
+                });
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div id="main">
+        <div id="home">
+            <!--이름과 희망직종 라인-->
+            <ul class="title1">
+                <li class="t1">
+                    <div class="line l1"></div>
+                    <h3>KIM YONG</h3>
+                </li>
+                <li class="t2">
+                    <div class="text1">
+                        <h3>Web Publisher</h3>
+                        <h3>UI/UX Designer</h3>
+                    </div>
+                    <div class="line l2"></div>
+                </li>
+            </ul>
+            <!--이름과 희망직종 라인-->
+
+            <!--센터 포트폴리오문구-->
+            <h1>PORTFOLIO</h1>
+            <!--센터 포트폴리오문구-->
+            <div class="page">
+                <h2>01</h2>
+            </div>
+            <div class="year">
+                <h2 class="y1">20</h2>
+                <h2 class="y2">23</h2>
+            </div>
+
+            <!--인트로-->
+            <div class="intro">
+                <div class="box1">
+                    <img src="img/intro.gif" alt="">
+                </div>
+                <ul class="introimg">
+                    <li class="introimg1"></li>
+                    <li class="introimg2"></li>
+                    <li class="introimg3"></li>
+                    <li class="introimg4"></li>
+                </ul>
+                <div class="introimg5">
+                    <h1>PORTFOLIO</h1>
+                </div>
+            </div>
+            <!--인트로-->
+
+            <!--스크롤 다운 아이콘-->
+            <div class="scrollicon">
+                <h3>scroll</h3>
+                <div class="sicon">
+                    <div class="icon">
+                        <div class="cir">
+                        </div>
+                        <div class="cir">
+                        </div>
+                        <div class="cir">
+                        </div>
+                        <div class="arrowdown">
+                            <span class="material-symbols-outlined">
+                                keyboard_double_arrow_down
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--스크롤 다운 아이콘-->
+
+
+            <ul id="nav">
+                <li class="on">
+                    <a href="#home">
+                        <div class="cir"></div>
+                        <div class="cir1">
+                            <div></div>
+                        </div>
+                        <div class="cir2">
+                            <div></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#about">
+                        <div class="cir"></div>
+                        <div class="cir1">
+                            <div></div>
+                        </div>
+                        <div class="cir2">
+                            <div></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#project">
+                        <div class="cir"></div>
+                        <div class="cir1">
+                            <div></div>
+                        </div>
+                        <div class="cir2">
+                            <div></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#poster">
+                        <div class="cir"></div>
+                        <div class="cir1">
+                            <div></div>
+                        </div>
+                        <div class="cir2">
+                            <div></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact">
+                        <div class="cir"></div>
+                        <div class="cir1">
+                            <div></div>
+                        </div>
+                        <div class="cir2">
+                            <div></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="parent">
+                <div class="cube">
+                    <div class="cube-face cube-face-front"></div>
+                    <div class="cube-face cube-face-back"></div>
+                    <div class="cube-face cube-face-right"></div>
+                    <div class="text">
+                        <h2>TOP</h2>
+                    </div>
+                    <div class="cube-face cube-face-left"></div>
+                    <div class="cube-face cube-face-top"></div>
+                    <div class="cube-face cube-face-bottom"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="about">
+            <div class="bg">
+                <div class="profil on">
+                    <h2>About</h2>
+                    <img src="img/profil.svg" alt="프로필사진">
+                    <p>말이 많은 편이 아니지만 사교성 좋은편에 속하여 주변동료들과</p>
+                    <p>가까워지는데 오래걸리지 않습니다. 복잡하고 어려운 역경일</p>
+                    <p>수록 솔직하게 해내는것이 마음 편하게 직장 생활을 할 수 있다고</p>
+                    <p>생각합니다. 싫은 소리 잘 못하는 부분이 저의 단점이라 화나더라도</p>
+                    <p>웃으면서 대화통해 해결하는 편입니다. 가슴에 무언가를 담아두어도</p>
+                    <p>금방 잊는 성향입니다</p>
+                </div>
+                <div class="kategorie">
+                    <ul>
+                        <li>
+                            <div>
+                                <h3>SKILL</h3>
+                                <div class="line1">
+                                    <div class="lin1"></div>
+                                    <div class="c1">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>EXPERIENCE</h3>
+                                <div class="line1">
+                                    <div class="lin1"></div>
+                                    <div class="c1">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>LANGUAGES/CERTIFI</h3>
+                                <div class="line1">
+                                    <div class="lin1"></div>
+                                    <div class="c1">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>CHARACTER</h3>
+                                <div class="line1">
+                                    <div class="lin1"></div>
+                                    <div class="c1">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="content">
+                    <div class="con1 cont">
+                        <ul>
+                            <li>
+                                <div class="adobe">
+                                    <img src="img/ps.svg" alt="포토샵">
+                                </div>
+                                <div class="bar">
+                                    <div class="bar1"></div>
+                                    <div class="st1">
+                                        <h2 class="stat">85</h2>
+                                        <h3>%</h3>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="adobe">
+                                    <img src="img/Ai.svg" alt="일러스트">
+                                </div>
+                                <div class="bar">
+                                    <div class="bar2"></div>
+                                    <div class="st1">
+                                        <h2 class="stat">85</h2>
+                                        <h3>%</h3>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="adobe">
+                                    <img src="img/id.svg" alt="인디자인">
+                                </div>
+                                <div class="bar">
+                                    <div class="bar3"></div>
+                                    <div class="st1">
+                                        <h2 class="stat">85</h2>
+                                        <h3>%</h3>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="adobe">
+                                    <img src="img/ae.svg" alt="에프터임팩트">
+                                </div>
+                                <div class="bar">
+                                    <div class="bar4"></div>
+                                    <div class="st1">
+                                        <h2 class="stat">85</h2>
+                                        <h3>%</h3>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="adobe">
+                                    <img src="img/xd.svg" alt="엑스디">
+                                </div>
+                                <div class="bar">
+                                    <div class="bar5"></div>
+                                    <div class="st1">
+                                        <h2 class="stat">85</h2>
+                                        <h3>%</h3>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="adobe">
+                                    <img src="img/oa.svg" alt="office">
+                                </div>
+                                <div class="bar">
+                                    <div class="bar6"></div>
+                                    <div class="st1">
+                                        <h2 class="stat">85</h2>
+                                        <h3>%</h3>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="adobe">
+                                    <img src="img/html.svg" alt="html">
+                                </div>
+                                <div class="bar">
+                                    <div class="bar7"></div>
+                                    <div class="st1">
+                                        <h2 class="stat">85</h2>
+                                        <h3>%</h3>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="adobe">
+                                    <img src="img/css.svg" alt="css">
+                                </div>
+                                <div class="bar">
+                                    <div class="bar8"></div>
+                                    <div class="st1">
+                                        <h2 class="stat">85</h2>
+                                        <h3>%</h3>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="adobe">
+                                    <img src="img/js.svg" alt="자바스크립트">
+                                </div>
+                                <div class="bar">
+                                    <div class="bar9"></div>
+                                    <div class="st1">
+                                        <h2 class="stat">85</h2>
+                                        <h3>%</h3>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="adobe">
+                                    <img src="img/jq.svg" alt="제이쿼리">
+                                </div>
+                                <div class="bar">
+                                    <div class="bar10"></div>
+                                    <div class="st1">
+                                        <h2 class="stat">85</h2>
+                                        <h3>%</h3>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="con2 cont">
+                        <div class="map">
+                            <img src="img/map.svg" alt="koreamap">
+                        </div>
+                        <ul class="con2_1">
+                            <li>
+                                <div class="t1">
+                                    <h3>2016.06~2022.02</h3>
+                                    <p>5년9개월</p>
+                                </div>
+                                <h3>삼성SDS ,신라면세점,질병관리본부,멀티캠퍼스 고객센터 상담/강사/운영팀장</h3>
+                            </li>
+                            <li>
+                                <div class="t1">
+                                    <h3>2014.08~2016.06</h3>
+                                    <p>1년11개월</p>
+                                </div>
+                                <h3>삼성SDS 고객센터 글로벌 파트 외국어(중국어) 상담.장애조치 엔지니어</h3>
+                            </li>
+                            <li>
+                                <div class="t1">
+                                    <h3>2014.01~2014.05</h3>
+                                    <p>5개월(회사내부 운영으로인해 권고사직)</p>
+                                </div>
+                                <h3>국내에 판매된 레이저장비 출장AS & 장비 조립.<br>
+                                    해외(중국) 레이저 컷팅기술 본사 도입에 있어 커뮤니케이션 담당</h3>
+                            </li>
+                            <li>
+                                <div class="t1">
+                                    <h3>2012.12~2014.01</h3>
+                                    <p>1년2개월</p>
+                                </div>
+                                <h3>경북,경남 지역 기술 영업와 고객사 관리 및 장비 케어/AS</h3>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="con3 cont">
+                        <div class="cert">
+                            <img src="img/cert.svg" alt="cert">
+                        </div>
+                        <ul class="con3_1">
+                            <li>
+                                <div class="t1">
+                                    <h3>2012.03</h3>
+                                    <p>10년</p>
+                                </div>
+                                <h3>자동차운전면허(1종)</h3>
+                            </li>
+                            <li>
+                                <div class="t1">
+                                    <h3>2013.03</h3>
+                                    <p>10년</p>
+                                </div>
+                                <h3>新HSK6급</h3>
+                            </li>
+                            <li>
+                                <div class="t1">
+                                    <h3>2013.03</h3>
+                                    <p>10년</p>
+                                </div>
+                                <h3>컴퓨터응용선반기능사</h3>
+                            </li>
+                            <li>
+                                <div class="t1">
+                                    <h3>2022.07</h3>
+                                    <p>1년 미만</p>
+                                </div>
+                                <h3>GTQ1급</h3>
+                            </li>
+                            <li>
+                                <div class="t1">
+                                    <h3>2023.06</h3>
+                                </div>
+                                <h3>웹디자인 기능사(To be continue)</h3>
+                            </li>
+                            <li>
+                                <div class="t1">
+                                    <h3>2024.03</h3>
+                                </div>
+                                <h3>Adove Certified Professional</h3>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="con4 cont">
+                        <div class="introme">
+                            <ul class="word">
+                                <li>새롭게 연다</li><!--1-->
+                                <li>끝까지 간다</li><!--2-->
+                                <li>디자이너</li><!--3-->
+                                <li>도전적인</li><!--4-->
+                                <li>섬세한</li><!--5-->
+                                <li>입이 무거운</li><!--6-->
+                                <li>신중한</li><!--7-->
+                                <li>늑대</li><!--8-->
+                                <li>용감한</li><!--9-->
+                                <li>차분함</li><!--10-->
+                                <li>책임감 있는</li><!--11-->
+                                <li>솔직한</li><!--12-->
+                                <li>용믈리에</li><!--13-->
+                                <li>성실함</li><!--14-->
+                                <li>편안함</li><!--15-->
+                                <li>조용한</li><!--16-->
+                                <li>시련은 있어도 실패는 없다</li><!--17-->
+                            </ul>
+                            <div class="graph">
+                                <img src="img/graph.svg" alt="graph">
+                            </div>
+                        </div>
+                        <ul class="hobby">
+                            <li><img src="img/game.svg" alt="게임"></li>
+                            <li><img src="img/archery.svg" alt="양궁"></li>
+                            <li><img src="img/badminton.svg" alt="배드민턴"></li>
+                            <li><img src="img/basketball.svg" alt="농구"></li>
+                            <li><img src="img/bowling.svg" alt="볼링"></li>
+                            <li><img src="img/poker.svg" alt="포커"></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="page">
+                <h2>02</h2>
+            </div>
+            <div class="backgroundimg">
+                <ul>
+                    <li>
+                        <img src="images/page2.jpg" alt="skill">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="project">
+            <div class="protitle">
+                <h2>Project</h2>
+                <ul class="projectname">
+                    <li>
+                        <h3 class="title1">CHUBB LIFE</h3>
+                        <ul class="subtitle">
+                            <li><a href="https://r-kimyong.github.io/chubblife/" target="_blank">홈페이지</a></li>
+                            <li><a href="https://r-kimyong.github.io/chubblife/introduction.html"
+                                    target="_blank">기업소개</a></li>
+                            <li><a href="https://r-kimyong.github.io/chubblife/product.html" target="_blank">상품소개</a>
+                            </li>
+                            <li><a href="https://r-kimyong.github.io/chubblife/mychubb.html" target="_blank">개인정보</a>
+                            </li>
+                            <li><a href="https://r-kimyong.github.io/chubblife/customer.html" target="_blank">고객센터</a>
+                            </li>
+                            <li><a href="https://r-kimyong.github.io/chubblife/last.html" target="_blank">공시실</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3 class="title2">PORTFOLIO</h3>
+                        <div class="subtitle2">
+                            <a href="https://r-kimyong.github.io/aboutme/" target="_blank">바로가기⇀</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="view">
+                <div class="scrollbox">
+                    <ul class="item1">
+                        <li>
+                            <a href="https://r-kimyong.github.io/chubblife/" target="_blank">
+                                <img src="img/main.png" alt="메인페이지">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://r-kimyong.github.io/chubblife/introduction.html" target="_blank">
+                                <img src="img/introduction.jpeg" alt="회사소개">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://r-kimyong.github.io/chubblife/product.html" target="_blank">
+                                <img src="img/product.jpeg" alt="상품소개">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="item2">
+                        <li>
+                            <a href="https://r-kimyong.github.io/chubblife/mychubb.html" target="_blank">
+                                <img src="img/mychubb.jpeg" alt="개인정보">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://r-kimyong.github.io/chubblife/customer.html" target="_blank">
+                                <img src="img/customer.jpeg" alt="고객센터">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://r-kimyong.github.io/chubblife/last.html" target="_blank">
+                                <img src="img/last.jpeg" alt="공시실">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="proposal">
+                    <ul>
+                        <li><img src="img/pdf1.png" alt="기획안1"></li>
+                    </ul>
+                    <div class="leftbg">
+                        <img class="leftbg1" src="img/arrowbgleft.png" alt="화살표 배경">
+                        <img class="leftar" src="img/arrowleft.png" alt="left arrow">
+                    </div>
+                    <div class="rightbg">
+                        <img class="rightbg1" src="img/arrowbgright.png" alt="">
+                        <img class="rightar" src="img/arrowright.png" alt="right arrow">
+                    </div>
+                </div>
+                <div><img src="img/iMacmockup.png" alt="PC"></div>
+                <div><img src="img/ipadmuckup.png" alt="tablet"></div>
+                <div><img src="img/iPhonemockup.png" alt="phone"></div>
+            </div>
+
+            <ul class="device">
+                <li>
+                    <h3>미리보기</h3>
+                </li>
+                <li>
+                    <h3>기획안</h3>
+                </li>
+                <li><img src="img/iMacmockup.png" alt="PC"></li>
+                <li><img src="img/ipadmuckup.png" alt="tablet"></li>
+                <li><img src="img/iPhonemockup.png" alt="phone"></li>
+            </ul>
+
+            <div class="page">
+                <h2>03</h2>
+            </div>
+        </div>
+        <div id="poster">
+
+            <div class="posterintro">
+                <ul class="posterintro1">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <ul class="posterintro2">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+
+            <div class="title2">
+                <h3>Poster</h3>
+            </div>
+
+            <div class="slidbut">
+                <button class="post2">
+                    <img class="p1" src="img/leftarrow.svg" alt="arrow">
+                </button>
+                <div class="tit1">
+                    <h3 class="t1">Poster Desgin</h3>
+                    <h3 class="t2">포스터 디자인</h3>
+                </div>
+                <button class="post1">
+                    <img class="p2" src="img/rightarrow.svg" alt="arrow">
+                </button>
+            </div>
+
+            <div class="slide">
+                <div class="slideleft">
+                    <ul class="slide_1">
+                        <li>
+                            <div class="content1 on">
+                                <h2>목표</h2>
+                                <p>영화 홍보포스터</p><br>
+                                <h2>대상 연령층</h2>
+                                <p>조커는 19세이상 관람 가능한 작품이기때문에 20대 이상의 남성과 여성을 대상층으로 설정하고 영화의 주요내용인 사회적인 이슈와 정치적인 내용이므로 이러한
+                                    관심사를 가진 사람들을 대상으로 홍보</p><br>
+                                <h2>내용</h2>
+                                <p>영화 '조커'의 키워드인 조커,얼굴,배경 등 포함시켜 영화의 분위기를 전달할 수 있도록 제작했습니다.</p><br>
+                                <h2>레이아웃</h2>
+                                <p>배경은 빨간색을 선택해 강력한 인물 설정에 힘실어주고 JOKER의 글자를 크게 배치해 영화의 분위기와 내용을 강조 시켰습니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content1">
+                                <h2>목표</h2>
+                                <p>헤라 립스틱 제품홍보포스터</p><br>
+                                <h2>대상 연령층</h2>
+                                <p>이 립스틱 홍보 포스터는 대상연령층으로 10~40대를 타겟으로 설정하여, 이 연령층의 선호도와 관심을 고려한 디자인과 콘텐츠로 구성됩니다. 헤라는 대한민국에서 꾸준한 인기를 얻고 있는 화장품 브랜드로, 고품질의 제품과 세련된 디자인으로 여성들에게 인기를 얻고 있습니다. 이 립스틱 홍보는 헤라의 브랜드 이미지를 잘 반영하여, 성숙하고 우아한 이미지를 대상연령층에게 전달하는 것을 목표로 합니다.</p><br>
+                                <h2>내용</h2>
+                                <p>블랙핑크의 멤버 중 한 명인 지수를 모델로 기용하여 해당 립스틱의 4가지 컬렉션을 보다 더 좋은 홍보 효과를 이루는 것입니다. 블랙핑크는 글로벌한 인기와 영향력을 지니고 있으며, 그 중에서도 지수는 그룹 내에서 뛰어난 비주얼과 매력을 가지고 있습니다. 따라서, 지수의 참여를 통해 이 립스틱 홍보는 그녀의 인기와 팬들의 관심을 끌어 블랙핑크와 헤라 브랜드의 시너지를 형성하고자 합니다. 이를 통해 대상연령층인 10~40대 여성들의 헤라와 립스틱에 대한 긍정적인 이미지와 신뢰감을 도모할 수 있습니다.</p><br>
+                                <h2>레이아웃</h2>
+                                <p>포스터의 레이아웃은 5대5 비율로 갈라져 있습니다. 이는 균형 있게 배치된 레이아웃을 통해 시각적으로 깔끔하고 효과적인 디자인을 구성하기 위함입니다. 레이아웃의 왼쪽부분에는 메인 키워드와 헤라의 브랜드 이미지가 강조되어 헤라의 고품질 제품과 성숙한 이미지를 강조합니다. 오른쪽부분에는 블랙핑크의 지수가 포즈를 취하며 해당 립스틱의 4가지 컬렉션을 소개</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content1">
+                                <h2>목표</h2>
+                                <p>헤라 세럼</p><br>
+                                <h2>대상 연령층</h2>
+                                <p>해당 세럼 홍보 포스터는 주로 20~40대를 대상으로 하며, 이 연령층의 취향과 관심을 고려하여 디자인되었습니다. 헤라는 대한민국에서 성숙하고 우아한 이미지를 지닌 화장품 브랜드로 알려져 있습니다. 이 포스터에서도 헤라의 브랜드 이미지를 반영하면서, 대상연령층의 선호도와 욕구에 부합하도록구성되었습니다.</p><br>
+                                <h2>내용</h2>
+                                <p>어두운 배경을 선택하여 제품을 더 돋보이게 하고, 우측 상단에는 요약된 홍보 멘트를 눈에 띄게 배치하여 포스터의 가독성과 효과를 극대화했습니다. 어두운 배경은 세럼 제품을 더욱 강조하고 신비롭고 고급스러운 분위기를 연출하여 헤라의 브랜드 이미지와 어울리게 합니다. 우측 상단에 배치된 홍보 멘트는 간결하고 요약된 형태로 디자인되어, 소비자들이 쉽게 정보를 파악할 수 있도록 합니다. 이 멘트는 헤라 세럼의 특장점이나 효과를 강조하며, 제품과 시각적으로 어우러져 더욱 강력한 홍보 효과를 창출합니다.</p><br>
+                                <h2>레이아웃</h2>
+                                <p>7대3 비율로 배치되어 세럼의 새로운 문이 열렸다는 의미를 표현합니다. 이 비율은 화면을 효과적으로 나누어 제품의 중요성을 강조하고, 시선을 확보하는 역할을 합니다. 세럼 제품은 새로운 기술과 혁신적인 성분을 담고 있으며, 이를 표현하기 위해 레이아웃의 비율과 배치에 주목하였습니다. 이를 통해 세럼의 혁신과 효과를 소비자들에게 강력하게 전달하며, 헤라의 브랜드 이미지와 함께 세럼 제품의 고품질과 차별성을 강조합니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content1">
+                                <h2>목표</h2>
+                                <p>야간 문화행사(정동)</p><br>
+                                <h2>대상 연령층</h2>
+                                <p>다양한 연령대의 관객들에게 호소하는 것을 목표로 합니다. 정동의 르네상스는 서울에서 대표적인 야간 문화행사로 손꼽히며, 3년 만에 돌아온다는 제작의도를 강조하고 이를 통해 정동의 르네상스가 오랜 기다림을 끝으로 다시 찾아온다는 기쁨과 흥분을 대중들에게 전달하고자 합니다.</p><br>
+                                <h2>내용</h2>
+                                <p>상하 5대5로 나눠 포스터를 균형 있게 구성하고 시선을 효과적으로 이끌기 위한 선택입니다. 상단은 주요한 정보와 르네상스의 로고, 그리고 메인 이미지와 르네상스를 연상케하는 건축물을 배치하여 주목성을 높입니다. 이를 통해 대중들에게 르네상스의 특징과 분위기를 전달하고 눈에 띄도록 합니다. 하단은 한국 기와집을 그려내 한국의 르네상스를 강조하며 세부적인 내용과 일정, 지역 안내 등을 포함하며, 이를 통해 대상연령층이 필요한 정보를 쉽게 찾을 수 있도록
+                                합니다.</p><br>
+                                <h2>레이아웃</h2>
+                                <p>이렇게 구성된 포스터는 정동의 르네상스의 복고풍이나 독특한 분위기를 시각적으로 표현하고, 대중들에게 이 행사의 매력과 기대를 고조시키는 역할을 기대하고또한, 포스터 전체적으로 표현되는 디자인과 컬러 조합은 르네상스의 아름다움과 흥미를 반영하여, 대상연령층을 매료시키고 참석하도록 유인합니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content1">
+                                <h2>목표</h2>
+                                <p>여름 계절 포스터</p><br>
+                                <h2>대상 연령층</h2>
+                                <p>다양한 연령대의 관객들에게 호소하는 것을 목표로 합니다. 제작의도는 어느새 봄이 지나 무더운 여름이 왔음에도 불구하고 봄의 활기와 에너지는 여전히 살아있다는 메시지를 전달하는 것입니다.</p><br>
+                                <h2>내용</h2>
+                                <p>포스터의 디자인과 컬러 선택은 여름의 특징과 분위기를 표현하기 위해 신중하게 고려되었습니다. 밝고 명랑한 색조와 다채로운 그래픽 요소들이 사용되어 시선을 사로잡고, 대상연령층의 호기심을 자극합니다. 또한, 포스터의 전체적인 디자인은 즐거움과 휴식, 여름 휴가의 기대감을 강조하여, 관객들에게 여름 시즌을 즐기고 즐길 준비를 하도록 독려합니다.
+                                이렇게 구성된 여름계절 포스터는 다채로운 색상과 활기로운 디자인을 통해 여름의 경쾌함과 활력을 표현하며, 아무나에게 여름의 매력과 즐거움을 전달합니다.
+                                여름에 관련된 활동이나 이벤트를 홍보하기에 적합하며, 대중들이 포스터를 보고 여름의 기운을 느끼며 참여하고 싶어하는 욕구를 유발합니다.</p><br>
+                                <h2>레이아웃</h2>
+                                <p>활기를 대표하는 만개한 꽃을 중앙에 배치하였습니다. 이 꽃은 여름의 아름다움과 활력을 상징하며, 포스터 전체를 통해 여름의 기운을 전달합니다. 밝고 생동감 있는 색상을 선택하여 봄을 연상시키고, 이를 여름의 활기에 불어넣어 디자인 반영하였습니다. 이를 통해 시선을 끌어들이고, 대중들에게 여름의 느낌을 직관적으로 전달하는 역할을 합니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content1">
+                                <h2>목표</h2>
+                                <p>나비 축제</p><br>
+                                <h2>대상 연령층</h2>
+                                <p>대상연령층을 제한 없음으로 설정하여, 모든 연령대의 관객들에게 나비 축제를 알리는 것을 목표로 합니다. 제작의도는 다양한 사람들에게 나비 대축제의 매력을
+                                    전달하고, 참여와 관심을 유도하는 것입니다</p><br>
+                                <h2>내용</h2>
+                                <p>자연의 아름다움과 아이들의 순수한 모습, 그리고 나비와의 상호작용을 중심으로 구성되었습니다. 밝고 생동감 있는 컬러와 다채로운 그래픽 요소들이 사용되어시선을 사로잡으며, 관객들에게 나비 대축제의 매력과 즐거움을 전달합니다. 또한, 포스터 전체적으로 포근하고 따뜻한 분위기를 표현하여, 관객들이 포스터를보고 축제의 기대감과 즐거움을 느낄 수 있도록 합니다.</h2>
+                                <h2>레이아웃</h2>
+                                <p>상하 6대4로 나누어져 있으며, 전반적인 디자인 벨런스를 맞추었습니다. 상단 6분의 1은 하늘과 산이 그려진 배경으로 어린 아이와 나비를 골고루
+                                배치하였습니다. 이를 통해 자연과 아이들의 순수한 모습, 그리고 나비와의 상호작용을 시각적으로 표현하여 포스터에 따뜻하고 환영하는 분위기를 조성합니다.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content1">
+                                <h2>목표</h2>
+                                <p>한강 멍때리기 대회</p><br>
+                                <h2>대상 연령층</h2>
+                                <p>제한없는 대상연령층을 강조하며, 다양한 연령층이 초록잔디위에서 멍때리는 모습을 알리는게 목적이기 때문에 참가자들이 편안하게 한강에서 쉬어가며 멍때리는 경험을 즐길 수 있는 대회임을 표현했습니다.</p><br>
+                                <h2>내용</h2>
+                                <p>포스터 전체적으로 참가자들이 즐거운 경험을 할 수 있는 분위기를 조성하여, 많은 사람들이 참여하고 싶은 대회임을 알립니다.</p><br>
+                                <h2>레이아웃</h2>
+                                <p>상하 6대4로 나누어져 전반적인 디자인 벨런스를 맞추었습니다. 포스터의 상단은 참가자 캐릭터가 멍때리는 모습으로 화면 전체의 6비율을 차지하도록 배치하였습니다. 이를 통해 참가자들의 편안하고 행복한 분위기를 시각적으로 표현합니다.하단 부분에는 대회의 이름, 참가 날짜, 위치 안내 등의 정보를 간결하게 배치하였습니다. 포스터의 디자인 요소들은 대회의 목적과 분위기를 반영하며,상쾌하고 자연 친화적인 컬러와 그래픽 요소를 활용했습니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content1">
+                                <h2>목표</h2>
+                                <p>전통 시장 축제</p><br>
+                                <h2>대상 연령층</h2>
+                                <p>대상 연령층에 제한이 없음을 강조하며, 지역경제 활성화와 지역특색의 홍보를 목적으로 합니다.</p><br>
+                                <h2>내용</h2>
+                                <p>포스터를 통해 많은 사람들이 시장 축제에 참여하고 지역 경제를 활성화시키는 즐거움을 느낄 수 있도록 합니다.</p><br>
+                                <h2>레이아웃</h2>
+                                <p>화창한 날씨와 시장 풍경을 각각 5대5로 나누어 밸런스를 맞추었습니다. 상단에는 화창한 날씨를 상징하는 밝은 하늘과 해가 빛나는 모습을 배치하였습니다.이는 즐거운 여름 분위기와 함께 시장 축제의 활기를 전달합니다.하단에는 전통시장의 시끌벅적한 모습을 강조하여 표현하였습니다. 시장 거리에는 다양한 상인과 손님들이 모여있는 모습을 그려 시장의 생동감과 활기를 시각적으로 나타내었습니다. 이를 통해 지역 시장의 특색과 활발한 활동을 강조하고, 지역 경제 활성화를 도모하는 의도를 전달합니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content1">
+                                <h2>목표</h2>
+                                <p>'가상 브랜드' 10th 기념 제품 </p><br>
+                                <h2>대상 연령층</h2>
+                                <p>수분 충전이 필요한 소비자 또는 20~40대 여성이 주타겟으로 합니다. 창립 10주년을 기념하여 트렌드 마크 제품군인 세럼을 출시했다는 사실을 홍보하기 위한 목적을 가지고 있습니다.</p><br>
+                                <h2>내용</h2>
+                                <p>화려한 그래픽과 물방울로 가득한 배경을 통해 상쾌한 이미지를 전달하며, 제품과 10주년 기념 메시지를 조화롭게 표현하여 브랜드의 성과와 출시 제품의 매력을 강조합니다.</p><br>
+                                <h2>레이아웃</h2>
+                                <p>배경에는 수분을 연상시킬 수 있는 그래픽과 물방울을 배치하여 상쾌하고 수분이 가득한 느낌을 전달합니다. 화면 비율의 6 부분에는 출시된 제품을 주요하게 배치하였습니다. 제품을 중심으로 세밀한 디테일과 효과를 보여주어 제품의 매력을 강조합니다. 화면 비율의 4 부분에는 10주년을 강조한 텍스트를 배치하여 가상브랜드의 창립 10주년을 알리고 축하하는 메시지를 전달합니다. 이를 통해 제품 출시와 동시에 브랜드의 업적과 성취를 강조하고, 고객들에게 기념의 의미를 전달합니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content1">
+                                <h2>목표</h2>
+                                <p>'가상 브랜드' 여름 신상 제품</p><br>
+                                <h2>대상 연령층</h2>
+                                <p>남녀 상관없이 어떤 연령층에게도 맞는 제품을 소개합니다. 이 제품은 여름의 매서운 햇빛을 예방하기 위해 출시된 신상 썬크림입니다.</p><br>
+                                <h2>내용</h2>
+                                <p>제품의 효과적인 홍보를 위해 제품 내용물을 시각적으로 나타내어 고객들에게 제품의 특징과 효능을 직관적으로 전달합니다.</p><br>
+                                <h2>레이아웃</h2>
+                                <p>여름의 활기를 담기 위해 밝은 그라디언트 색상으로 배경을 구성하였습니다. 추가적으로 블러 효과를 적용하여 부드러운 분위기를 연출하였습니다. 화면가운데에는 제품이 주요하게 배치되어 있으며, 제품 양옆에는 제품 내용물이 튀어나오는 것을 시각적으로 표현하였습니다. 이를 통해 제품의 효과와 기능을 간접적으로 전달하여 고객들에게 신뢰와 흥미를 불러일으킵니다.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <ul class="poster1">
+                    <li>
+                        <ul class="poster1_1">
+                            <li><img src="img/poster7.jpg" alt="포스터6"></li>
+                            <li><img src="img/joker.jpg" alt="조커"></li>
+                            <li><img src="img/hera.jpg" alt="헤라"></li>
+                            <li><img src="img/cosmetic1.jpg" alt="화장품2"></li>
+                            <li><img src="img/poster1.jpg" alt="포스터1"></li>
+                            <li><img src="img/poster2.jpg" alt="포스터2"></li>
+                            <li><img src="img/poster3.jpg" alt="포스터3"></li>
+                            <li><img src="img/poster4.jpg" alt="포스터4"></li>
+                            <li><img src="img/poster5.jpg" alt="포스터5"></li>
+                            <li><img src="img/poster6.jpg" alt="포스터6"></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="poster1_2">
+                            <li><img src="img/joker.jpg" alt="조커"></li>
+                            <li><img src="img/hera.jpg" alt="헤라"></li>
+                            <li><img src="img/cosmetic1.jpg" alt="화장품2"></li>
+                            <li><img src="img/poster1.jpg" alt="포스터1"></li>
+                            <li><img src="img/poster2.jpg" alt="포스터2"></li>
+                            <li><img src="img/poster3.jpg" alt="포스터3"></li>
+                            <li><img src="img/poster4.jpg" alt="포스터4"></li>
+                            <li><img src="img/poster5.jpg" alt="포스터5"></li>
+                            <li><img src="img/poster6.jpg" alt="포스터6"></li>
+                            <li><img src="img/poster7.jpg" alt="포스터6"></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="poster1_3">
+
+                            <li><img src="img/hera.jpg" alt="헤라"></li>
+                            <li><img src="img/cosmetic1.jpg" alt="화장품2"></li>
+                            <li><img src="img/poster1.jpg" alt="포스터1"></li>
+                            <li><img src="img/poster2.jpg" alt="포스터2"></li>
+                            <li><img src="img/poster3.jpg" alt="포스터3"></li>
+                            <li><img src="img/poster4.jpg" alt="포스터4"></li>
+                            <li><img src="img/poster5.jpg" alt="포스터5"></li>
+                            <li><img src="img/poster6.jpg" alt="포스터6"></li>
+                            <li><img src="img/poster7.jpg" alt="포스터6"></li>
+                            <li><img src="img/joker.jpg" alt="조커"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="page">
+                <h2>04</h2>
+            </div>
+        </div>
+        <div id="contact">
+            <div class="title2">
+                <h3>Contact</h3>
+            </div>
+            <div class="con4">
+                <ul class="sns">
+                    <li>
+                        <div class="icon1">
+                            <img src="img/tel.svg" alt="연락처">
+                        </div>
+                        <div class="info">
+                            <p>010.3945.4570</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon1">
+                            <img src="img/address.svg" alt="주소">
+                        </div>
+                        <div class="info">
+                            <p>서울시 강서구 화곡동</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon1">
+                            <img src="img/email.svg" alt="이메일">
+                        </div>
+                        <div class="info">
+                            <p>right4570@naver.com</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon1">
+                            <img src="img/http.svg" alt="홈페이지">
+                        </div>
+                        <div class="info">
+                            <p>rladyd5.dothome.co.kr</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon1">
+                            <img src="img/face.svg" alt="페이스북">
+                        </div>
+                        <div class="info">
+                            <p>010.3945.4570</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon1">
+                            <img src="img/ins.svg" alt="인스타">
+                        </div>
+                        <div class="info">
+                            <p>kim.yong4</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon1">
+                            <img src="img/wechat.svg" alt="위챗">
+                        </div>
+                        <div class="info">
+                            <p>Joker_DZX</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon1">
+                            <img src="img/kakao.svg" alt="위챗">
+                        </div>
+                        <div class="info">
+                            <p>right1532114@gmail.com</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="my">
+                    <div class="m1">
+                        <img src="img/mynamewhite.svg" alt="myname">
+                    </div>
+                    <div class="m2">
+                        <img src="img/my.png" alt="자화상">
+                    </div>
+
+                </div>
+            </div>
+            <div class="page">
+                <h2>05</h2>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
