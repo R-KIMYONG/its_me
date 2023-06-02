@@ -2,9 +2,10 @@ $(function(){
 
     $("body").on('mousemove',function(e){
 		posX = e.pageX/50;
-		posY = e.pageY/100;
+		posY = e.pageY/50;
 		
-		$(".year").css({"right":-70+posX,"bottom":-170+posY})
+		$(".year .y2").css({"right":-50+posX,"bottom":-250+posY})
+        $(".year .y1").css({"right":-150+posX,"top":-250+posY})
 	});
     let intro =0;
     setInterval(function(){
@@ -126,7 +127,7 @@ $(function(){
     })
     /*포스터 좌우 슬라이드*/ 
     let content = 0;
-    $(".slidbut .post1").on("click", function() {
+    $(".slidbut .post1,.slidbut2 .rightslide").on("click", function() {
         $(".slide_1").stop().animate({"margin-left": "-100%"},function(){
             $(".slide_1").css({"margin-left":"0%"});
         })        
@@ -150,7 +151,7 @@ $(function(){
         
     });
       
-    $(".slidbut .post2").on("click", function() {        
+    $(".slidbut .post2,.slidbut2 .leftslide").on("click", function() {        
         $(".slide_1 li").last().prependTo(".slide_1");
         $(".slide_1").css({"margin-left":"-100%"});
         $(".slide .slide_1").stop().animate({"margin-left": "0%"})
@@ -180,6 +181,7 @@ $(function(){
     let c = 0;
     let d = 0;
     let e = 0;
+    let e1 = 0;
     $(".kategorie li").on("click",function(){
     a = $(this).index();
     b = $(this).hasClass("fon");
@@ -197,18 +199,18 @@ $(function(){
     }
     e=$(".kategorie li").eq(2).hasClass("fon");
     if(e==false){
-        $(".con3 ul").removeClass("on")
-        $(".con3 .cert").removeClass("on")
+        $(".con3 ul").delay(1000).removeClass("on")
+        $(".con3 .cert").delay(1000).removeClass("on")
     }
     d = $(".kategorie li").eq(1).hasClass("fon");
     if(d==false){
-        $(".con2 ul").removeClass("on")        
+        $(".con2 ul").delay(1000).removeClass("on")        
         $(".con2 .map").animate({opacity:"0"})
     }
     c = $(".kategorie li").eq(0).hasClass("fon");
     if(c==false){
         $(".stat").stop().text(0);
-        $(".bar>div").removeClass("on")
+        $(".bar>div").delay(1000).removeClass("on")
     }
 
     }else{
@@ -225,19 +227,26 @@ $(function(){
         $(".word").delay(2000).addClass("on")
         $(".graph img").delay(3200).animate({opacity:"1"})
         $(".hobby").delay(2000).addClass("on")
+    }else{
+        $(".word").removeClass("on")
+        $(".graph img").animate({opacity:"0"})
+        $(".hobby").removeClass("on")
     }
     e=$(".kategorie li").eq(2).hasClass("fon");
     if(e==true){
         $(".con3 ul").addClass("on")
         $(".con3 .cert").addClass("on")
-
+    }else{
+        $(".con3 ul").delay(1000).removeClass("on")
+        $(".con3 .cert").delay(1000).removeClass("on")
     }
     d = $(".kategorie li").eq(1).hasClass("fon");
     if(d==true){        
         $(".con2 ul").addClass("on")
-        $(".con2 .map").delay(2400).animate({opacity:"0.3"})
+        $(".con2 .map").delay(500).animate({opacity:"0.3"})
     }else{
-        $(".con2 .map").delay(2400).animate({opacity:"0"})
+        $(".con2 ul").removeClass("on")
+        $(".con2 .map").delay(1400).animate({opacity:"0"})
     }
     c = $(".kategorie li").eq(0).hasClass("fon");
     if(c==true){
@@ -261,8 +270,28 @@ $(function(){
         $(".bar9").addClass("on") 
         skill10();
         $(".bar10").addClass("on")       
+    }else{
+        $(".bar1").removeClass("on")
+        skill2();
+        $(".bar2").removeClass("on")
+        skill3();
+        $(".bar3").removeClass("on") 
+        skill4();
+        $(".bar4").removeClass("on") 
+        skill5();
+        $(".bar5").removeClass("on") 
+        skill6();
+        $(".bar6").removeClass("on") 
+        skill7();
+        $(".bar7").removeClass("on") 
+        skill8();
+        $(".bar8").removeClass("on") 
+        skill9();
+        $(".bar9").removeClass("on") 
+        skill10();
+        $(".bar10").removeClass("on")
     }
-    }   
+    }
 
 function skill1(){
     let bar1 = 0; 
@@ -274,7 +303,7 @@ function skill1(){
         }else{
             clearInterval(start1);                
         }
-    },50)
+    },20)
 }
 function skill2(){
     let bar2 = 0; 
@@ -286,7 +315,7 @@ function skill2(){
         }else{
             clearInterval(start2);                
         }
-    },50)
+    },20)
 }
 function skill3(){
     let bar3 = 0; 
@@ -298,7 +327,7 @@ function skill3(){
         }else{
             clearInterval(start3);                
         }
-    },50)
+    },20)
 }
 function skill4(){
     let bar4 = 0; 
@@ -310,7 +339,7 @@ function skill4(){
         }else{
             clearInterval(start4);                
         }
-    },50)
+    },20)
 }
 function skill5(){
     let bar5 = 0; 
@@ -322,7 +351,7 @@ function skill5(){
         }else{
             clearInterval(start5);                
         }
-    },50)
+    },20)
 }
 function skill6(){
     let bar6 = 0; 
@@ -334,7 +363,7 @@ function skill6(){
         }else{
             clearInterval(start6);                
         }
-    },50)
+    },20)
 }
 function skill7(){
     let bar7 = 0; 
@@ -346,7 +375,7 @@ function skill7(){
         }else{
             clearInterval(start7);                
         }
-    },50)
+    },20)
 }
 function skill8(){
     let bar8 = 0; 
@@ -358,7 +387,7 @@ function skill8(){
         }else{
             clearInterval(start8);                
         }
-    },50)
+    },20)
 }
 function skill9(){
     let bar9 = 0; 
@@ -370,7 +399,7 @@ function skill9(){
         }else{
             clearInterval(start9);                
         }
-    },50)
+    },20)
 }
 function skill10(){
     let bar10 = 0; 
@@ -382,7 +411,7 @@ function skill10(){
         }else{
             clearInterval(start10);                
         }
-    },50)
+    },20)
 }  
 })
 /*
@@ -427,12 +456,12 @@ function autowheel(){
        if(wheel1<=endpoint){
         wheel1++;
         $('#project .item1').stop().css('transform', 'translateY(' + (-wheel1) + 'px)');
-        $('#project .item2').stop().css('transform', 'translateY(' + (wheel1) + 'px)');
+        $('#project .item2').stop().css('transform', 'translateY(' + (wheel1-200) + 'px)');
 
        }else if (endpoint<=wheel1 && endpoint>0) {              
         endpoint--;
         $('#project .item1').stop().css('transform', 'translateY(' + (-endpoint+300) + 'px)');
-        $('#project .item2').stop().css('transform', 'translateY(' + (endpoint) + 'px)');
+        $('#project .item2').stop().css('transform', 'translateY(' + (endpoint-500) + 'px)');
       }else if(endpoint==0){
         wheel1=0;
         endpoint=item1-scrollbox
