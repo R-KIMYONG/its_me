@@ -85,8 +85,8 @@ $(function(){
                 var index = 0;
             
                 setInterval(function() {
-                  $element.removeClass("beat0,beat1,beat2,beat3");
-                  $element.eq(index).addClass('.kategorie ul li beat' + index);
+                  $element.stop().removeClass("beat0,beat1,beat2,beat3");
+                  $element.stop().eq(index).addClass('.kategorie ul li beat' + index);
                   index++;
                   if(index==totalClasses){
                     index=0;
