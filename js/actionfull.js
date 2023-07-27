@@ -68,10 +68,10 @@ $(function(){
                 $(".kategorie ul li").delay(3000).addClass("on");
                 let flash1 = 0;
                     autoflash = setInterval(function(){
-                        $(".click ul").stop().removeClass("on");
-                        $(".click ul").eq(flash1).stop().delay(5000).addClass("on");
+                        $("#about .click ul").stop().removeClass("on");
+                        $("#about .click ul").stop().eq(flash1).delay(3000).addClass("on");
                         flash1++;
-                        if (flash1 === $(".click ul").length) {
+                        if (flash1 === $("#about .click ul").length) {
                           flash1 = 0;
                         }
                     },1000)
@@ -211,12 +211,12 @@ $(function(){
           let autoblink = 0;
         setInterval(function(){
             if(autoblink == 0){
-                $(".project2 .click ul").removeClass("on")
-                $(".project1 .click ul").addClass("on")
+                $(".project2 .click ul").stop().removeClass("on")
+                $(".project1 .click ul").stop().addClass("on")
                 autoblink =1;
             }else{
-                $(".project1 .click ul").removeClass("on")
-                $(".project2 .click ul").addClass("on")
+                $(".project1 .click ul").stop().removeClass("on")
+                $(".project2 .click ul").stop().addClass("on")
                 autoblink = 0;
             }
         },1000)
@@ -785,10 +785,10 @@ $(function(){
                 $(".kategorie ul li").delay(3000).addClass("on");
                 let flash1 = 0;
                     autoflash = setInterval(function(){
-                        $(".click ul").stop().removeClass("on");
-                        $(".click ul").eq(flash1).stop().delay(5000).addClass("on");
+                        $("#about .click ul").stop().removeClass("on");
+                        $("#about .click ul").eq(flash1).stop().delay(5000).addClass("on");
                         flash1++;
-                        if (flash1 === $(".click ul").length) {
+                        if (flash1 === $("#about .click ul").length) {
                           flash1 = 0;
                         }
                     },1000)
@@ -887,12 +887,12 @@ $(function(){
         let autoblink = 0;
         setInterval(function(){
             if(autoblink == 0){
-                $(".project2 .click ul").removeClass("on")
-                $(".project1 .click ul").addClass("on")
+                $(".project2 .click ul").stop().removeClass("on")
+                $(".project1 .click ul").stop().addClass("on")
                 autoblink =1;
             }else{
-                $(".project1 .click ul").removeClass("on")
-                $(".project2 .click ul").addClass("on")
+                $(".project1 .click ul").stop().removeClass("on")
+                $(".project2 .click ul").stop().addClass("on")
                 autoblink = 0;
             }
         },1000)
@@ -1486,10 +1486,10 @@ $(function(){
                 $(".kategorie ul li").delay(3000).addClass("on");
                 let flash1 = 0;
                     autoflash = setInterval(function(){
-                        $(".click ul").removeClass("on");
-                        $(".click ul").eq(flash1).stop().delay(5000).addClass("on");
+                        $("#about .click ul").stop().removeClass("on");
+                        $("#about .click ul").eq(flash1).stop().delay(5000).addClass("on");
                         flash1++;
-                        if (flash1 === $(".click ul").length) {
+                        if (flash1 === $("#about .click ul").length) {
                           flash1 = 0;
                         }
                     },1000)
@@ -1558,15 +1558,15 @@ $(function(){
         let autoblink = 0;
         setInterval(function(){
             if(autoblink == 0){
-                $(".project2 .click ul").removeClass("on")
-                $(".project1 .click ul").addClass("on")
+                $(".project2 .click ul").stop().removeClass("on")
+                $(".project1 .click ul").stop().addClass("on")
                 autoblink =1;
             }else{
-                $(".project1 .click ul").removeClass("on")
-                $(".project2 .click ul").addClass("on")
+                $(".project1 .click ul").stop().removeClass("on")
+                $(".project2 .click ul").stop().addClass("on")
                 autoblink = 0;
             }
-        },1000)
+        },2000)
         /*---------------------클릭 유도---------------------*/
         $("#nav li").on("click", function () {
             let target = $(this).children("a").attr("href");
