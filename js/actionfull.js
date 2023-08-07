@@ -1,35 +1,34 @@
 $(function(){
 
     if(matchMedia("screen and (min-width:1440px)").matches){
-        $("body").on('mousemove',function(e){
-            posX = e.pageX/500;
-            posY = e.pageY/500;
-            
-            $(".year .y2").css({"right":-15+posX+"%","bottom":-20+posY+"%"})
-            $(".year .y1").css({"right":-25+posX+"%","top":-28+posY+"%"})
+        var video = $("video");
+        video.on('play', function() {
+            $('.scrollicon, #nav, .parent,.year').fadeOut();
+            $(".loading").fadeOut();
         });
-
-
-            var video = $("video");
-            video.on('play', function() {
-              $('.scrollicon, #nav, .parent,.year').fadeOut();
-              $(".loading").fadeOut();
+        
+        video.on('pause', function() {                
+            video.fadeOut(function() {
+            $('.scrollicon, #nav, .parent,.year,.page,.ball').fadeIn();
+            $(".introimg5 h1").delay(500).addClass("on").animate({top:"50%",opacity:"1"},function(){
+                $(".title1 .line").addClass("on")
+                $(".title1 h3").delay(500).animate({opacity:"1"})
+                $(".introimg").fadeOut();
+                $(".introimg5").css({background:"none"})
+                $(".box1").fadeOut();
+                
+            })
             });
-          
-            video.on('pause', function() {                
-              video.fadeOut(function() {
-                $('.scrollicon, #nav, .parent,.year').fadeIn();
-                $(".introimg5 h1").delay(500).addClass("on").animate({top:"50%",opacity:"1"},function(){
-                    $(".title1 .line").addClass("on")
-                    $(".title1 h3").delay(1000).animate({opacity:"1"})
-                    $(".introimg").fadeOut();
-                    $(".introimg5").css({background:"none"})
-                    $(".box1").fadeOut();
-                    
-                })
-              });
-            });
-
+        });
+        /*-----------------네비게이션-----------------*/
+        $("#nav li").on("click", function () {
+            let target = $(this).children("a").attr("href");
+            //alert(target);
+            let pos = $(target).offset().top;
+            //alert(pos);
+            $("html,body").stop().animate({ scrollTop: pos }, 1000);
+        });
+        /*-----------------네비게이션-----------------*/
     
         let baseline = -200;
         let pos1 = $("#home").offset().top + baseline;
@@ -52,220 +51,139 @@ $(function(){
             if (scroll >= pos1 && scroll < pos2) {
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(0).addClass("on");
-                $(".posterintro").removeClass("on")
-                $(".posterintro").fadeIn();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
-                $("#about .profil").removeClass("on")
-                $("#about .profil .introductioninfo").children("p").fadeOut();                
+                $("#contact .con4 .my .m2").children("img").removeClass("on")                      
             } else if (scroll >= pos2 && scroll < pos3) {
                 $("#nav li").removeClass("on");
-                $("#nav li").eq(1).addClass("on");                
-                $("#about .profil").stop().animate({left:"0px", opacity:"1"},function(){
-                    $("#about .profil").delay(1000).addClass("on")                    
-                    $("#about .profil .introductioninfo").children("p").animate({opacity:"1"}).fadeIn();
-                });                   
-                $(".kategorie ul li").delay(3000).addClass("on");
-                let flash1 = 0;
-                    autoflash = setInterval(function(){
-                        $("#about .click ul").stop().removeClass("on");
-                        $("#about .click ul").stop().eq(flash1).delay(3000).addClass("on");
-                        flash1++;
-                        if (flash1 === $("#about .click ul").length) {
-                          flash1 = 0;
-                        }
-                    },1000)
-                
-                $(".kategorie ul li").on("click",function(){
-                    clearInterval(autoflash);
-                })
+                $("#nav li").eq(1).addClass("on");
+                $("#about .bg h2").stop().fadeIn();              
+                $("#about .profil").stop().animate({left:"200px", opacity:"1"},function(){
+                $("#about .profil").stop().delay(1000).addClass("on")                    
+                $("#about .profil .introductioninfo").children("p").animate({opacity:"1"}).fadeIn();
+                });
 
-                var totalClasses = $(".kategorie ul li").length;            
-                var $element = $('.kategorie ul li');
-                var index = 0;
+                $("#about .content .con1").stop().delay(1000).addClass("on");
+                $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").stop().delay(1200).addClass("on");                
+                skill1();
+                skill2();
+                skill3();
+                skill4();
+                skill5();
+                skill6();
+                skill7();
+                skill8();
+                skill9();
+                skill10();
+                let totalcontent = $(".content .cont").length;
+                let aboutme = 0;
+                currentaboutme = setInterval(function(){
+                aboutme++;                
+                if(aboutme == totalcontent){
+                    aboutme=0;
+
+                }else{           
+                }
+                $(".kategorie ul li").stop().removeClass("fon");
+                $(".kategorie ul li").stop().eq(aboutme).addClass("fon");
+                $(".kategorie ul li").stop().removeClass("on");
+                $(".kategorie ul li").stop().eq(aboutme).addClass("on");
             
-                setInterval(function() {
-                  $element.stop().removeClass("beat0,beat1,beat2,beat3");
-                  $element.stop().eq(index).addClass('.kategorie ul li beat' + index);
-                  index++;
-                  if(index==totalClasses){
-                    index=0;
-                  }
-                }, 1000);
-
-
-                $(".posterintro").removeClass("on")
+                // "fon" 클래스를 찾은 경우 실행되는 코드 블록
+                $(".content .cont").stop().animate({left: "-100%"});
+                $(".content .cont").eq(aboutme).stop().animate({left: "0%"});
+                if($(".kategorie ul li").eq(0).hasClass("fon")){                        
+                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on");
+                    skill1();
+                    skill2();
+                    skill3();
+                    skill4();
+                    skill5();
+                    skill6();
+                    skill7();
+                    skill8();
+                    skill9();
+                    skill10();
+                }else{
+                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
+                }
+                if ($(".kategorie ul li").eq(1).hasClass("fon")) {                       
+                    $(".con2 ul").addClass("on");
+                    $(".con2 .map").delay(500).animate({ opacity: "0.3" });
+                }
+                if ($(".kategorie ul li").eq(2).hasClass("fon")) {
+                    $(".con3 ul").addClass("on");
+                    $(".con3 .cert").addClass("on");
+                }
+                if ($(".kategorie ul li").eq(3).hasClass("fon")) {
+                    $(".word").delay(1500).addClass("on");
+                    $(".graph img").delay(1500).animate({ opacity: "1" });
+                    $(".hobby").delay(500).addClass("on");
+                }                
+                // "fon" 클래스를 찾지 못한 경우 실행되는 코드 블록
+                if ($(".kategorie ul li").eq(1).hasClass("fon") == false) {
+                    $(".con2 ul").removeClass("on");
+                    $(".con2 .map").delay(1400).animate({ opacity: "0" });
+                }
+                if ($(".kategorie ul li").eq(2).hasClass("fon") == false) {
+                    $(".con3 ul").delay(1000).removeClass("on");
+                    $(".con3 .cert").delay(1000).removeClass("on");
+                }
+                if ($(".kategorie ul li").eq(3).hasClass("fon") == false) {
+                    $(".word").removeClass("on");
+                    $(".graph img").animate({ opacity: "0" });
+                    $(".hobby").removeClass("on");                    
+                }
+            },4000) 
+                $(".posterintro").stop().removeClass("on")
                 $(".posterintro").fadeIn();
                 $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
             } else if (scroll >= pos3 && scroll < pos4) {
+                $("#project .projectname>li").addClass("in");
+                $("#project .but").delay(1500).addClass("in");
+                $("#project .view").delay(2000).addClass("in");
+                $("#project>h2").stop().fadeIn();    
                 $("#nav li").removeClass("on");
-                $("#nav li").eq(2).addClass("on");
-                $(".posterintro").removeClass("on")
-                $(".posterintro").stop().fadeIn();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
-                $("#about .profil").removeClass("on")
-                $("#about .profil .introductioninfo").children("p").animate({opacity:"0"})
+                $("#nav li").eq(2).addClass("on");              
             } else if (scroll >= pos4 && scroll < pos5) {
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(3).addClass("on");
-                $(".posterintro").addClass("on")
-                $("#poster .title2,.slidbut,.slide,.page,.tit1,.post1,.post2,.slide_1,.poster1").delay(1800).fadeIn("slow");                
-                $(".posterintro").stop().delay(2000).fadeOut();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
-                $("#about .profil").removeClass("on")
-                $("#about .profil .introductioninfo").children("p").animate({opacity:"0"})
+                $("#poster>h2").stop().fadeIn();
+                $("#poster .poster2>li").stop().addClass("in");
             } else {
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(4).addClass("on");
-                $(".posterintro").removeClass("on")
-                $(".posterintro").fadeIn();
+                $("#contact>h2").stop().fadeIn(); 
+                $("#contact .ball").stop().fadeIn(); 
                 $("#contact .con4 .my .m2").delay(2000).children("img").addClass("on")
                 $(".sns").addClass("on")
-                $("#about .profil").removeClass("on")
-                $("#about .profil .introductioninfo").children("p").animate({opacity:"0"})
+                
             }    
         });
 
-
-
-        $("#nav li").on("click", function () {
-            let target = $(this).children("a").attr("href");
-            //alert(target);
-            let pos = $(target).offset().top;
-            //alert(pos);
-            $("html,body").stop().animate({ scrollTop: pos }, 1000);
-        });
-        /*웹디자인 오브젝트 선명하게 보이기 효과+디자인 컨셉 설명 나오기 효과*/
-        $(".slideitem .sl").on("mouseenter",function(){
-            let s = $(this).index();
-            $(".slideitem .sl").stop().removeClass("op")
-            $(".slideitem .sl").eq(s).stop().addClass("op")
-            $(".concept").stop().animate({bottom:"0px"})
-    
+        $(".kategorie ul li .outline,.kategorie ul li .but,.kategorie ul li,.kategorie ul li .front,.kategorie ul li .down").on("click",function(){
+            clearInterval(currentaboutme);
         })
-        $(".slideitem .sl").on("mouseleave",function(){
-            $(".slideitem .sl").stop().removeClass("op")
-            $(".concept").stop().animate({bottom:"-400px"})
-        })
-        /*웹디자인 & 포스터 타이틀 변경 효과*/ 
-        $(".tit1").on("mouseenter",function(){
-            $(".t1").stop().animate({opacity:"0"})
-            $(".t2").stop().animate({opacity:"1"})
-    
-        })
-        $(".tit1").on("mouseleave",function(){
-            $(".t1").stop().animate({opacity:"1"})
-            $(".t2").stop().animate({opacity:"0"})
-    
-        })
-        /*포스터 좌우 슬라이드*/ 
-        let content = 0;
-        let total = $(".slide_1 li").length;
-        $(".slidbut .post1,.slidbut2 .rightslide").on("click", function() {
-            /*$(".slide_1").stop().animate({"margin-left": "-100%"},function(){
-                $(".slide_1").css({"margin-left":"0%"});
-            })        
-            $(".slide_1 li").first().appendTo(".slide_1");
-    
-            $(".slide_1 li").stop().children(".content1").removeClass("on")
-            $(".slide_1 li").delay(4000).eq(0).stop().children(".content1").addClass("on")*/
-            content++;
-            if(content >= total-1){ 
-                content=0;
-            }else{
-                
-            }
-            $(".slide_1 li").stop().children(".content1").fadeOut().removeClass("on");
-            $(".slide_1 li").stop().eq(content).children(".content1").fadeIn().addClass("on");
-
-
-            $(".poster1_1").stop().animate({left:"-100%"},function(){
-                $(".poster1_1 li").first().appendTo(".poster1_1")
-                $(".poster1_1").css({left:"0%"});
-            })
-            $(".poster1_2").stop().animate({left:"-100%"},function(){
-                $(".poster1_2 li").first().appendTo(".poster1_2")
-                $(".poster1_2").css({left:"0%"});
-            })
-            $(".poster1_3").stop().animate({left:"-100%"},function(){
-                $(".poster1_3 li").first().appendTo(".poster1_3")
-                $(".poster1_3").css({left:"0%"});
-            })
-            
-        });
-        $(".device li").on("click",function(){
-            let nav = $(".device li").index(this);
-            $(".device li").stop().css({"border-radius":"0px 100px 0px 0px"})
-            $(".device li").eq(nav).stop().animate({"border-radius":"0px"})
-        })
-        $(".device1 li").on("click",function(){
-            let nav1 = $(".device1 li").index(this);
-            $(".device1 li").stop().css({"border-radius":"0px 100px 0px 0px"})
-            $(".device1 li").eq(nav1).stop().animate({"border-radius":"0px"})
-        })
-
-        /*---------------------클릭 유도---------------------*/
-          let autoblink = 0;
-        setInterval(function(){
-            if(autoblink == 0){
-                $(".project2 .click ul").stop().removeClass("on")
-                $(".project1 .click ul").stop().addClass("on")
-                autoblink =1;
-            }else{
-                $(".project1 .click ul").stop().removeClass("on")
-                $(".project2 .click ul").stop().addClass("on")
-                autoblink = 0;
-            }
-        },1000)
-        /*---------------------클릭 유도---------------------*/
-        $(".slidbut .post2,.slidbut2 .leftslide").on("click", function() {
-            content--;
-            if(content < 0){ 
-                content=total+content
-                
-            }else{
-                
-            }
-            $(".slide_1 li").stop().children(".content1").fadeOut().removeClass("on");
-            $(".slide_1 li").stop().eq(content).children(".content1").fadeIn().addClass("on");
-    
-    
-            $(".poster1_1 li").last().prependTo(".poster1_1")
-            $(".poster1_1").css({left:"-100%"})
-            $(".poster1_1").stop().animate({left:"0%"})
-    
-    
-            $(".poster1_2 li").last().prependTo(".poster1_2")
-            $(".poster1_2").css({left:"-100%"})
-            $(".poster1_2").stop().animate({left:"0%"})
-    
-    
-            $(".poster1_3 li").last().prependTo(".poster1_3")
-            $(".poster1_3").css({left:"-100%"})
-            $(".poster1_3").stop().animate({left:"0%"})    
-        });
-    
-        
         /*스킬페이지 좌우 슬라이드*/ 
-        let a = 0;
+
         let b = 0;
         let c = 0;
         let d = 0;
         let e = 0;
         let e1 = 0;
+        let cli = 0;
         $(".kategorie li").on("click",function(){        
-        a = $(this).index();
-        b = $(this).hasClass("fon");        
+        aboutme = $(this).index();
+        b = $(this).hasClass("fon");
         //alert(a)
+        if(cli == 0){
+            cli = 1;
+        }else{
+            cli = 0;
+        }
+        $(".kategorie li").stop().removeClass("on");
+        $(".kategorie li").stop().eq(aboutme).addClass("on");
         if(b == true){
         $(".kategorie li").removeClass("fon")  ;      
-        $(".content .cont").eq(a).stop().animate({left:"-100%"},function(){
-            $(".kategorie .line1").stop().eq(a).animate({width:"0%"});
-        })
-        
+        $(".content .cont").eq(aboutme).stop().animate({left:"-100%"});        
         e1=$(".kategorie li").eq(3).hasClass("fon");
         if(e1==false){
             $(".word").removeClass("on")
@@ -290,18 +208,17 @@ $(function(){
     
         }else{
         $(".kategorie li").removeClass("fon");
-        $(".kategorie li").eq(a).addClass("fon");
-        $(".kategorie .line1").stop().animate({width:"0%"});
-        $(".kategorie .line1").eq(a).stop().animate({width:"100%"},function(){
+        $(".kategorie li").eq(aboutme).addClass("fon");
+        $(".kategorie .line1").stop().animate({width:"0%"});        
         $(".content .cont").stop().animate({left:"-100%"});
-        $(".content .cont").eq(a).stop().animate({left:"0%"});
-        })
+        $(".content .cont").eq(aboutme).stop().animate({left:"0%"});
+     
     
         e1=$(".kategorie li").eq(3).hasClass("fon");
         if(e1==true){
-            $(".word").delay(2000).addClass("on")
-            $(".graph img").delay(3200).animate({opacity:"1"})
-            $(".hobby").delay(2000).addClass("on")
+            $(".word").delay(1500).addClass("on")
+            $(".graph img").delay(1500).animate({opacity:"1"})
+            $(".hobby").delay(500).addClass("on")
         }else{
             $(".word").removeClass("on")
             $(".graph img").animate({opacity:"0"})
@@ -316,8 +233,8 @@ $(function(){
             $(".con3 .cert").delay(1000).removeClass("on")
         }
         d = $(".kategorie li").eq(1).hasClass("fon");
-        if(d==true){        
-            $(".con2 ul").addClass("on")
+        if(d==true){            
+            $(".con2 ul").addClass("on");
             $(".con2 .map").delay(500).animate({opacity:"0.3"})
         }else{
             $(".con2 ul").removeClass("on")
@@ -351,7 +268,9 @@ $(function(){
             skill10();
         }
         }
+    })
     
+    /*스킬 페이지 툴 사용 숙련도 바*/
     function skill1(){
         let bar1 = 0; 
         start1 = setInterval(function(){
@@ -472,44 +391,25 @@ $(function(){
             }
         },20)
     }  
-    })
+    /*스킬 페이지 툴 사용 숙련도 바*/
 
 
-    /*
-    var wheel = 0;
-    
-    $('#project .scrollbox').on('mousewheel', function(e) {
-        var b = e.originalEvent.wheelDelta;
-        wheel += b;
-    
-        // 스크롤 값을 조정하여 스크롤 범위를 제한합니다.
-        if(wheel<0){
-            wheel=0;
-        }
-        if(wheel>$("#project .item1").height() | wheel>$("#project .item2")){
-            wheel=$("#project .item1").height();
-            wheel=$("#project .item2").height();
-        }
-    
-        $('#project .item1').css('transform', 'translateY(' + (-wheel / 1) + 'px)');
-        $('#project .item2').css('transform', 'translateY(' + (wheel / 1) + 'px)');
-    
-        return false; // 기본 스크롤 동작을 방지합니다.
-    });
-    */
-    
+
+    /*마우스 휠 위 또는 아래로 스크롤 시 페이지 따라가기*/
     let wheel1 = 0;
     $(".scrollbox").on("mousewheel",function(e){
         let wheeldefult=e.originalEvent.wheelDelta;
         wheel1+=wheeldefult
         clearInterval(auto1);
-        $('#project .item1').css('transform', 'translateY(' + (wheel1 / 100) + 'px)');
-        $('#project .item2').css('transform', 'translateY(' + (-wheel1 / 100) + 'px)');
+        $('#project .item1').css('transform', 'translateY(' + (wheel1 / 500) + 'px)');
+        $('#project .item2').css('transform', 'translateY(' + (-wheel1 / 500) + 'px)');
         autowheel();    
         return false;
     })
+    /*마우스 휠 위 또는 아래로 스크롤 시 페이지 따라가기*/
 
 
+    /*자동 스크롤 chubb 페이지*/
     autowheel();
     function autowheel(){   
         let item1 =$('#project .item1').height();
@@ -534,12 +434,14 @@ $(function(){
             endpoint1=item1-scrollbox
             endpoint2=item2-scrollbox
           } else {
-            //clearInterval(auto1);
+            clearInterval(auto1);
           }
     
         },50)
     }
+    /*자동 스크롤 chubb 페이지*/
 
+    /*자동 스크롤 youjin 페이지*/
     let wheel2 = 0;
     $(".scrollbox1_1").on("mousewheel",function(e){
         let wheeldefult1=e.originalEvent.wheelDelta;
@@ -567,90 +469,185 @@ $(function(){
             wheel2=0;
             endpoint3=item3-scrollbox1            
           } else {
-            //clearInterval(auto2);
-          }
-    
+            clearInterval(auto2);
+          }    
         },50)
     }
+    /*자동 스크롤 youjin 페이지*/
 
-    let f = 0;
-    $(".title1").on("click",function(){    
-        f = $(".subtitle").hasClass("on");
-        if(f==true){
-            $(".subtitle").removeClass("on")    
+
+
+    /*프로젝트명 클릭 시 해당 페이지로 전환*/
+    $(".projectname li").on("click",function(){
+        $(".projectname li").stop().removeClass("on")
+        $(this).stop().addClass("on");
+        let pro =  $(this).index();                  
+        $(".device ul").stop().fadeOut();
+        $(".device ul").eq(pro).css({display: "flex"}).stop().fadeIn()
+        /*if(pro == 0){
+            $(".view1").fadeOut();
+            $(".view").fadeIn();
         }else{
-            $(".subtitle3").removeClass("on")
-            $(".subtitle2").removeClass("on")
-            $(".subtitle").addClass("on")
-        }
+            $(".view").fadeOut();
+            $(".view1").fadeIn();
+        }*/
     })
-    let g = 0;
-    $(".title2").on("click",function(){    
-        g = $(".subtitle2").hasClass("on");
-        if(g==true){
-            $(".subtitle2").removeClass("on")
-    
-        }else{
-            $(".subtitle3").removeClass("on")
-            $(".subtitle").removeClass("on") 
-            $(".subtitle2").addClass("on")
-        }
+
+    $(".projectname li:nth-of-type(1)").on("click",function(){
+        $(".view1").stop().addClass("out")
+        $(".view1").stop().removeClass("in")
+        $(".view").stop().addClass("in")
+        $(".view").stop().removeClass("out")
     })
-    let i = 0;
-    $(".title3").on("click",function(){    
-        i = $(".subtitle3").hasClass("on");
-        if(i==true){
-            $(".subtitle3").removeClass("on")
-    
-        }else{
-            $(".subtitle").removeClass("on") 
-            $(".subtitle2").removeClass("on")
-            $(".subtitle3").addClass("on")
-        }
+    $(".projectname li:nth-of-type(2)").on("click",function(){
+        $(".view").stop().addClass("out")
+        $(".view").stop().removeClass("in")
+        $(".view1").stop().addClass("in")
+        $(".view1").stop().removeClass("out")
     })
-    
-    $(".device li").on("click",function(){
-        view=$(this).index()
-        //console.log(view)
+    /*프로젝트명 클릭 시 해당 페이지로 전환*/
+
+
+
+
+    /*버튼 클릭 시 스타일 적용 밑 view페이지 내용 변경*/
+    $(".device .chubb li").on("click",function(){
+        $(".device .chubb li").stop().removeClass("on");
+        $(this).stop().addClass("on");  
+        view=$(this).index(); 
         $(".view>div").stop().fadeOut();
-        $(".view>div").eq(view).stop().fadeIn();
+        $(".view>div").eq(view).stop().fadeIn();          
     })
-    
 
-
-    $(".device1 li").on("click",function(){
-        view1=$(this).index()
-        //console.log(view)
+    $(".device .youjin li").on("click",function(){
+        $(".device .youjin li").stop().removeClass("on");
+        $(this).stop().addClass("on");   
+        view1=$(this).index();        
         $(".view1>div").stop().fadeOut();
-        $(".view1>div").eq(view1).stop().fadeIn();
+        $(".view1>div").eq(view1).stop().fadeIn();         
     })
+    /*버튼 클릭 시 스타일 적용 밑 view페이지 내용 변경*/
 
+    /*mockup 좌우 전환*/
 
-    /*$(".proposal").on("mouseenter",function(){
-        $(".leftbg,.rightbg").fadeIn();
-    })
-    $(".proposal").on("mouseleave",function(){
-        $(".leftbg,.rightbg").fadeOut();
-    })
-
+    let mockup = 0;
+    let mocktotal = $(".view .mockup>div").length;
     
-    $(".proposal1").on("mouseenter",function(){
-        $(".leftbg1,.rightbg1").fadeIn();
+    $(".view .mockup .arrow .rightar").on("click",function(){
+        mockup++;
+        if(mockup == mocktotal){
+            mockup=0            
+        }else{            
+        }
+        $(".view .mockup>div").fadeOut();
+        $(".view .mockup>div").eq(mockup).fadeIn();
+    });    
+    $(".view .mockup .arrow .leftar").on("click",function(){
+        mockup--;
+        if(mockup < 0){
+            mockup = mocktotal + mockup            
+        }else{            
+        }
+        $(".view .mockup>div").fadeOut();
+        $(".view .mockup>div").eq(mockup).fadeIn();        
     })
-    $(".proposal1").on("mouseleave",function(){
-        $(".leftbg1,.rightbg1").fadeOut();
-    })*/
 
+
+    let mockup1 = 0;
+    let mocktotal1 = $(".view1 .mockup>div").length;
     
+    $(".view1 .mockup .arrow .rightar").on("click",function(){
+        mockup1++;
+        if(mockup1 == mocktotal1){
+            mockup1=0            
+        }else{            
+        }
+        $(".view1 .mockup>div").fadeOut();
+        $(".view1 .mockup>div").eq(mockup1).fadeIn();
+    });    
+    $(".view1 .mockup .arrow .leftar").on("click",function(){
+        mockup1--;
+        if(mockup1 < 0){
+            mockup1 = mocktotal1 + mockup            
+        }else{            
+        }
+        $(".view1 .mockup>div").fadeOut();
+        $(".view1 .mockup>div").eq(mockup1).fadeIn();        
+    })
+    /*mockup 좌우 전환*/
+
+    /* 모달 */
+    $("#project .view .mockup>div:nth-of-type(1)").on("click",function(){
+        $("#project .modal .ta").stop().fadeOut();
+        $("#project .modal .mo").stop().fadeOut();
+        $("#project .modal").stop().fadeIn();
+        $("#project .modal .pc").stop().fadeIn();
+    })
+
+    $("#project .view .mockup>div:nth-of-type(2)").on("click",function(){
+        $("#project .modal .pc").stop().fadeOut();
+        $("#project .modal .mo").stop().fadeOut();
+        $("#project .modal").stop().fadeIn();
+        $("#project .modal .ta").stop().fadeIn();
+    })
+    $("#project .view .mockup>div:nth-of-type(3)").on("click",function(){
+        $("#project .modal .pc").stop().fadeOut();
+        $("#project .modal .ta").stop().fadeOut();
+        $("#project .modal").stop().fadeIn();
+        $("#project .modal .mo").stop().fadeIn();
+    })
+
+    $(".modal .close h2").on("click",function(){
+        $("#project .modal .pc").stop().fadeOut();
+        $("#project .modal .ta").stop().fadeOut();
+        $("#project .modal .mo").stop().fadeOut();
+        $("#project .modal").stop().fadeOut();
+    });   
+
+    /* 모달 */
+
+    /* 모달 1*/
+    $("#project .view1 .mockup>div:nth-of-type(1)").on("click",function(){
+        $("#project .modal1 .ta").stop().fadeOut();
+        $("#project .modal1 .mo").stop().fadeOut();
+        $("#project .modal1").stop().fadeIn();
+        $("#project .modal1 .pc").stop().fadeIn();
+    })
+
+    $("#project .view1 .mockup>div:nth-of-type(2)").on("click",function(){
+        $("#project .modal1 .pc").stop().fadeOut();
+        $("#project .modal1 .mo").stop().fadeOut();
+        $("#project .modal1").stop().fadeIn();
+        $("#project .modal1 .ta").stop().fadeIn();
+    })
+    $("#project .view1 .mockup>div:nth-of-type(3)").on("click",function(){
+        $("#project .modal1 .pc").stop().fadeOut();
+        $("#project .modal1 .ta").stop().fadeOut();
+        $("#project .modal1").stop().fadeIn();
+        $("#project .modal1 .mo").stop().fadeIn();
+    })
+
+    $(".modal1 .close h2").on("click",function(){
+        $("#project .modal1 .pc").stop().fadeOut();
+        $("#project .modal1 .ta").stop().fadeOut();
+        $("#project .modal1 .mo").stop().fadeOut();
+        $("#project .modal1").stop().fadeOut();
+    });   
+
+    /* 모달1 */
+
+    /*버튼 중 바로가기 클릭 시 이벤트 대상이 a 로 별도 이벤트 실행*/
+    $(".device li a").on("click",function(){
+        $(".device li").stop().removeClass("on")
+        $(".device li a").parent(".device li").stop().addClass("on")
+    })
+    /*버튼 중 바로가기 클릭 시 이벤트 대상이 a 로 별도 이벤트 실행*/
 
 
-    
-
-
+    /*기획안 페이지 넘기기 기능*/
     let h = 0;
-    let totalh = $(".proposal .chubb li").length;
-    
-    $(".rightar,.rightbg1").on("click",function(){
+    let totalh = $(".proposal .chubb li").length;    
+    $(".proposal .rightar").on("click",function(){
         h++;
         if(h == totalh){
             h=0            
@@ -658,26 +655,20 @@ $(function(){
         }
         $(".proposal .chubb li").fadeOut();
         $(".proposal .chubb li").eq(h).fadeIn();
-    })
-    
-    $(".leftar,.leftbg1").on("click",function(){
+    });    
+    $(".proposal .leftar").on("click",function(){
         h--;
         if(h < 0){
-            h = totalh + h
-            
-        }else{
-            
+            h = totalh + h            
+        }else{            
         }
         $(".proposal .chubb li").fadeOut();
-        $(".proposal .chubb li").eq(h).fadeIn();
-        console.log(h)
+        $(".proposal .chubb li").eq(h).fadeIn();        
     })
 
-
     let h1 = 0;
-    let totalh1 = $(".proposal1 .youjin li").length;
-    
-    $(".rightar1_2,.rightbg1_1").on("click",function(){
+    let totalh1 = $(".proposal1 .youjin li").length;    
+    $(".proposal1 .rightar1_2").on("click",function(){
         h1++;
         if(h1 == totalh1){
             h1=0            
@@ -687,72 +678,218 @@ $(function(){
         $(".proposal1 .youjin li").eq(h1).fadeIn();
     })
     
-    $(".leftar1_2,.leftbg1_1").on("click",function(){
+    $(".proposal1 .leftar1_2").on("click",function(){
         h1--;
         if(h1 < 0){
-            h1 = totalh1 + h1
-            
-        }else{
-            
+            h1 = totalh1 + h1            
+        }else{            
         }
         $(".proposal1 .youjin li").fadeOut();
         $(".proposal1 .youjin li").eq(h1).fadeIn();        
     })
+    /*기획안 페이지 넘기기 기능*/
+
+    /*자동 스크롤 youjin 페이지*/
+
+    /*기획안 다운로드*/
+    $("#project .view .proposal .chubb").on("click", function () {
+        var filePath = "img/chubblife(리뉴얼기획안)_0802.pdf"; 
+        var fileName = "chubblife(리뉴얼기획안).pdf"; 
+
+        // 파일 다운로드 링크 생성 및 클릭
+        $("<a />")
+            .attr("href", filePath)
+            .attr("download", fileName)
+            .appendTo("body")
+            .get(0)
+            .click();       
+    });
+
+    $("#project .view1 .proposal1 .youjin").on("click", function () {
+        var filePath = "img/youjin(리뉴얼기획안)_0802.pdf"; 
+        var fileName = "youjin(리뉴얼기획안).pdf"; 
+
+        // 파일 다운로드 링크 생성 및 클릭
+        $("<a />")
+            .attr("href", filePath)
+            .attr("download", fileName)
+            .appendTo("body")
+            .get(0)
+            .click();       
+    });
 
 
-    $(".project1").on("click",function(){
-        clearInterval(auto2);        
-        $(".view1").fadeOut();
-        $(".device1").css({visibility:"hidden"})
-        $(".device").css({visibility:"visible"})
-        $(".view").fadeIn();
-        autowheel();
-    })
+    /*기획안 다운로드*/
 
-    $(".project2").on("click",function(){
-        clearInterval(auto1);
+
+        /*웹디자인 & 포스터 타이틀 변경 효과*/ 
+        $(".tit1").on("mouseenter",function(){
+            $(".t1").stop().animate({opacity:"0"})
+            $(".t2").stop().animate({opacity:"1"})
+    
+        })
+        $(".tit1").on("mouseleave",function(){
+            $(".t1").stop().animate({opacity:"1"})
+            $(".t2").stop().animate({opacity:"0"})
+    
+        })
         
-        $(".view").fadeOut();
-        $(".view1").fadeIn();
-        $(".device").css({visibility:"hidden"})
-        $(".device1").css({visibility:"visible"})
-        autowheel1();
-    })
+        let clickedLi = 0; 
+        $(".poster2 li .fullbut").click(function() {
+             clickedLi = $(this).closest("li").index();
+            var modalposter = $(".poster3>li .poster1_2 li").index();
+            $(".postermodal").stop().fadeIn();
+            $(".poster3 .poster1_2").animate({"left":-clickedLi*100+"%"})
+            $(".poster3 .poster1_1").animate({"left":-clickedLi*100+"%"})
+            $(".poster3 .poster1_3").animate({"left":-clickedLi*100+"%"})
+        })
 
-    }
+        /*포스터 우 슬라이드*/ 
+        let content = 0;
+        let total = 10;
+        let slidposter = 0
+        $(".postermodal .post1,.postermodal .right").on("click", function() {
 
-    if(matchMedia("screen and (max-width:1439px) and (min-width:768px)").matches){
-        $("body").on('mousemove',function(e){
-            posX = e.pageX/500;
-            posY = e.pageY/500;
-            
-            $(".year .y2").css({"right":-8+posX+"%","bottom":-15+posY+"%"})
-            $(".year .y1").css({"right":-12+posX+"%","top":-20+posY+"%"})
+            let content = ++clickedLi 
+            if(content >= total){ 
+                clickedLi = 0;
+                slidposter = 0;                
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_1").css({left:"0%"});
+                })
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_2").css({left:"0%"});
+                })
+                
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_3").css({left:"0%"});
+                });
+                content = 0;
+            }else{    
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_1 li").first().appendTo(".poster1_1")
+                    //$(".poster3 .poster1_1").css({left:"0%"});
+                })
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_2 li").first().appendTo(".poster1_2")
+                    //$(".poster3 .poster1_2").css({left:"0%"});
+                })
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_3 li").first().appendTo(".poster1_3")
+                    //$(".poster3 .poster1_3").css({left:"0%"});
+                })            
+            }
+            console.log("이것이 content : " + content)
+            console.log("이것이 clickedLi : " + clickedLi)
+            console.log("이것이 slid : " + slid)
         });
 
+        /*포스터 좌 슬라이드*/ 
+        $(".postermodal  .post2,.postermodal .left").on("click", function() {
 
-            var video = $("video");
-            video.on('play', function() {
-              $('.scrollicon, #nav, .parent, .year,.page').fadeOut();
-              $(".loading").fadeOut();
-            });
-          
-            video.on('pause', function() {
-              video.fadeOut(function() {
-                $('.scrollicon, #nav, .parent,.year,.page').fadeIn();
-                $(".introimg5 h1").delay(500).addClass("on").animate({top:"50%",opacity:"1"},"easeOutBack",function(){
-                    $(".title1 .line").addClass("on")
-                    $(".title1 h3").delay(1000).animate({opacity:"1"})                    
-                    $(".introimg5").css({background:"none"})                    
+            let content = --clickedLi 
+            if(content == 0){ 
+                clickedLi = 10;
+                slidposter = 0;      
+                
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_1").css({left:"-1000%"})
+                })                
+
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_2").css({left:"-1000%"});
                 })
-              });
+                
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_3").css({left:"-1000%"});
+                });                
+            }else{    
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_1 li").first().appendTo(".poster1_1")
+                    //$(".poster3 .poster1_1").css({left:"0%"});
+                })
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_2 li").first().appendTo(".poster1_2")
+                    //$(".poster3 .poster1_2").css({left:"0%"});
+                })
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_3 li").first().appendTo(".poster1_3")
+                    //$(".poster3 .poster1_3").css({left:"0%"});
+                })            
+            }
+            console.log("이것이 content : " + content)
+            console.log("이것이 clickedLi : " + clickedLi)
+            console.log("이것이 slid : " + slid)
+        });   
+        /*포스터 좌우 슬라이드*/ 
+
+
+
+
+        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
+        $("#poster .poster2>li .blackbg").on("click",function(){
+            $(".poster2>li").addClass("on").removeClass("bor")
+            $(this).parent(".poster2>li").removeClass("on").addClass("bor");
+        })
+        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
+
+
+        /*해당 포스터에 대한 설명 fadeIn*/
+        posterlist()
+        function posterlist(){            
+            $(".poster2 li").on("click",function(){
+                let list = $(this).index();
+                $(".slide_1 li").children(".content1").removeClass("on")
+                $(".slide_1 li").eq(list).children(".content1").addClass("on");
+            })
+        }
+        /*해당 포스터에 대한 설명 fadeIn*/
+
+
+        
+        /*포스터 모달 종료버튼*/   
+        $(".postermodal .close").on("click",function(){
+            $(".postermodal").stop().fadeOut();
+        })
+        /*포스터 모달 종료버튼*/   
+
+    };
+    if(matchMedia("screen and (max-width:1439px) and (min-width:768px)").matches){
+        var video = $("video");
+        video.on('play', function() {
+            $('.scrollicon, #nav, .parent,.year').fadeOut();
+            $(".loading").fadeOut();
+        });
+        
+        video.on('pause', function() {                
+            video.fadeOut(function() {
+            $('.scrollicon, #nav, .parent,.year,.page,.ball').fadeIn();
+            $(".introimg5 h1").delay(500).addClass("on").animate({top:"50%",opacity:"1"},function(){
+                $(".title1 .line").addClass("on")
+                $(".title1 h3").delay(500).animate({opacity:"1"})
+                $(".introimg").fadeOut();
+                $(".introimg5").css({background:"none"})
+                $(".box1").fadeOut();
+                
+            })
             });
+        });
+        /*-----------------네비게이션-----------------*/
+        $("#nav li").on("click", function () {
+            let target = $(this).children("a").attr("href");
+            //alert(target);
+            let pos = $(target).offset().top;
+            //alert(pos);
+            $("html,body").stop().animate({ scrollTop: pos }, 1000);
+        });
+        /*-----------------네비게이션-----------------*/
+    
         let baseline = -200;
         let pos1 = $("#home").offset().top + baseline;
-        let pos2 = $("#about").offset().top + baseline;
-        let pos3 = $("#project").offset().top + baseline;
-        let pos4 = $("#poster").offset().top + baseline;
-        let pos5 = $("#contact").offset().top + baseline;
+        let pos2 = $("#about").offset().top+ baseline;
+        let pos3 = $("#project").offset().top+ baseline;
+        let pos4 = $("#poster").offset().top+ baseline;
+        let pos5 = $("#contact").offset().top+ baseline;
     
         $(".scrollicon").on("click", function() {
             $("html, body").animate({
@@ -765,229 +902,142 @@ $(function(){
     
         $(window).on("scroll", function () {
             let scroll = $(this).scrollTop();
-    
             if (scroll >= pos1 && scroll < pos2) {
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(0).addClass("on");
-                $(".posterintro").removeClass("on")
-                $(".posterintro").fadeIn();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
-                $("#about .profil").removeClass("on")
-                $("#about .profil .introductioninfo").children("p").fadeOut();
+                $("#contact .con4 .my .m2").children("img").removeClass("on")                      
             } else if (scroll >= pos2 && scroll < pos3) {
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(1).addClass("on");
-                $("#about .profil").stop().animate({left:"0px", opacity:"1"},function(){
-                    $("#about .profil").delay(1000).addClass("on")                    
-                    $("#about .profil .introductioninfo").children("p").animate({opacity:"1"}).fadeIn();
-                });   
-                $(".kategorie ul li").delay(3000).addClass("on");
-                let flash1 = 0;
-                    autoflash = setInterval(function(){
-                        $("#about .click ul").stop().removeClass("on");
-                        $("#about .click ul").eq(flash1).stop().delay(5000).addClass("on");
-                        flash1++;
-                        if (flash1 === $("#about .click ul").length) {
-                          flash1 = 0;
-                        }
-                    },1000)
-                
-                $(".kategorie ul li").on("click",function(){
-                    clearInterval(autoflash);
-                })
+                $("#about .bg h2").stop().fadeIn();              
+                $("#about .profil").stop().animate({left:"50%", opacity:"1"},function(){
+                $("#about .profil").stop().delay(1000).addClass("on")                    
+                $("#about .profil .introductioninfo").children("p").animate({opacity:"1"}).fadeIn();
+                });
 
-                var totalClasses = $(".kategorie ul li").length;            
-                var $element = $('.kategorie ul li');
-                var index = 0;
+                $("#about .content .con1").stop().delay(1000).addClass("on");
+                $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").stop().delay(1200).addClass("on");                
+                skill1();
+                skill2();
+                skill3();
+                skill4();
+                skill5();
+                skill6();
+                skill7();
+                skill8();
+                skill9();
+                skill10();
+                let totalcontent = $(".content .cont").length;
+                let aboutme = 0;
+                currentaboutme = setInterval(function(){
+                aboutme++;                
+                if(aboutme == totalcontent){
+                    aboutme=0;
+
+                }else{           
+                }
+                $(".kategorie ul li").stop().removeClass("fon");
+                $(".kategorie ul li").stop().eq(aboutme).addClass("fon");
+                $(".kategorie ul li").stop().removeClass("on");
+                $(".kategorie ul li").stop().eq(aboutme).addClass("on");
             
-                setInterval(function() {
-                  $element.removeClass("beat0,beat1,beat2,beat3");
-                  $element.eq(index).addClass('.kategorie ul li beat' + index);
-                  index++;
-                  if(index==totalClasses){
-                    index=0;
-                  }
-                }, 1000);
-                $(".posterintro").removeClass("on")
+                // "fon" 클래스를 찾은 경우 실행되는 코드 블록
+                $(".content .cont").stop().animate({left: "-100%"});
+                $(".content .cont").eq(aboutme).stop().animate({left: "0%"});
+                if($(".kategorie ul li").eq(0).hasClass("fon")){                        
+                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on");
+                    skill1();
+                    skill2();
+                    skill3();
+                    skill4();
+                    skill5();
+                    skill6();
+                    skill7();
+                    skill8();
+                    skill9();
+                    skill10();
+                }else{
+                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
+                }
+                if ($(".kategorie ul li").eq(1).hasClass("fon")) {                       
+                    $(".con2 ul").addClass("on");
+                    $(".con2 .map").delay(500).animate({ opacity: "0.3" });
+                }
+                if ($(".kategorie ul li").eq(2).hasClass("fon")) {
+                    $(".con3 ul").addClass("on");
+                    $(".con3 .cert").addClass("on");
+                }
+                if ($(".kategorie ul li").eq(3).hasClass("fon")) {
+                    $(".word").delay(1500).addClass("on");
+                    $(".graph img").delay(1500).animate({ opacity: "1" });
+                    $(".hobby").delay(500).addClass("on");
+                }                
+                // "fon" 클래스를 찾지 못한 경우 실행되는 코드 블록
+                if ($(".kategorie ul li").eq(1).hasClass("fon") == false) {
+                    $(".con2 ul").removeClass("on");
+                    $(".con2 .map").delay(1400).animate({ opacity: "0" });
+                }
+                if ($(".kategorie ul li").eq(2).hasClass("fon") == false) {
+                    $(".con3 ul").delay(1000).removeClass("on");
+                    $(".con3 .cert").delay(1000).removeClass("on");
+                }
+                if ($(".kategorie ul li").eq(3).hasClass("fon") == false) {
+                    $(".word").removeClass("on");
+                    $(".graph img").animate({ opacity: "0" });
+                    $(".hobby").removeClass("on");                    
+                }
+            },4000) 
+                $(".posterintro").stop().removeClass("on")
                 $(".posterintro").fadeIn();
                 $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
             } else if (scroll >= pos3 && scroll < pos4) {
+                $("#project .projectname>li").addClass("in");
+                $("#project .but").delay(1500).addClass("in");
+                $("#project .view").delay(2000).addClass("in");
+                $("#project>h2").stop().fadeIn();    
                 $("#nav li").removeClass("on");
-                $("#nav li").eq(2).addClass("on");
-                $(".posterintro").removeClass("on")
-                $(".posterintro").fadeIn();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
+                $("#nav li").eq(2).addClass("on");              
             } else if (scroll >= pos4 && scroll < pos5) {
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(3).addClass("on");
-                $(".posterintro").addClass("on")
-                $("#poster .title2,.slidbut,.slide,.page,.tit1,.post1,.post2,.slide_1,.poster1").delay(1800).fadeIn("slow");
-                $(".posterintro").delay(2000).fadeOut();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
-                
+                $("#poster>h2").stop().fadeIn();
+                $("#poster .poster2>li").stop().addClass("in");
             } else {
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(4).addClass("on");
-                $(".posterintro").removeClass("on")
-                $(".posterintro").fadeIn();
+                $("#contact>h2").stop().fadeIn(); 
+                $("#contact .ball").stop().fadeIn(); 
                 $("#contact .con4 .my .m2").delay(2000).children("img").addClass("on")
                 $(".sns").addClass("on")
-            }
-    
-    
-        });
- /*미리보기 네모 모서리 효과*/
-        $(".device li").on("click",function(){
-            $(".device li").stop().removeClass("on")
-            $(this).stop().addClass("on")
-        })
-
-        $(".device1 li").on("click",function(){
-            $(".device1 li").stop().removeClass("on")
-            $(this).stop().addClass("on")
-        })
-
-/*미리보기 네모 모서리 효과*/
-        $("#nav li").on("click", function () {
-            let target = $(this).children("a").attr("href");
-            //alert(target);
-            let pos = $(target).offset().top;
-            //alert(pos);
-            $("html,body").stop().animate({ scrollTop: pos }, 1000);
-        });
-        /*웹디자인 오브젝트 선명하게 보이기 효과+디자인 컨셉 설명 나오기 효과*/
-        $(".slideitem .sl").on("mouseenter",function(){
-            let s = $(this).index();
-            $(".slideitem .sl").stop().removeClass("op")
-            $(".slideitem .sl").eq(s).stop().addClass("op")
-            $(".concept").stop().animate({bottom:"0px"})
-    
-        })
-        $(".slideitem .sl").on("mouseleave",function(){
-            $(".slideitem .sl").stop().removeClass("op")
-            $(".concept").stop().animate({bottom:"-400px"})
-        })
-        /*웹디자인 & 포스터 타이틀 변경 효과*/ 
-        $(".tit1").on("mouseenter",function(){
-            $(".t1").stop().animate({opacity:"0"})
-            $(".t2").stop().animate({opacity:"1"})
-    
-        })
-        $(".tit1").on("mouseleave",function(){
-            $(".t1").stop().animate({opacity:"1"})
-            $(".t2").stop().animate({opacity:"0"})
-    
-        })
-
-        /*---------------------클릭 유도---------------------*/
-        let autoblink = 0;
-        setInterval(function(){
-            if(autoblink == 0){
-                $(".project2 .click ul").stop().removeClass("on")
-                $(".project1 .click ul").stop().addClass("on")
-                autoblink =1;
-            }else{
-                $(".project1 .click ul").stop().removeClass("on")
-                $(".project2 .click ul").stop().addClass("on")
-                autoblink = 0;
-            }
-        },1000)
-        /*---------------------클릭 유도---------------------*/
-        /*포스터 좌우 슬라이드*/ 
-        let content = 0;
-        let total = $(".slide_1 li").length;
-        console.log(total)
-        $(".slidbut .post1,.slidbut2 .rightslide").on("click", function() {
-            /*$(".slide_1").stop().animate({"margin-left": "-100%"},function(){
-                $(".slide_1").css({"margin-left":"0%"});
-            })        
-            $(".slide_1 li").first().appendTo(".slide_1");
-    
-            $(".slide_1 li").stop().children(".content1").removeClass("on")
-            $(".slide_1 li").delay(4000).eq(0).stop().children(".content1").addClass("on")*/
-            content++;
-            if(content >= total-1){
-                content = 0;
-            }else{                
-            }
-            $(".slide_1 li").stop().children(".content1").fadeOut();
-            $(".slide_1 li").stop().eq(content).children(".content1").fadeIn();
-            $(".slide_1 li").stop().children(".content1").removeClass("on");
-            $(".slide_1 li").stop().eq(content).children(".content1").addClass("on");
-            
-    
-            $(".poster1_1").stop().animate({left:"-100%"},function(){
-                $(".poster1_1 li").first().appendTo(".poster1_1")
-                $(".poster1_1").css({left:"0%"});
-            })
-            $(".poster1_2").stop().animate({left:"-100%"},function(){
-                $(".poster1_2 li").first().appendTo(".poster1_2")
-                $(".poster1_2").css({left:"0%"});
-            })
-            $(".poster1_3").stop().animate({left:"-100%"},function(){
-                $(".poster1_3 li").first().appendTo(".poster1_3")
-                $(".poster1_3").css({left:"0%"});
-            })
-            
-        });
-          
-        $(".slidbut .post2,.slidbut2 .leftslide").on("click", function() {        
-            /*$(".slide_1 li").last().prependTo(".slide_1");
-            $(".slide_1").css({"margin-left":"-100%"});
-            $(".slide .slide_1").stop().animate({"margin-left": "0%"})
-            $(".slide_1 li").stop().children(".content1").removeClass("on")
-            $(".slide_1 li").delay(4000).eq(0).stop().children(".content1").addClass("on")*/
-            content--;
-            if(content < 0){ 
-                content=total+content
                 
-            }else{
-                
-            }
-            $(".slide_1 li").stop().children(".content1").fadeOut();
-            $(".slide_1 li").stop().eq(total).children(".content1").fadeIn();
-            $(".slide_1 li").stop().children(".content1").removeClass("on");
-            $(".slide_1 li").stop().eq(total).children(".content1").addClass("on");
-    
-    
-            $(".poster1_1 li").last().prependTo(".poster1_1")
-            $(".poster1_1").css({left:"-100%"})
-            $(".poster1_1").stop().animate({left:"0%"})
-    
-    
-            $(".poster1_2 li").last().prependTo(".poster1_2")
-            $(".poster1_2").css({left:"-100%"})
-            $(".poster1_2").stop().animate({left:"0%"})
-    
-    
-            $(".poster1_3 li").last().prependTo(".poster1_3")
-            $(".poster1_3").css({left:"-100%"})
-            $(".poster1_3").stop().animate({left:"0%"})    
+            }    
         });
-    
-    
+
+        $(".kategorie ul li .outline,.kategorie ul li .but,.kategorie ul li,.kategorie ul li .front,.kategorie ul li .down").on("click",function(){
+            clearInterval(currentaboutme);
+        })
         /*스킬페이지 좌우 슬라이드*/ 
-        let a = 0;
+
         let b = 0;
         let c = 0;
         let d = 0;
         let e = 0;
         let e1 = 0;
-        $(".kategorie li").on("click",function(){
-        a = $(this).index();
+        let cli = 0;
+        $(".kategorie li").on("click",function(){        
+        aboutme = $(this).index();
         b = $(this).hasClass("fon");
-        c = $(".kategorie>ul>li").children("h3").width();
-        console.log(c)
         //alert(a)
+        if(cli == 0){
+            cli = 1;
+        }else{
+            cli = 0;
+        }
+        $(".kategorie li").stop().removeClass("on");
+        $(".kategorie li").stop().eq(aboutme).addClass("on");
         if(b == true){
         $(".kategorie li").removeClass("fon")  ;      
-        $(".content .cont").eq(a).stop().animate({left:"-100%"},function(){
-            $(".kategorie .lin1").stop().eq(a).animate({width:"0%",height:"0%"});
-        })
+        $(".content .cont").eq(aboutme).stop().animate({left:"-100%"});        
         e1=$(".kategorie li").eq(3).hasClass("fon");
         if(e1==false){
             $(".word").removeClass("on")
@@ -1012,18 +1062,17 @@ $(function(){
     
         }else{
         $(".kategorie li").removeClass("fon");
-        $(".kategorie li").eq(a).addClass("fon");
-        $(".kategorie .lin1").stop().animate({width:"0%",height:"0px"});
-        $(".kategorie .lin1").eq(a).stop().animate({width:"35px",height:"20px"},function(){
+        $(".kategorie li").eq(aboutme).addClass("fon");
+        $(".kategorie .line1").stop().animate({width:"0%"});        
         $(".content .cont").stop().animate({left:"-100%"});
-        $(".content .cont").eq(a).stop().animate({left:"0%"});
-        })
+        $(".content .cont").eq(aboutme).stop().animate({left:"0%"});
+     
     
         e1=$(".kategorie li").eq(3).hasClass("fon");
         if(e1==true){
-            $(".word").delay(2000).addClass("on")
-            $(".graph img").delay(3200).animate({opacity:"1"})
-            $(".hobby").delay(2000).addClass("on")
+            $(".word").delay(1500).addClass("on")
+            $(".graph img").delay(1500).animate({opacity:"1"})
+            $(".hobby").delay(500).addClass("on")
         }else{
             $(".word").removeClass("on")
             $(".graph img").animate({opacity:"0"})
@@ -1038,15 +1087,16 @@ $(function(){
             $(".con3 .cert").delay(1000).removeClass("on")
         }
         d = $(".kategorie li").eq(1).hasClass("fon");
-        if(d==true){        
-            $(".con2 ul").addClass("on")
+        if(d==true){            
+            $(".con2 ul").addClass("on");
             $(".con2 .map").delay(500).animate({opacity:"0.3"})
         }else{
             $(".con2 ul").removeClass("on")
             $(".con2 .map").delay(1400).animate({opacity:"0"})
         }
         c = $(".kategorie li").eq(0).hasClass("fon");
-        if(c==true){            
+        if(c==true){
+
             $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on")
             skill1();
             skill2();
@@ -1057,12 +1107,24 @@ $(function(){
             skill7();
             skill8();
             skill9();
-            skill10();    
+            skill10();
         }else{
             $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
+            skill1();
+            skill2();
+            skill3();
+            skill4();
+            skill5();
+            skill6();
+            skill7();
+            skill8();
+            skill9();
+            skill10();
         }
         }
+    })
     
+    /*스킬 페이지 툴 사용 숙련도 바*/
     function skill1(){
         let bar1 = 0; 
         start1 = setInterval(function(){
@@ -1183,50 +1245,36 @@ $(function(){
             }
         },20)
     }  
-    })
-    /*
-    var wheel = 0;
-    
-    $('#project .scrollbox').on('mousewheel', function(e) {
-        var b = e.originalEvent.wheelDelta;
-        wheel += b;
-    
-        // 스크롤 값을 조정하여 스크롤 범위를 제한합니다.
-        if(wheel<0){
-            wheel=0;
-        }
-        if(wheel>$("#project .item1").height() | wheel>$("#project .item2")){
-            wheel=$("#project .item1").height();
-            wheel=$("#project .item2").height();
-        }
-    
-        $('#project .item1').css('transform', 'translateY(' + (-wheel / 1) + 'px)');
-        $('#project .item2').css('transform', 'translateY(' + (wheel / 1) + 'px)');
-    
-        return false; // 기본 스크롤 동작을 방지합니다.
-    });
-    */
-    
+    /*스킬 페이지 툴 사용 숙련도 바*/
+
+
+
+    /*마우스 휠 위 또는 아래로 스크롤 시 페이지 따라가기*/
     let wheel1 = 0;
     $(".scrollbox").on("mousewheel",function(e){
         let wheeldefult=e.originalEvent.wheelDelta;
         wheel1+=wheeldefult
         clearInterval(auto1);
-        $('#project .item1').css('transform', 'translateY(' + (wheel1 / 50) + 'px)');
-        $('#project .item2').css('transform', 'translateY(' + (-wheel1 / 50) + 'px)');
+        $('#project .item1').css('transform', 'translateY(' + (wheel1 / 500) + 'px)');
+        $('#project .item2').css('transform', 'translateY(' + (-wheel1 / 500) + 'px)');
         autowheel();    
         return false;
     })
+    /*마우스 휠 위 또는 아래로 스크롤 시 페이지 따라가기*/
+
+
+    /*자동 스크롤 chubb 페이지*/
     autowheel();
     function autowheel(){   
         let item1 =$('#project .item1').height();
         let item2 =$("#project .item2").height();
         let scrollbox=$(".scrollbox").height();   
         endpoint1=item1-scrollbox
-        endpoint2=item2-scrollbox     
+        endpoint2=item2-scrollbox        
         auto1 = setInterval(function(){ 
            if(wheel1<=endpoint1){
             wheel1++;
+            
             $('#project .item1').stop().css('transform', 'translateY(' + (-wheel1) + 'px)');
             $('#project .item2').stop().css('transform', 'translateY(' + (wheel1) + 'px)');
     
@@ -1245,7 +1293,9 @@ $(function(){
     
         },50)
     }
+    /*자동 스크롤 chubb 페이지*/
 
+    /*자동 스크롤 youjin 페이지*/
     let wheel2 = 0;
     $(".scrollbox1_1").on("mousewheel",function(e){
         let wheeldefult1=e.originalEvent.wheelDelta;
@@ -1273,86 +1323,212 @@ $(function(){
             wheel2=0;
             endpoint3=item3-scrollbox1            
           } else {
-            //clearInterval(auto2);
-          }
-    
+            clearInterval(auto2);
+          }    
         },50)
     }
+    /*자동 스크롤 youjin 페이지*/
+
+    /*기획안 다운로드*/
+    $("#project .view .proposal .chubb").on("click", function () {
+        var filePath = "img/chubblife(리뉴얼기획안)_0802.pdf"; 
+        var fileName = "chubblife(리뉴얼기획안).pdf"; 
+
+        // 파일 다운로드 링크 생성 및 클릭
+        $("<a />")
+            .attr("href", filePath)
+            .attr("download", fileName)
+            .appendTo("body")
+            .get(0)
+            .click();       
+    });
+
+    $("#project .view1 .proposal1 .youjin").on("click", function () {
+        var filePath = "img/youjin(리뉴얼기획안)_0802.pdf"; 
+        var fileName = "youjin(리뉴얼기획안).pdf"; 
+
+        // 파일 다운로드 링크 생성 및 클릭
+        $("<a />")
+            .attr("href", filePath)
+            .attr("download", fileName)
+            .appendTo("body")
+            .get(0)
+            .click();       
+    });
 
 
-    
-    /*let f = 0;
-    $(".title1").on("click",function(){    
-        f = $(".subtitle").hasClass("on");
-        if(f==true){
-            $(".subtitle").removeClass("on")
-    
+    /*기획안 다운로드*/
+
+
+    /*프로젝트명 클릭 시 해당 페이지로 전환*/
+    $(".projectname li").on("click",function(){
+        $(".projectname li").stop().removeClass("on")
+        $(this).stop().addClass("on");
+        let pro =  $(this).index();                  
+        $(".device ul").stop().fadeOut();
+        $(".device ul").eq(pro).css({display: "flex"}).stop().fadeIn()
+        /*if(pro == 0){
+            $(".view1").fadeOut();
+            $(".view").fadeIn();
         }else{
-            $(".subtitle").addClass("on")
-        }
+            $(".view").fadeOut();
+            $(".view1").fadeIn();
+        }*/
     })
-    let g = 0;
-    $(".title2").on("click",function(){    
-        g = $(".subtitle2").hasClass("on");
-        if(g==true){
-            $(".subtitle2").removeClass("on")
-    
-        }else{
-            $(".subtitle2").addClass("on")
-        }
-    })*/
-    
-    /*$(".projectname>li").on("click",function(){
-        if($(this).children(".con1").is(":hidden")){
-            $(".projectname>li").children(".con1").slideUp();
-            $(this).children(".con1").slideDown();
-        }else{
-            $(this).children(".con1").slideUp();
-        }
-    })*/
-    
-    $(".device li").on("click",function(){
+
+    $(".projectname li:nth-of-type(1)").on("click",function(){
+        $(".view1").stop().addClass("out")
+        $(".view1").stop().removeClass("in")
+        $(".view").stop().addClass("in")
+        $(".view").stop().removeClass("out")
+    })
+    $(".projectname li:nth-of-type(2)").on("click",function(){
+        $(".view").stop().addClass("out")
+        $(".view").stop().removeClass("in")
+        $(".view1").stop().addClass("in")
+        $(".view1").stop().removeClass("out")
+    })
+    /*프로젝트명 클릭 시 해당 페이지로 전환*/
+
+
+
+    /*버튼 클릭 시 스타일 적용 밑 view페이지 내용 변경*/
+    $(".device .chubb li").on("click",function(){
+        $(".device .chubb li").stop().removeClass("on");
+        $(this).stop().addClass("on");  
         view=$(this).index()
-        //console.log(view)
         $(".view>div").stop().fadeOut();
-        $(".view>div").eq(view).stop().fadeIn();
+        $(".view>div").eq(view).stop().fadeIn();          
     })
-    
-    /*$(".proposal").on("mouseenter",function(){
-        $(".leftbg,.rightbg").fadeIn();
-    })
-    $(".proposal").on("mouseleave",function(){
-        $(".leftbg,.rightbg").fadeOut();
-    })*/
 
-    $(".device1 li").on("click",function(){
+    $(".device .youjin li").on("click",function(){
+        $(".device .youjin li").stop().removeClass("on");
+        $(this).stop().addClass("on");   
         view1=$(this).index()
-        //console.log(view)
         $(".view1>div").stop().fadeOut();
-        $(".view1>div").eq(view1).stop().fadeIn();
+        $(".view1>div").eq(view1).stop().fadeIn();         
     })
+    /*버튼 클릭 시 스타일 적용 밑 view페이지 내용 변경*/
 
+    /*mockup 좌우 전환*/
 
-    /*$(".proposal").on("mouseenter",function(){
-        $(".leftbg,.rightbg").fadeIn();
-    })
-    $(".proposal").on("mouseleave",function(){
-        $(".leftbg,.rightbg").fadeOut();
-    })
-
+    let mockup = 0;
+    let mocktotal = $(".view .mockup>div").length;
     
-    $(".proposal1").on("mouseenter",function(){
-        $(".leftbg1,.rightbg1").fadeIn();
+    $(".view .mockup .arrow .rightar").on("click",function(){
+        mockup++;
+        if(mockup == mocktotal){
+            mockup=0            
+        }else{            
+        }
+        $(".view .mockup>div").fadeOut();
+        $(".view .mockup>div").eq(mockup).fadeIn();
+    });    
+    $(".view .mockup .arrow .leftar").on("click",function(){
+        mockup--;
+        if(mockup < 0){
+            mockup = mocktotal + mockup            
+        }else{            
+        }
+        $(".view .mockup>div").fadeOut();
+        $(".view .mockup>div").eq(mockup).fadeIn();        
     })
-    $(".proposal1").on("mouseleave",function(){
-        $(".leftbg1,.rightbg1").fadeOut();
-    })*/
 
 
+    let mockup1 = 0;
+    let mocktotal1 = $(".view1 .mockup>div").length;
+    
+    $(".view1 .mockup .arrow .rightar").on("click",function(){
+        mockup1++;
+        if(mockup1 == mocktotal1){
+            mockup1=0            
+        }else{            
+        }
+        $(".view1 .mockup>div").fadeOut();
+        $(".view1 .mockup>div").eq(mockup1).fadeIn();
+    });    
+    $(".view1 .mockup .arrow .leftar").on("click",function(){
+        mockup1--;
+        if(mockup1 < 0){
+            mockup1 = mocktotal1 + mockup            
+        }else{            
+        }
+        $(".view1 .mockup>div").fadeOut();
+        $(".view1 .mockup>div").eq(mockup1).fadeIn();        
+    })
+    /*mockup 좌우 전환*/
 
+    /* 모달 */
+    $("#project .view .mockup>div:nth-of-type(1)").on("click",function(){
+        $("#project .modal .ta").stop().fadeOut();
+        $("#project .modal .mo").stop().fadeOut();
+        $("#project .modal").stop().fadeIn();
+        $("#project .modal .pc").stop().fadeIn();
+    })
+
+    $("#project .view .mockup>div:nth-of-type(2)").on("click",function(){
+        $("#project .modal .pc").stop().fadeOut();
+        $("#project .modal .mo").stop().fadeOut();
+        $("#project .modal").stop().fadeIn();
+        $("#project .modal .ta").stop().fadeIn();
+    })
+    $("#project .view .mockup>div:nth-of-type(3)").on("click",function(){
+        $("#project .modal .pc").stop().fadeOut();
+        $("#project .modal .ta").stop().fadeOut();
+        $("#project .modal").stop().fadeIn();
+        $("#project .modal .mo").stop().fadeIn();
+    })
+
+    $(".modal .close h2").on("click",function(){
+        $("#project .modal .pc").stop().fadeOut();
+        $("#project .modal .ta").stop().fadeOut();
+        $("#project .modal .mo").stop().fadeOut();
+        $("#project .modal").stop().fadeOut();
+    });   
+
+    /* 모달 */
+
+    /* 모달 1*/
+    $("#project .view1 .mockup>div:nth-of-type(1)").on("click",function(){
+    $("#project .modal1 .ta").stop().fadeOut();
+    $("#project .modal1 .mo").stop().fadeOut();
+    $("#project .modal1").stop().fadeIn();
+    $("#project .modal1 .pc").stop().fadeIn();
+    })
+
+    $("#project .view1 .mockup>div:nth-of-type(2)").on("click",function(){
+        $("#project .modal1 .pc").stop().fadeOut();
+        $("#project .modal1 .mo").stop().fadeOut();
+        $("#project .modal1").stop().fadeIn();
+        $("#project .modal1 .ta").stop().fadeIn();
+    })
+    $("#project .view1 .mockup>div:nth-of-type(3)").on("click",function(){
+        $("#project .modal1 .pc").stop().fadeOut();
+        $("#project .modal1 .ta").stop().fadeOut();
+        $("#project .modal1").stop().fadeIn();
+        $("#project .modal1 .mo").stop().fadeIn();
+    })
+
+    $(".modal1 .close h2").on("click",function(){
+        $("#project .modal1 .pc").stop().fadeOut();
+        $("#project .modal1 .ta").stop().fadeOut();
+        $("#project .modal1 .mo").stop().fadeOut();
+        $("#project .modal1").stop().fadeOut();
+    });   
+
+    /* 모달1 */
+
+    /*버튼 중 바로가기 클릭 시 이벤트 대상이 a 로 별도 이벤트 실행*/
+    $(".device li a").on("click",function(){
+        $(".device li").stop().removeClass("on")
+        $(".device li a").parent(".device li").stop().addClass("on")
+    })
+    /*버튼 중 바로가기 클릭 시 이벤트 대상이 a 로 별도 이벤트 실행*/
+
+
+    /*기획안 페이지 넘기기 기능*/
     let h = 0;
-    let totalh = $(".proposal .chubb li").length;
-    
+    let totalh = $(".proposal .chubb li").length;    
     $(".rightar,.rightbg1").on("click",function(){
         h++;
         if(h == totalh){
@@ -1361,8 +1537,7 @@ $(function(){
         }
         $(".proposal .chubb li").fadeOut();
         $(".proposal .chubb li").eq(h).fadeIn();
-    })
-    
+    });    
     $(".leftar,.leftbg1").on("click",function(){
         h--;
         if(h < 0){
@@ -1370,13 +1545,10 @@ $(function(){
         }else{            
         }
         $(".proposal .chubb li").fadeOut();
-        $(".proposal .chubb li").eq(h).fadeIn();       
+        $(".proposal .chubb li").eq(h).fadeIn();        
     })
-
-
     let h1 = 0;
-    let totalh1 = $(".proposal1 .youjin li").length;
-    
+    let totalh1 = $(".proposal1 .youjin li").length;    
     $(".rightar1_2,.rightbg1_1").on("click",function(){
         h1++;
         if(h1 == totalh1){
@@ -1390,192 +1562,15 @@ $(function(){
     $(".leftar1_2,.leftbg1_1").on("click",function(){
         h1--;
         if(h1 < 0){
-            h1 = totalh1 + h1
-            
-        }else{
-            
+            h1 = totalh1 + h1            
+        }else{            
         }
         $(".proposal1 .youjin li").fadeOut();
         $(".proposal1 .youjin li").eq(h1).fadeIn();        
     })
+    /*기획안 페이지 넘기기 기능*/
 
-
-    $(".project1").on("click",function(){
-        clearInterval(auto2);        
-        $(".view1").fadeOut();
-        $(".device1").css({visibility:"hidden"})
-        $(".device").css({visibility:"visible"})
-        $(".view").fadeIn();
-        autowheel();
-    })
-
-    $(".project2").on("click",function(){
-        clearInterval(auto1);
-        
-        $(".view").fadeOut();
-        $(".view1").fadeIn();
-        $(".device").css({visibility:"hidden"})
-        $(".device1").css({visibility:"visible"})
-        autowheel1();
-    })
-
-
-
-    }
-    if(matchMedia("screen and (max-width:768px)").matches){
-        $("body").on('mousemove',function(e){
-            posX = e.pageX/500;
-            posY = e.pageY/500;
-            
-            $(".year .y2").css({"right":-8+posX+"%","bottom":-15+posY+"%"})
-            $(".year .y1").css({"right":-12+posX+"%","top":-20+posY+"%"})
-        });
-
-
-            var video = $("video");
-            video.on('play', function() {
-              $('.scrollicon, #nav, .parent, .year,.page').fadeOut();
-              $(".loading").fadeOut();
-            });
-          
-            video.on('pause', function() {
-              video.fadeOut(function() {
-                $('.scrollicon, #nav, .parent,.year,.page').fadeIn();
-                $(".introimg5 h1").delay(500).addClass("on").animate({top:"50%",opacity:"1"},"easeOutBack",function(){
-                    $(".title1 .line").addClass("on")
-                    $(".title1 h3").delay(1000).animate({opacity:"1"})                    
-                    $(".introimg5").css({background:"none"})                    
-                })
-              });
-            });
-        let baseline = -200;
-        let pos1 = $("#home").offset().top + baseline;
-        let pos2 = $("#about").offset().top + baseline;
-        let pos3 = $("#project").offset().top + baseline;
-        let pos4 = $("#poster").offset().top + baseline;
-        let pos5 = $("#contact").offset().top + baseline;
-    
-        $(".scrollicon").on("click", function() {
-            $("html, body").animate({
-              scrollTop: $(window).scrollTop() + $(window).height()
-            }, 800); 
-          });
-        $(".parent").on("click",function(){
-            $("html,body").animate({scrollTop:"0"},800)
-        })
-    
-        $(window).on("scroll", function () {
-            let scroll = $(this).scrollTop();
-    
-            if (scroll >= pos1 && scroll < pos2) {
-                $("#nav li").removeClass("on");
-                $("#nav li").eq(0).addClass("on");
-                $(".posterintro").removeClass("on")
-                $(".posterintro").fadeIn();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
-                $("#about .profil").removeClass("on")
-                $("#about .profil .introductioninfo").children("p").fadeOut();
-            } else if (scroll >= pos2 && scroll < pos3) {
-                $("#nav li").removeClass("on");
-                $("#nav li").eq(1).addClass("on");
-                $("#about .profil").stop().animate({left:"0px", opacity:"1"},function(){
-                    $("#about .profil").delay(1000).addClass("on")                    
-                    $("#about .profil .introductioninfo").children("p").animate({opacity:"1"}).fadeIn();
-                });   
-                $(".kategorie ul li").delay(3000).addClass("on");
-                let flash1 = 0;
-                    autoflash = setInterval(function(){
-                        $("#about .click ul").stop().removeClass("on");
-                        $("#about .click ul").eq(flash1).stop().delay(5000).addClass("on");
-                        flash1++;
-                        if (flash1 === $("#about .click ul").length) {
-                          flash1 = 0;
-                        }
-                    },1000)
-                
-                $(".kategorie ul li").on("click",function(){
-                    clearInterval(autoflash);
-                })
-
-                var totalClasses = $(".kategorie ul li").length;            
-                var $element = $('.kategorie ul li');
-                var index = 0;
-            
-                setInterval(function() {
-                  $element.removeClass("beat0,beat1,beat2,beat3");
-                  $element.eq(index).addClass('.kategorie ul li beat' + index);
-                  index++;
-                  if(index==totalClasses){
-                    index=0;
-                  }
-                }, 1000);
-                $(".posterintro").removeClass("on")
-                $(".posterintro").fadeIn();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
-            } else if (scroll >= pos3 && scroll < pos4) {
-                $("#nav li").removeClass("on");
-                $("#nav li").eq(2).addClass("on");
-                $(".posterintro").removeClass("on")
-                $(".posterintro").fadeIn();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
-            } else if (scroll >= pos4 && scroll < pos5) {
-                $("#nav li").removeClass("on");
-                $("#nav li").eq(3).addClass("on");
-                $(".posterintro").addClass("on")
-                $("#poster .title2,.slidbut,.slide,.page,.tit1,.post1,.post2,.slide_1,.poster1").delay(1800).fadeIn("slow");
-                $(".posterintro").delay(2000).fadeOut();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
-                $(".sns").removeClass("on")
-                
-            } else {
-                $("#nav li").removeClass("on");
-                $("#nav li").eq(4).addClass("on");
-                $(".posterintro").removeClass("on")
-                $(".posterintro").fadeIn();
-                $("#contact .con4 .my .m2").delay(2000).children("img").addClass("on")
-                $(".sns").addClass("on")
-            }
-    
-    
-        });
-        /*미리보기 네모 모서리 효과*/
-         $(".device li").on("click",function(){
-            $(".device li").stop().removeClass("on")
-            $(this).stop().addClass("on")
-        })
-
-        $(".device1 li").on("click",function(){
-            $(".device1 li").stop().removeClass("on")
-            $(this).stop().addClass("on")
-        })
-
-        /*미리보기 네모 모서리 효과*/
-
-        /*---------------------클릭 유도---------------------*/
-        let autoblink = 0;
-        setInterval(function(){
-            if(autoblink == 0){
-                $(".project2 .click ul").stop().removeClass("on")
-                $(".project1 .click ul").stop().addClass("on")
-                autoblink =1;
-            }else{
-                $(".project1 .click ul").stop().removeClass("on")
-                $(".project2 .click ul").stop().addClass("on")
-                autoblink = 0;
-            }
-        },2000)
-        /*---------------------클릭 유도---------------------*/
-        $("#nav li").on("click", function () {
-            let target = $(this).children("a").attr("href");
-            //alert(target);
-            let pos = $(target).offset().top;
-            //alert(pos);
-            $("html,body").stop().animate({ scrollTop: pos }, 1000);
-        });
-        /*웹디자인 오브젝트 선명하게 보이기 효과+디자인 컨셉 설명 나오기 효과*/
+            /*웹디자인 오브젝트 선명하게 보이기 효과+디자인 컨셉 설명 나오기 효과*/
         $(".slideitem .sl").on("mouseenter",function(){
             let s = $(this).index();
             $(".slideitem .sl").stop().removeClass("op")
@@ -1598,97 +1593,307 @@ $(function(){
             $(".t2").stop().animate({opacity:"0"})
     
         })
-        /*포스터 좌우 슬라이드*/ 
+        
+        let clickedLi = 0; 
+        $(".poster2 li .fullbut").click(function() {
+             clickedLi = $(this).closest("li").index();
+            var modalposter = $(".poster3>li .poster1_2 li").index();
+            $(".postermodal").stop().fadeIn();
+            $(".poster3 .poster1_2").animate({"left":-clickedLi*100+"%"})
+            $(".poster3 .poster1_1").animate({"left":-clickedLi*100+"%"})
+            $(".poster3 .poster1_3").animate({"left":-clickedLi*100+"%"})
+        })
+
+        /*포스터 우 슬라이드*/ 
         let content = 0;
-        let total = $(".slide_1 li").length;
-        console.log(total)
-        $(".slidbut .post1,.slidbut2 .rightslide").on("click", function() {
-            /*$(".slide_1").stop().animate({"margin-left": "-100%"},function(){
-                $(".slide_1").css({"margin-left":"0%"});
-            })        
-            $(".slide_1 li").first().appendTo(".slide_1");
-    
-            $(".slide_1 li").stop().children(".content1").removeClass("on")
-            $(".slide_1 li").delay(4000).eq(0).stop().children(".content1").addClass("on")*/
-            content++;
-            if(content >= total-1){
+        let total = 10;
+        let slidposter = 0
+        $(".postermodal .post1,.postermodal .right").on("click", function() {
+
+            let content = ++clickedLi 
+            if(content >= total){ 
+                clickedLi = 0;
+                slidposter = 0;                
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_1").css({left:"0%"});
+                })
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_2").css({left:"0%"});
+                })
+                
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_3").css({left:"0%"});
+                });
                 content = 0;
-            }else{                
+            }else{    
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_1 li").first().appendTo(".poster1_1")
+                    //$(".poster3 .poster1_1").css({left:"0%"});
+                })
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_2 li").first().appendTo(".poster1_2")
+                    //$(".poster3 .poster1_2").css({left:"0%"});
+                })
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_3 li").first().appendTo(".poster1_3")
+                    //$(".poster3 .poster1_3").css({left:"0%"});
+                })            
             }
-            $(".slide_1 li").stop().children(".content1").fadeOut();
-            $(".slide_1 li").stop().eq(content).children(".content1").fadeIn();
-            $(".slide_1 li").stop().children(".content1").removeClass("on");
-            $(".slide_1 li").stop().eq(content).children(".content1").addClass("on");
-            
-    
-            $(".poster1_1").stop().animate({left:"-100%"},function(){
-                $(".poster1_1 li").first().appendTo(".poster1_1")
-                $(".poster1_1").css({left:"0%"});
-            })
-            $(".poster1_2").stop().animate({left:"-100%"},function(){
-                $(".poster1_2 li").first().appendTo(".poster1_2")
-                $(".poster1_2").css({left:"0%"});
-            })
-            $(".poster1_3").stop().animate({left:"-100%"},function(){
-                $(".poster1_3 li").first().appendTo(".poster1_3")
-                $(".poster1_3").css({left:"0%"});
-            })
-            
         });
-          
-        $(".slidbut .post2,.slidbut2 .leftslide").on("click", function() {        
-            /*$(".slide_1 li").last().prependTo(".slide_1");
-            $(".slide_1").css({"margin-left":"-100%"});
-            $(".slide .slide_1").stop().animate({"margin-left": "0%"})
-            $(".slide_1 li").stop().children(".content1").removeClass("on")
-            $(".slide_1 li").delay(4000).eq(0).stop().children(".content1").addClass("on")*/
-            content--;
-            if(content < 0){ 
-                content=total+content
+
+        /*포스터 좌 슬라이드*/ 
+        $(".postermodal  .post2,.postermodal .left").on("click", function() {
+
+            let content = --clickedLi 
+            if(content == 0){ 
+                clickedLi = 10;
+                slidposter = 0;      
                 
-            }else{
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_1").css({left:"-1000%"})
+                })                
+
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_2").css({left:"-1000%"});
+                })
                 
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_3").css({left:"-1000%"});
+                });                
+            }else{    
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_1 li").first().appendTo(".poster1_1")
+                    //$(".poster3 .poster1_1").css({left:"0%"});
+                })
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_2 li").first().appendTo(".poster1_2")
+                    //$(".poster3 .poster1_2").css({left:"0%"});
+                })
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_3 li").first().appendTo(".poster1_3")
+                    //$(".poster3 .poster1_3").css({left:"0%"});
+                })            
             }
-            $(".slide_1 li").stop().children(".content1").fadeOut();
-            $(".slide_1 li").stop().eq(total).children(".content1").fadeIn();
-            $(".slide_1 li").stop().children(".content1").removeClass("on");
-            $(".slide_1 li").stop().eq(total).children(".content1").addClass("on");
-    
-    
-            $(".poster1_1 li").last().prependTo(".poster1_1")
-            $(".poster1_1").css({left:"-100%"})
-            $(".poster1_1").stop().animate({left:"0%"})
-    
-    
-            $(".poster1_2 li").last().prependTo(".poster1_2")
-            $(".poster1_2").css({left:"-100%"})
-            $(".poster1_2").stop().animate({left:"0%"})
-    
-    
-            $(".poster1_3 li").last().prependTo(".poster1_3")
-            $(".poster1_3").css({left:"-100%"})
-            $(".poster1_3").stop().animate({left:"0%"})    
+            console.log("이것이 content : " + content)
+            console.log("이것이 clickedLi : " + clickedLi)
+            console.log("이것이 slid : " + slid)
+        });   
+        /*포스터 좌우 슬라이드*/ 
+
+
+
+
+        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
+        $("#poster .poster2>li .blackbg").on("click",function(){
+            $(".poster2>li").addClass("on").removeClass("bor")
+            $(this).parent(".poster2>li").removeClass("on").addClass("bor");
+        })
+        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
+
+
+        /*해당 포스터에 대한 설명 fadeIn*/
+        posterlist()
+        function posterlist(){            
+            $(".poster2 li").on("click",function(){
+                let list = $(this).index();
+                $(".slide_1 li").children(".content1").removeClass("on")
+                $(".slide_1 li").eq(list).children(".content1").addClass("on");
+            })
+        }
+        /*해당 포스터에 대한 설명 fadeIn*/
+
+
+        
+        /*포스터 모달 종료버튼*/   
+        $(".postermodal .close").on("click",function(){
+            $(".postermodal").stop().fadeOut();
+        })
+        /*포스터 모달 종료버튼*/   
+    };
+    if(matchMedia("screen and (max-width:767px)").matches){
+        var video = $("video");
+        video.on('play', function() {
+            $('.scrollicon, #nav, .parent,.year').fadeOut();
+            $(".loading").fadeOut();
         });
+        
+        video.on('pause', function() {                
+            video.fadeOut(function() {
+            $('.scrollicon, #nav, .parent,.year,.page,.ball').fadeIn();
+            $(".introimg5 h1").delay(500).addClass("on").animate({top:"50%",opacity:"1"},function(){
+                $(".title1 .line").addClass("on")
+                $(".title1 h3").delay(500).animate({opacity:"1"})
+                $(".introimg").fadeOut();
+                $(".introimg5").css({background:"none"})
+                $(".box1").fadeOut();
+                
+            })
+            });
+        });
+        /*-----------------네비게이션-----------------*/
+        $("#nav li").on("click", function () {
+            let target = $(this).children("a").attr("href");
+            //alert(target);
+            let pos = $(target).offset().top;
+            //alert(pos);
+            $("html,body").stop().animate({ scrollTop: pos }, 1000);
+        });
+        /*-----------------네비게이션-----------------*/
     
+        let baseline = -200;
+        let pos1 = $("#home").offset().top + baseline;
+        let pos2 = $("#about").offset().top+ baseline;
+        let pos3 = $("#project").offset().top+ baseline;
+        let pos4 = $("#poster").offset().top+ baseline;
+        let pos5 = $("#contact").offset().top+ baseline;
     
+        $(".scrollicon").on("click", function() {
+            $("html, body").animate({
+              scrollTop: $(window).scrollTop() + $(window).height()
+            }, 800); 
+          });
+        $(".parent").on("click",function(){
+            $("html,body").animate({scrollTop:"0"},800)
+        })
+    
+        $(window).on("scroll", function () {
+            let scroll = $(this).scrollTop();
+            if (scroll >= pos1 && scroll < pos2) {
+                $("#nav li").removeClass("on");
+                $("#nav li").eq(0).addClass("on");
+                $("#contact .con4 .my .m2").children("img").removeClass("on")                      
+            } else if (scroll >= pos2 && scroll < pos3) {
+                $("#nav li").removeClass("on");
+                $("#nav li").eq(1).addClass("on");
+                $("#about .bg h2").stop().fadeIn();              
+                $("#about .profil").stop().animate({left:"70%", opacity:"1"},function(){
+                $("#about .profil").stop().delay(1000).addClass("on")                    
+                $("#about .profil .introductioninfo").children("p").animate({opacity:"1"}).fadeIn();
+                });
+
+                $("#about .content .con1").stop().delay(1000).addClass("on");
+                $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").stop().delay(1200).addClass("on");                
+                skill1();
+                skill2();
+                skill3();
+                skill4();
+                skill5();
+                skill6();
+                skill7();
+                skill8();
+                skill9();
+                skill10();
+                let totalcontent = $(".content .cont").length;
+                let aboutme = 0;
+                currentaboutme = setInterval(function(){
+                aboutme++;                
+                if(aboutme == totalcontent){
+                    aboutme=0;
+
+                }else{           
+                }
+                $(".kategorie ul li").stop().removeClass("fon");
+                $(".kategorie ul li").stop().eq(aboutme).addClass("fon");
+                $(".kategorie ul li").stop().removeClass("on");
+                $(".kategorie ul li").stop().eq(aboutme).addClass("on");
+            
+                // "fon" 클래스를 찾은 경우 실행되는 코드 블록
+                $(".content .cont").stop().animate({left: "-100%"});
+                $(".content .cont").eq(aboutme).stop().animate({left: "0%"});
+                if($(".kategorie ul li").eq(0).hasClass("fon")){                        
+                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on");
+                    skill1();
+                    skill2();
+                    skill3();
+                    skill4();
+                    skill5();
+                    skill6();
+                    skill7();
+                    skill8();
+                    skill9();
+                    skill10();
+                }else{
+                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
+                }
+                if ($(".kategorie ul li").eq(1).hasClass("fon")) {                       
+                    $(".con2 ul").addClass("on");
+                    $(".con2 .map").delay(500).animate({ opacity: "0.3" });
+                }
+                if ($(".kategorie ul li").eq(2).hasClass("fon")) {
+                    $(".con3 ul").addClass("on");
+                    $(".con3 .cert").addClass("on");
+                }
+                if ($(".kategorie ul li").eq(3).hasClass("fon")) {
+                    $(".word").delay(1500).addClass("on");
+                    $(".graph img").delay(1500).animate({ opacity: "1" });
+                    $(".hobby").delay(500).addClass("on");
+                }                
+                // "fon" 클래스를 찾지 못한 경우 실행되는 코드 블록
+                if ($(".kategorie ul li").eq(1).hasClass("fon") == false) {
+                    $(".con2 ul").removeClass("on");
+                    $(".con2 .map").delay(1400).animate({ opacity: "0" });
+                }
+                if ($(".kategorie ul li").eq(2).hasClass("fon") == false) {
+                    $(".con3 ul").delay(1000).removeClass("on");
+                    $(".con3 .cert").delay(1000).removeClass("on");
+                }
+                if ($(".kategorie ul li").eq(3).hasClass("fon") == false) {
+                    $(".word").removeClass("on");
+                    $(".graph img").animate({ opacity: "0" });
+                    $(".hobby").removeClass("on");                    
+                }
+            },4000) 
+                $(".posterintro").stop().removeClass("on")
+                $(".posterintro").fadeIn();
+                $("#contact .con4 .my .m2").children("img").removeClass("on")
+            } else if (scroll >= pos3 && scroll < pos4) {
+                $("#project .projectname>li").addClass("in");
+                $("#project .but").delay(1500).addClass("in");
+                $("#project .view").delay(2000).addClass("in");
+                $("#project>h2").stop().fadeIn();    
+                $("#nav li").removeClass("on");
+                $("#nav li").eq(2).addClass("on");              
+            } else if (scroll >= pos4 && scroll < pos5) {
+                $("#nav li").removeClass("on");
+                $("#nav li").eq(3).addClass("on");
+                $("#poster>h2").stop().fadeIn();
+                $("#poster .poster2>li").stop().addClass("in");
+            } else {
+                $("#nav li").removeClass("on");
+                $("#nav li").eq(4).addClass("on");
+                $("#contact>h2").stop().fadeIn(); 
+                $("#contact .ball").stop().fadeIn(); 
+                $("#contact .con4 .my .m2").delay(2000).children("img").addClass("on")
+                $(".sns").addClass("on")
+                
+            }    
+        });
+
+        $(".kategorie ul li .outline,.kategorie ul li .but,.kategorie ul li,.kategorie ul li .front,.kategorie ul li .down").on("click",function(){
+            clearInterval(currentaboutme);
+        })
         /*스킬페이지 좌우 슬라이드*/ 
-        let a = 0;
+
         let b = 0;
         let c = 0;
         let d = 0;
         let e = 0;
         let e1 = 0;
-        $(".kategorie li").on("click",function(){
-        a = $(this).index();
+        let cli = 0;
+        $(".kategorie li").on("click",function(){        
+        aboutme = $(this).index();
         b = $(this).hasClass("fon");
-        c = $(".kategorie>ul>li").children("h3").width();
-        console.log(c)
         //alert(a)
+        if(cli == 0){
+            cli = 1;
+        }else{
+            cli = 0;
+        }
+        $(".kategorie li").stop().removeClass("on");
+        $(".kategorie li").stop().eq(aboutme).addClass("on");
         if(b == true){
         $(".kategorie li").removeClass("fon")  ;      
-        $(".content .cont").eq(a).stop().animate({left:"-100%"},function(){
-            $(".kategorie .lin1").stop().eq(a).animate({width:"0%",height:"0%"});
-        })
+        $(".content .cont").eq(aboutme).stop().animate({left:"-100%"});        
         e1=$(".kategorie li").eq(3).hasClass("fon");
         if(e1==false){
             $(".word").removeClass("on")
@@ -1713,18 +1918,17 @@ $(function(){
     
         }else{
         $(".kategorie li").removeClass("fon");
-        $(".kategorie li").eq(a).addClass("fon");
-        $(".kategorie .lin1").stop().animate({width:"0%",height:"0px"});
-        $(".kategorie .lin1").eq(a).stop().animate({width:"35px",height:"20px"},function(){
+        $(".kategorie li").eq(aboutme).addClass("fon");
+        $(".kategorie .line1").stop().animate({width:"0%"});        
         $(".content .cont").stop().animate({left:"-100%"});
-        $(".content .cont").eq(a).stop().animate({left:"0%"});
-        })
+        $(".content .cont").eq(aboutme).stop().animate({left:"0%"});
+     
     
         e1=$(".kategorie li").eq(3).hasClass("fon");
         if(e1==true){
-            $(".word").delay(2000).addClass("on")
-            $(".graph img").delay(3200).animate({opacity:"1"})
-            $(".hobby").delay(2000).addClass("on")
+            $(".word").delay(1500).addClass("on")
+            $(".graph img").delay(1500).animate({opacity:"1"})
+            $(".hobby").delay(500).addClass("on")
         }else{
             $(".word").removeClass("on")
             $(".graph img").animate({opacity:"0"})
@@ -1739,8 +1943,8 @@ $(function(){
             $(".con3 .cert").delay(1000).removeClass("on")
         }
         d = $(".kategorie li").eq(1).hasClass("fon");
-        if(d==true){        
-            $(".con2 ul").addClass("on")
+        if(d==true){            
+            $(".con2 ul").addClass("on");
             $(".con2 .map").delay(500).animate({opacity:"0.3"})
         }else{
             $(".con2 ul").removeClass("on")
@@ -1748,50 +1952,35 @@ $(function(){
         }
         c = $(".kategorie li").eq(0).hasClass("fon");
         if(c==true){
-            skill1();
-            $(".bar1").addClass("on")
-            skill2();
-            $(".bar2").addClass("on")
-            skill3();
-            $(".bar3").addClass("on") 
-            skill4();
-            $(".bar4").addClass("on") 
-            skill5();
-            $(".bar5").addClass("on") 
-            skill6();
-            $(".bar6").addClass("on") 
-            skill7();
-            $(".bar7").addClass("on") 
-            skill8();
-            $(".bar8").addClass("on") 
-            skill9();
-            $(".bar9").addClass("on") 
-            skill10();
-            $(".bar10").addClass("on")       
-        }else{
 
-            $(".bar1").removeClass("on")
-            
-            $(".bar2").removeClass("on")
-            
-            $(".bar3").removeClass("on") 
-            
-            $(".bar4").removeClass("on") 
-            
-            $(".bar5").removeClass("on") 
-            
-            $(".bar6").removeClass("on") 
-            
-            $(".bar7").removeClass("on") 
-            
-            $(".bar8").removeClass("on") 
-            
-            $(".bar9").removeClass("on") 
-           
-            $(".bar10").removeClass("on")
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on")
+            skill1();
+            skill2();
+            skill3();
+            skill4();
+            skill5();
+            skill6();
+            skill7();
+            skill8();
+            skill9();
+            skill10();
+        }else{
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
+            skill1();
+            skill2();
+            skill3();
+            skill4();
+            skill5();
+            skill6();
+            skill7();
+            skill8();
+            skill9();
+            skill10();
         }
         }
+    })
     
+    /*스킬 페이지 툴 사용 숙련도 바*/
     function skill1(){
         let bar1 = 0; 
         start1 = setInterval(function(){
@@ -1912,50 +2101,36 @@ $(function(){
             }
         },20)
     }  
-    })
-    /*
-    var wheel = 0;
-    
-    $('#project .scrollbox').on('mousewheel', function(e) {
-        var b = e.originalEvent.wheelDelta;
-        wheel += b;
-    
-        // 스크롤 값을 조정하여 스크롤 범위를 제한합니다.
-        if(wheel<0){
-            wheel=0;
-        }
-        if(wheel>$("#project .item1").height() | wheel>$("#project .item2")){
-            wheel=$("#project .item1").height();
-            wheel=$("#project .item2").height();
-        }
-    
-        $('#project .item1').css('transform', 'translateY(' + (-wheel / 1) + 'px)');
-        $('#project .item2').css('transform', 'translateY(' + (wheel / 1) + 'px)');
-    
-        return false; // 기본 스크롤 동작을 방지합니다.
-    });
-    */
-    
+    /*스킬 페이지 툴 사용 숙련도 바*/
+
+
+
+    /*마우스 휠 위 또는 아래로 스크롤 시 페이지 따라가기*/
     let wheel1 = 0;
     $(".scrollbox").on("mousewheel",function(e){
         let wheeldefult=e.originalEvent.wheelDelta;
         wheel1+=wheeldefult
         clearInterval(auto1);
-        $('#project .item1').css('transform', 'translateY(' + (wheel1 / 50) + 'px)');
-        $('#project .item2').css('transform', 'translateY(' + (-wheel1 / 50) + 'px)');
+        $('#project .item1').css('transform', 'translateY(' + (wheel1 / 500) + 'px)');
+        $('#project .item2').css('transform', 'translateY(' + (-wheel1 / 500) + 'px)');
         autowheel();    
         return false;
     })
+    /*마우스 휠 위 또는 아래로 스크롤 시 페이지 따라가기*/
+
+
+    /*자동 스크롤 chubb 페이지*/
     autowheel();
     function autowheel(){   
         let item1 =$('#project .item1').height();
         let item2 =$("#project .item2").height();
         let scrollbox=$(".scrollbox").height();   
         endpoint1=item1-scrollbox
-        endpoint2=item2-scrollbox     
+        endpoint2=item2-scrollbox        
         auto1 = setInterval(function(){ 
            if(wheel1<=endpoint1){
             wheel1++;
+            
             $('#project .item1').stop().css('transform', 'translateY(' + (-wheel1) + 'px)');
             $('#project .item2').stop().css('transform', 'translateY(' + (wheel1) + 'px)');
     
@@ -1974,7 +2149,9 @@ $(function(){
     
         },50)
     }
+    /*자동 스크롤 chubb 페이지*/
 
+    /*자동 스크롤 youjin 페이지*/
     let wheel2 = 0;
     $(".scrollbox1_1").on("mousewheel",function(e){
         let wheeldefult1=e.originalEvent.wheelDelta;
@@ -2002,65 +2179,212 @@ $(function(){
             wheel2=0;
             endpoint3=item3-scrollbox1            
           } else {
-            //clearInterval(auto2);
-          }
-    
+            clearInterval(auto2);
+          }    
         },50)
     }
-    /*let f = 0;
-    $(".title1").on("click",function(){    
-        f = $(".subtitle").hasClass("on");
-        if(f==true){
-            $(".subtitle").removeClass("on")
-    
+    /*자동 스크롤 youjin 페이지*/
+
+    /*기획안 다운로드*/
+    $("#project .view .proposal .chubb").on("click", function () {
+        var filePath = "img/chubblife(리뉴얼기획안)_0802.pdf"; 
+        var fileName = "chubblife(리뉴얼기획안).pdf"; 
+
+        // 파일 다운로드 링크 생성 및 클릭
+        $("<a />")
+            .attr("href", filePath)
+            .attr("download", fileName)
+            .appendTo("body")
+            .get(0)
+            .click();       
+    });
+
+    $("#project .view1 .proposal1 .youjin").on("click", function () {
+        var filePath = "img/youjin(리뉴얼기획안)_0802.pdf"; 
+        var fileName = "youjin(리뉴얼기획안).pdf"; 
+
+        // 파일 다운로드 링크 생성 및 클릭
+        $("<a />")
+            .attr("href", filePath)
+            .attr("download", fileName)
+            .appendTo("body")
+            .get(0)
+            .click();       
+    });
+
+
+    /*기획안 다운로드*/
+
+
+    /*프로젝트명 클릭 시 해당 페이지로 전환*/
+    $(".projectname li").on("click",function(){
+        $(".projectname li").stop().removeClass("on")
+        $(this).stop().addClass("on");
+        let pro =  $(this).index();                  
+        $(".device ul").stop().fadeOut();
+        $(".device ul").eq(pro).css({display: "flex"}).stop().fadeIn()
+        /*if(pro == 0){
+            $(".view1").fadeOut();
+            $(".view").fadeIn();
         }else{
-            $(".subtitle").addClass("on")
-        }
-    })
-    let g = 0;
-    $(".title2").on("click",function(){    
-        g = $(".subtitle2").hasClass("on");
-        if(g==true){
-            $(".subtitle2").removeClass("on")
-    
-        }else{
-            $(".subtitle2").addClass("on")
-        }
-    })*/
-    
-    /*$(".projectname>li").on("click",function(){
-        if($(this).children(".con1").is(":hidden")){
-            $(".projectname>li").children(".con1").slideUp();
-            $(this).children(".con1").slideDown();
-        }else{
-            $(this).children(".con1").slideUp();
-        }
-    })*/
-    
-    $(".device li").on("click",function(){
-        view=$(this).index()
-        //console.log(view)
-        $(".view>div").stop().fadeOut();
-        $(".view>div").eq(view).stop().fadeIn();
-    })
-    
-    /*$(".proposal").on("mouseenter",function(){
-        $(".leftbg,.rightbg").fadeIn();
-    })
-    $(".proposal").on("mouseleave",function(){
-        $(".leftbg,.rightbg").fadeOut();
-    })*/
-*
-    $(".device1 li").on("click",function(){
-        view1=$(this).index()
-        //console.log(view)
-        $(".view1>div").stop().fadeOut();
-        $(".view1>div").eq(view1).stop().fadeIn();
+            $(".view").fadeOut();
+            $(".view1").fadeIn();
+        }*/
     })
 
-    let h = 0;
-    let totalh = $(".proposal .chubb li").length;
+    $(".projectname li:nth-of-type(1)").on("click",function(){
+        $(".view1").stop().addClass("out")
+        $(".view1").stop().removeClass("in")
+        $(".view").stop().addClass("in")
+        $(".view").stop().removeClass("out")
+    })
+    $(".projectname li:nth-of-type(2)").on("click",function(){
+        $(".view").stop().addClass("out")
+        $(".view").stop().removeClass("in")
+        $(".view1").stop().addClass("in")
+        $(".view1").stop().removeClass("out")
+    })
+    /*프로젝트명 클릭 시 해당 페이지로 전환*/
+
+
+
+    /*버튼 클릭 시 스타일 적용 밑 view페이지 내용 변경*/
+    $(".device .chubb li").on("click",function(){
+        $(".device .chubb li").stop().removeClass("on");
+        $(this).stop().addClass("on");  
+        view=$(this).index()
+        $(".view>div").stop().fadeOut();
+        $(".view>div").eq(view).stop().fadeIn();          
+    })
+
+    $(".device .youjin li").on("click",function(){
+        $(".device .youjin li").stop().removeClass("on");
+        $(this).stop().addClass("on");   
+        view1=$(this).index()
+        $(".view1>div").stop().fadeOut();
+        $(".view1>div").eq(view1).stop().fadeIn();         
+    })
+    /*버튼 클릭 시 스타일 적용 밑 view페이지 내용 변경*/
+
+    /*mockup 좌우 전환*/
+
+    let mockup = 0;
+    let mocktotal = $(".view .mockup>div").length;
     
+    $(".view .mockup .arrow .rightar").on("click",function(){
+        mockup++;
+        if(mockup == mocktotal){
+            mockup=0            
+        }else{            
+        }
+        $(".view .mockup>div").fadeOut();
+        $(".view .mockup>div").eq(mockup).fadeIn();
+    });    
+    $(".view .mockup .arrow .leftar").on("click",function(){
+        mockup--;
+        if(mockup < 0){
+            mockup = mocktotal + mockup            
+        }else{            
+        }
+        $(".view .mockup>div").fadeOut();
+        $(".view .mockup>div").eq(mockup).fadeIn();        
+    })
+
+
+    let mockup1 = 0;
+    let mocktotal1 = $(".view1 .mockup>div").length;
+    
+    $(".view1 .mockup .arrow .rightar").on("click",function(){
+        mockup1++;
+        if(mockup1 == mocktotal1){
+            mockup1=0            
+        }else{            
+        }
+        $(".view1 .mockup>div").fadeOut();
+        $(".view1 .mockup>div").eq(mockup1).fadeIn();
+    });    
+    $(".view1 .mockup .arrow .leftar").on("click",function(){
+        mockup1--;
+        if(mockup1 < 0){
+            mockup1 = mocktotal1 + mockup            
+        }else{            
+        }
+        $(".view1 .mockup>div").fadeOut();
+        $(".view1 .mockup>div").eq(mockup1).fadeIn();        
+    })
+    /*mockup 좌우 전환*/
+
+    /* 모달 */
+    $("#project .view .mockup>div:nth-of-type(1)").on("click",function(){
+        $("#project .modal .ta").stop().fadeOut();
+        $("#project .modal .mo").stop().fadeOut();
+        $("#project .modal").stop().fadeIn();
+        $("#project .modal .pc").stop().fadeIn();
+    })
+
+    $("#project .view .mockup>div:nth-of-type(2)").on("click",function(){
+        $("#project .modal .pc").stop().fadeOut();
+        $("#project .modal .mo").stop().fadeOut();
+        $("#project .modal").stop().fadeIn();
+        $("#project .modal .ta").stop().fadeIn();
+    })
+    $("#project .view .mockup>div:nth-of-type(3)").on("click",function(){
+        $("#project .modal .pc").stop().fadeOut();
+        $("#project .modal .ta").stop().fadeOut();
+        $("#project .modal").stop().fadeIn();
+        $("#project .modal .mo").stop().fadeIn();
+    })
+
+    $(".modal .close h2").on("click",function(){
+        $("#project .modal .pc").stop().fadeOut();
+        $("#project .modal .ta").stop().fadeOut();
+        $("#project .modal .mo").stop().fadeOut();
+        $("#project .modal").stop().fadeOut();
+    });   
+
+    /* 모달 */
+
+    /* 모달 1*/
+    $("#project .view1 .mockup>div:nth-of-type(1)").on("click",function(){
+    $("#project .modal1 .ta").stop().fadeOut();
+    $("#project .modal1 .mo").stop().fadeOut();
+    $("#project .modal1").stop().fadeIn();
+    $("#project .modal1 .pc").stop().fadeIn();
+    })
+
+    $("#project .view1 .mockup>div:nth-of-type(2)").on("click",function(){
+        $("#project .modal1 .pc").stop().fadeOut();
+        $("#project .modal1 .mo").stop().fadeOut();
+        $("#project .modal1").stop().fadeIn();
+        $("#project .modal1 .ta").stop().fadeIn();
+    })
+    $("#project .view1 .mockup>div:nth-of-type(3)").on("click",function(){
+        $("#project .modal1 .pc").stop().fadeOut();
+        $("#project .modal1 .ta").stop().fadeOut();
+        $("#project .modal1").stop().fadeIn();
+        $("#project .modal1 .mo").stop().fadeIn();
+    })
+
+    $(".modal1 .close h2").on("click",function(){
+        $("#project .modal1 .pc").stop().fadeOut();
+        $("#project .modal1 .ta").stop().fadeOut();
+        $("#project .modal1 .mo").stop().fadeOut();
+        $("#project .modal1").stop().fadeOut();
+    });   
+
+    /* 모달1 */
+
+    /*버튼 중 바로가기 클릭 시 이벤트 대상이 a 로 별도 이벤트 실행*/
+    $(".device li a").on("click",function(){
+        $(".device li").stop().removeClass("on")
+        $(".device li a").parent(".device li").stop().addClass("on")
+    })
+    /*버튼 중 바로가기 클릭 시 이벤트 대상이 a 로 별도 이벤트 실행*/
+
+
+    /*기획안 페이지 넘기기 기능*/
+    let h = 0;
+    let totalh = $(".proposal .chubb li").length;    
     $(".rightar,.rightbg1").on("click",function(){
         h++;
         if(h == totalh){
@@ -2069,8 +2393,7 @@ $(function(){
         }
         $(".proposal .chubb li").fadeOut();
         $(".proposal .chubb li").eq(h).fadeIn();
-    })
-    
+    });    
     $(".leftar,.leftbg1").on("click",function(){
         h--;
         if(h < 0){
@@ -2078,13 +2401,10 @@ $(function(){
         }else{            
         }
         $(".proposal .chubb li").fadeOut();
-        $(".proposal .chubb li").eq(h).fadeIn();       
+        $(".proposal .chubb li").eq(h).fadeIn();        
     })
-
-
     let h1 = 0;
-    let totalh1 = $(".proposal1 .youjin li").length;
-    
+    let totalh1 = $(".proposal1 .youjin li").length;    
     $(".rightar1_2,.rightbg1_1").on("click",function(){
         h1++;
         if(h1 == totalh1){
@@ -2098,34 +2418,153 @@ $(function(){
     $(".leftar1_2,.leftbg1_1").on("click",function(){
         h1--;
         if(h1 < 0){
-            h1 = totalh1 + h1
-            
-        }else{
-            
+            h1 = totalh1 + h1            
+        }else{            
         }
         $(".proposal1 .youjin li").fadeOut();
         $(".proposal1 .youjin li").eq(h1).fadeIn();        
     })
+    /*기획안 페이지 넘기기 기능*/
 
-
-    $(".project1").on("click",function(){
-        clearInterval(auto2);        
-        $(".view1").fadeOut();
-        $(".device1").css({visibility:"hidden"})
-        $(".device").css({visibility:"visible"})
-        $(".view").fadeIn();
-        autowheel();
-    })
-
-    $(".project2").on("click",function(){
-        clearInterval(auto1);
+            /*웹디자인 오브젝트 선명하게 보이기 효과+디자인 컨셉 설명 나오기 효과*/
+        $(".slideitem .sl").on("mouseenter",function(){
+            let s = $(this).index();
+            $(".slideitem .sl").stop().removeClass("op")
+            $(".slideitem .sl").eq(s).stop().addClass("op")
+            $(".concept").stop().animate({bottom:"0px"})
+    
+        })
+        $(".slideitem .sl").on("mouseleave",function(){
+            $(".slideitem .sl").stop().removeClass("op")
+            $(".concept").stop().animate({bottom:"-400px"})
+        })
+        /*웹디자인 & 포스터 타이틀 변경 효과*/ 
+        $(".tit1").on("mouseenter",function(){
+            $(".t1").stop().animate({opacity:"0"})
+            $(".t2").stop().animate({opacity:"1"})
+    
+        })
+        $(".tit1").on("mouseleave",function(){
+            $(".t1").stop().animate({opacity:"1"})
+            $(".t2").stop().animate({opacity:"0"})
+    
+        })
         
-        $(".view").fadeOut();
-        $(".view1").fadeIn();
-        $(".device").css({visibility:"hidden"})
-        $(".device1").css({visibility:"visible"})
-        autowheel1();
-    })
+        let clickedLi = 0; 
+        $(".poster2 li .fullbut").click(function() {
+             clickedLi = $(this).closest("li").index();
+            var modalposter = $(".poster3>li .poster1_2 li").index();
+            $(".postermodal").stop().fadeIn();
+            $(".poster3 .poster1_2").animate({"left":-clickedLi*100+"%"})
+            $(".poster3 .poster1_1").animate({"left":-clickedLi*100+"%"})
+            $(".poster3 .poster1_3").animate({"left":-clickedLi*100+"%"})
+        })
 
-    }
+        /*포스터 우 슬라이드*/ 
+        let content = 0;
+        let total = 10;
+        let slidposter = 0
+        $(".postermodal .post1,.postermodal .right").on("click", function() {
+
+            let content = ++clickedLi 
+            if(content >= total){ 
+                clickedLi = 0;
+                slidposter = 0;                
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_1").css({left:"0%"});
+                })
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_2").css({left:"0%"});
+                })
+                
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_3").css({left:"0%"});
+                });
+                content = 0;
+            }else{    
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_1 li").first().appendTo(".poster1_1")
+                    //$(".poster3 .poster1_1").css({left:"0%"});
+                })
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_2 li").first().appendTo(".poster1_2")
+                    //$(".poster3 .poster1_2").css({left:"0%"});
+                })
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_3 li").first().appendTo(".poster1_3")
+                    //$(".poster3 .poster1_3").css({left:"0%"});
+                })            
+            }
+        });
+
+        /*포스터 좌 슬라이드*/ 
+        $(".postermodal  .post2,.postermodal .left").on("click", function() {
+
+            let content = --clickedLi 
+            if(content == 0){ 
+                clickedLi = 10;
+                slidposter = 0;      
+                
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_1").css({left:"-1000%"})
+                })                
+
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_2").css({left:"-1000%"});
+                })
+                
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    $(".poster3 .poster1_3").css({left:"-1000%"});
+                });                
+            }else{    
+                $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_1 li").first().appendTo(".poster1_1")
+                    //$(".poster3 .poster1_1").css({left:"0%"});
+                })
+                $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_2 li").first().appendTo(".poster1_2")
+                    //$(".poster3 .poster1_2").css({left:"0%"});
+                })
+                $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
+                    //$(".poster3 .poster1_3 li").first().appendTo(".poster1_3")
+                    //$(".poster3 .poster1_3").css({left:"0%"});
+                })            
+            }
+            console.log("이것이 content : " + content)
+            console.log("이것이 clickedLi : " + clickedLi)
+            console.log("이것이 slid : " + slid)
+        });   
+        /*포스터 좌우 슬라이드*/ 
+
+
+
+
+        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
+        $("#poster .poster2>li .blackbg").on("click",function(){
+            $(".poster2>li").addClass("on").removeClass("bor")
+            $(this).parent(".poster2>li").removeClass("on").addClass("bor");
+        })
+        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
+
+
+        /*해당 포스터에 대한 설명 fadeIn*/
+        posterlist()
+        function posterlist(){            
+            $(".poster2 li").on("click",function(){
+                let list = $(this).index();
+                $(".slide_1 li").children(".content1").removeClass("on")
+                $(".slide_1 li").eq(list).children(".content1").addClass("on");
+            })
+        }
+        /*해당 포스터에 대한 설명 fadeIn*/
+
+
+        
+        /*포스터 모달 종료버튼*/   
+        $(".postermodal .close").on("click",function(){
+            $(".postermodal").stop().fadeOut();
+        })
+        /*포스터 모달 종료버튼*/   
+
+    };
 })
