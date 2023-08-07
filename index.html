@@ -62,7 +62,7 @@
                     $("html,body").stop().animate({
                         scrollTop: moveTop + 'px'
                     }, {
-                        duration: 800, complete: function () {
+                        duration: 1000, complete: function () {
                         }
                     });
                 });
@@ -90,17 +90,6 @@
             </ul>
             <!--이름과 희망직종 라인-->
 
-            <!--센터 포트폴리오문구-->
-
-            <!--센터 포트폴리오문구-->
-            <div class="page">
-                <h2>01</h2>
-            </div>
-            <div class="year">
-                <h2 class="y1">20</h2>
-                <h2 class="y2">23</h2>
-            </div>
-
             <!--인트로-->
             <div class="intro">
                 <video class="mainvisual" src="images/portfoliointro.mp4" autoplay muted></video>
@@ -115,6 +104,31 @@
                 </div>
             </div>
             <!--인트로-->
+
+            <!--반짝이는 볼-->
+            <div class="ball">
+                <div class="bgball1">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+
+                <div class="bgball2">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+
+                <div class="bgball3">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+
+                <div class="bgball4">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+            </div>
+
+            <!--반짝이는 볼-->
 
             <!--스크롤 다운 아이콘-->
             <div class="scrollicon">
@@ -142,55 +156,40 @@
                 <li class="on">
                     <a href="#home">
                         <div class="cir"></div>
-                        <div class="cir1">
-                            <div></div>
-                        </div>
-                        <div class="cir2">
-                            <div></div>
+                        <div class="navname">
+                            <h4>Home</h4>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#about">
                         <div class="cir"></div>
-                        <div class="cir1">
-                            <div></div>
-                        </div>
-                        <div class="cir2">
-                            <div></div>
+                        <div class="navname">
+                            <h4>About</h4>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#project">
                         <div class="cir"></div>
-                        <div class="cir1">
-                            <div></div>
-                        </div>
-                        <div class="cir2">
-                            <div></div>
+                        <div class="navname">
+                            <h4>Project</h4>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#poster">
                         <div class="cir"></div>
-                        <div class="cir1">
-                            <div></div>
-                        </div>
-                        <div class="cir2">
-                            <div></div>
+                        <div class="navname">
+                            <h4>Poster</h4>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#contact">
                         <div class="cir"></div>
-                        <div class="cir1">
-                            <div></div>
-                        </div>
-                        <div class="cir2">
-                            <div></div>
+                        <div class="navname">
+                            <h4>Contact</h4>
                         </div>
                     </a>
                 </li>
@@ -212,102 +211,126 @@
 
         <div id="about">
             <div class="bg">
-                <div class="profil">
-                    <h2>About</h2>
-                    <img src="img/profil.svg" alt="프로필사진">
+                <h2><span>A</span>bout</h2>
+                <div class="profil">                    
+                    <div class="profilimg">
+                        <img src="img/profil(drop shadow).svg" alt="프로필사진">
+                    </div>
                     <div class="introductioninfo">
-                        <p>말을 많이 하지는 않지만, 사람들과 잘 어울리는 성격입니다. 주변 동료들과 친</p>
-                        <p>해지는데 시간이 오래 걸리지 않습니다. 특히 어렵고 복잡한 상황일수록 편법</p>
-                        <p>사용하지않고 솔직하게 대처하는 것이 제게는 마음 편한 직장 생활을 가능하</p>
-                        <p>게 해줍니다. 단점 중에는 상대에게 싫은 소리를 잘 전달하지 못하는 부분이 </p>
-                        <p>있는데, 화를 내지 않고 웃으며 대화를 통해 문제를 해결하는 방식으로 극복하</p>
-                        <p>고 있습니다. 또한, 가슴에 어떤 것을 담아두어도 금방 잊어버리는 성격입니다.</p>
+                        <p>말을 많이 하지는 않지만, 사람들과 잘 어울리는 성격입니다.</p>
+                        <p>주변 동료들과 친해지는데 시간이 오래 걸리지 않습니다.해지</p>
+                        <p>는데 시간이 오래 걸리지 않습니다. 특히 어렵고 복잡한 상황</p>
+                        <p>일수록 편법사용하지않고 솔직하게 대처하는 것이 제게는 마음</p>
+                        <p>편한 직장 생활을 가능하게 해줍니다. 단점 중에는 상대에게</p>
+                        <p>싫은 소리를 잘 전달하지 못하는 부분이 있는데, 화를 내지 않고</p>
+                        <p>웃으며 대화를 통해 문제를 해결하는 방식으로 극복하고 있습니다.</p>
+                        <p>또한, 가슴에 어떤 것을 담아두어도 금방 잊어버리는 성격입니다.</p>
                     </div>
                 </div>
                 <div class="kategorie">
                     <ul>
-                        <li>
-                            <div>
-                                <h3>SKILL</h3>
-                                <div class="line1">
-                                    <div class="lin1"></div>
-                                    <div class="c1">
-                                    </div>
-                                </div>
-                            </div>
+                        <li class="on">
+                            <button class="but" data-text="SKILL">
+                                <h4 class="front">
+                                  <span>S</span>
+                                  <span>k</span>
+                                  <span>i</span>
+                                  <span>l</span>
+                                  <span>l</span>
+                                </h4>
+                                <h4 class="down">
+                                  <span>S</span>
+                                  <span>k</span>
+                                  <span>i</span>
+                                  <span>l</span>
+                                  <span>l</span>
+                                </h4>
+                                <div class="outline"></div>
+                            </button>
                         </li>
                         <li>
-                            <div>
-                                <h3>EXPERIENCE</h3>
-                                <div class="line1">
-                                    <div class="lin1"></div>
-                                    <div class="c1">
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="but" data-text="Experience">
+                                <h4 class="front">
+                                  <span>E</span>
+                                  <span>x</span>
+                                  <span>p</span>
+                                  <span>e</span>
+                                  <span>r</span>
+                                  <span>i</span>
+                                  <span>e</span>
+                                  <span>n</span>
+                                  <span>c</span>
+                                  <span>e</span>
+                                </h4>
+                                <h4 class="down">
+                                    <span>E</span>
+                                    <span>x</span>
+                                    <span>p</span>
+                                    <span>e</span>
+                                    <span>r</span>
+                                    <span>i</span>
+                                    <span>e</span>
+                                    <span>n</span>
+                                    <span>c</span>
+                                    <span>e</span>
+                                </h4>
+                                <div class="outline"></div>
+                            </button>
                         </li>
                         <li>
-                            <div>
-                                <h3>LANGUAGES/CERTIFI</h3>
-                                <div class="line1">
-                                    <div class="lin1"></div>
-                                    <div class="c1">
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="but" data-text="Lang&Cert">
+                                <h4 class="front">
+                                    <span>L</span>
+                                    <span>a</span>
+                                    <span>n</span>
+                                    <span>g</span>
+                                    <span>&</span>
+                                    <span>C</span>
+                                    <span>e</span>
+                                    <span>r</span>
+                                    <span>t</span>
+                                </h4>
+                                <h4 class="down">
+                                    <span>L</span>
+                                    <span>a</span>
+                                    <span>n</span>
+                                    <span>g</span>
+                                    <span>&</span>
+                                    <span>C</span>
+                                    <span>e</span>
+                                    <span>r</span>
+                                    <span>t</span>
+                                </h4>
+                                <div class="outline"></div>
+                            </button>
                         </li>
                         <li>
-                            <div>
-                                <h3>CHARACTER</h3>
-                                <div class="line1">
-                                    <div class="lin1"></div>
-                                    <div class="c1">
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="but" data-text="CHARACTER">
+                                <h4 class="front">
+                                    <span>C</span>
+                                    <span>h</span>
+                                    <span>a</span>
+                                    <span>r</span>
+                                    <span>a</span>
+                                    <span>c</span>
+                                    <span>t</span>
+                                    <span>e</span>
+                                    <span>r</span>
+                                </h4>
+                                <h4 class="down">
+                                    <span>C</span>
+                                    <span>h</span>
+                                    <span>a</span>
+                                    <span>r</span>
+                                    <span>a</span>
+                                    <span>c</span>
+                                    <span>t</span>
+                                    <span>e</span>
+                                    <span>r</span>
+                                </h4>
+                                <div class="outline"></div>
+                            </button>
                         </li>
-                    </ul>
-                </div>
-                <div class="click">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
                     </ul>
                 </div>
                 <div class="content">
@@ -540,76 +563,35 @@
                                 <li>시련은 있어도 실패는 없다</li><!--17-->
                             </ul>
                             <div class="graph">
-                                <img src="img/graph.svg" alt="graph">
+                                <img src="img/graph1.svg" alt="graph">
                             </div>
                         </div>
                         <ul class="hobby">
-                            <li><img src="img/game.svg" alt="게임"></li>
-                            <li><img src="img/archery.svg" alt="양궁"></li>
-                            <li><img src="img/badminton.svg" alt="배드민턴"></li>
-                            <li><img src="img/basketball.svg" alt="농구"></li>
-                            <li><img src="img/bowling.svg" alt="볼링"></li>
-                            <li><img src="img/poker.svg" alt="포커"></li>
+                            <li><img src="img/game1.svg" alt="게임"></li>
+                            <li><img src="img/archery1.svg" alt="양궁"></li>
+                            <li><img src="img/badminton1.svg" alt="배드민턴"></li>
+                            <li><img src="img/basketball1.svg" alt="농구"></li>
+                            <li><img src="img/bowling1.svg" alt="볼링"></li>
+                            <li><img src="img/poker1.svg" alt="포커"></li>
 
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="page">
-                <h2>02</h2>
-            </div>
 
         </div>
         <div id="project">
-            <div class="protitle">
-                <h2>Project</h2>
+            <h2><span>P</span>roject</h2>
+            <div class="protitle">                
                 <ul class="projectname">
-                    <li class="project1">
+                    <li class=" on">
                         <h3 class="title1">CHUBB LIFE(Renewal)</h3>
-                        <div class="subtitle con1">
-                            <a href="https://r-kimyong.github.io/chubblife/" target="_blank">바로가기<span>⇀</span></a>
-                            <div class="logo">
-                                <img src="img/chubb.svg" alt="chubblogo">
-                            </div>
-                        </div>
-                        <div class="click">
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </div>
                     </li>
-                    <li class="project2">
+                    <li>
                         <h3 class="title2">유진사무용가구(Renewal)</h3>
-                        <div class="subtitle2 con1">
-                            <a href="https://r-kimyong.github.io/youjin/#" target="_blank">바로가기<span>⇀</span></a>
-                            <div class="logo">
-                                <img src="img/logo.svg" alt="youjinlogo">
-                            </div>
-                        </div>
-                        <div class="click">
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </div>                       
                     </li>
                 </ul>
             </div>
-
-
             <div class="view">
                 <div class="scrollbox">
                     <ul class="item1">
@@ -665,38 +647,40 @@
                         <li><img src="img/pdf14.png" alt="기획안14"></li>
                     </ul>                    
                     <div class="leftbg">
-                        <img class="leftbg1" src="img/arrowbgleft.png" alt="화살표 배경">
-                        <img class="leftar" src="img/arrowleft.png" alt="left arrow">
+                        <img class="leftar" src="img/arrowleft_0801.png" alt="left arrow">
                     </div>
                     <div class="rightbg">
-                        <img class="rightbg1" src="img/arrowbgright.png" alt="">
-                        <img class="rightar" src="img/arrowright.png" alt="right arrow">
+                        <img class="rightar" src="img/arrowright_0801.png" alt="right arrow">
                     </div>
                 </div>
-                <div><img src="img/iMacmockup.png" alt="PC"></div>
-                <div><img src="img/ipadmuckup.png" alt="tablet"></div>
-                <div><img src="img/iPhonemockup.png" alt="phone"></div>
+                <div class="mockup">
+                    <div><img src="img/iMac_0801.png" alt="PC"></div>
+                    <div><img src="img/iPad_0801.png" alt="tablet"></div>
+                    <div><img src="img/iPhone_0801.png" alt="phone"></div>
+                    <ul class="arrow">
+                        <li>
+                            <img class="leftar" src="img/arrowleft_0801.png" alt="left arrow">
+                        </li>
+                        <li>
+                            <img class="rightar" src="img/arrowright_0801.png" alt="right arrow">
+                        </li>
+                    </ul>                    
+                </div>
             </div>
-
-            <ul class="device">
-                <li class="on">
-                    <h3>미리보기</h3>
-                </li>
-                <li>
-                    <h3>기획안</h3>
-                </li>
-                <li>
-                    <h3>PC</h3>
-                </li>
-                <li>
-                    <h3>Tablet</h3>
-                </li>
-                <li>
-                    <h3>Phone</h3>
-                </li>
+            <ul class="modal">
+                <li class="bg"></li>
+                <li class="pc"><img src="img/iMac_0801.png" alt="PC"></li>
+                <li class="ta"><img src="img/iPad_0801.png" alt="tablet"></li>
+                <li class="mo"><img src="img/iPhone_0801.png" alt="phone"></li>
+                <li class="close"><h2>+</h2></li>
             </ul>
-
-
+            <ul class="modal1">
+                <li class="bg"></li>
+                <li class="pc"><img src="img/iMac(youjinpc)_0801.png" alt="PC"></li>
+                <li class="ta"><img src="img/iMacbook(youjinpc)_0801.png" alt="tablet"></li>
+                <li class="mo"><img src="img/iPhone_3(youjin)_0801.png" alt="phone"></li>
+                <li class="close"><h2>+</h2></li>
+            </ul>
             <div class="view1">
                 <div class="scrollbox1_1">
                     <ul class="item1_1">
@@ -730,74 +714,183 @@
                         <li><img src="img/youjin9.png" alt="기획안9"></li>
                     </ul>
                     <div class="leftbg1">
-                        <img class="leftbg1_1" src="img/arrowbgleft.png" alt="화살표 배경">
-                        <img class="leftar1_2" src="img/arrowleft.png" alt="left arrow">
+                        <img class="leftar1_2" src="img/arrowleft_0801.png" alt="left arrow">
                     </div>
                     <div class="rightbg1">
-                        <img class="rightbg1_1" src="img/arrowbgright.png" alt="화살표 배경">
-                        <img class="rightar1_2" src="img/arrowright.png" alt="right arrow">
+                        <img class="rightar1_2" src="img/arrowright_0801.png" alt="right arrow">
                     </div>
                 </div>
-                <div><img src="img/youjin_pc.jpg" alt="PC"></div>
-                <div><img src="img/youjin_tablet.jpg" alt="tablet"></div>
-                <div><img src="img/youjin_mobile.jpg" alt="phone"></div>
+                <div class="mockup">
+                    <div><img src="img/iMac(youjinpc)_0801.png" alt="PC"></div>
+                    <div><img src="img/iMacbook(youjinpc)_0801.png" alt="tablet"></div>
+                    <div><img src="img/iPhone_3(youjin)_0801.png" alt="phone"></div>
+                    <ul class="arrow">
+                        <li>
+                            <img class="leftar" src="img/arrowleft_0801.png" alt="left arrow">
+                        </li>
+                        <li>
+                            <img class="rightar" src="img/arrowright_0801.png" alt="right arrow">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="device con1">
+                <ul class="chubb">
+                    <li class="on">
+                        <button class="but" data-text="미리보기">
+                            <h4 class="front">
+                              <span>미</span>
+                              <span>리</span>
+                              <span>보</span>
+                              <span>기</span>
+                            </h4>
+                            <h4 class="down">
+                                <span>미</span>
+                                <span>리</span>
+                                <span>보</span>
+                                <span>기</span>
+                            </h4>
+                            <div class="outline"></div>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="but" data-text="기획안">
+                            <h4 class="front">
+                              <span>기</span>
+                              <span>획</span>
+                              <span>안</span>  
+                            </h4>
+                            <h4 class="down">
+                                <span>기</span>
+                                <span>획</span>
+                                <span>안</span>          
+                            </h4>
+                            <div class="outline"></div>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="but" data-text="Mockup">
+                            <h4 class="front">
+                                <span>M</span>
+                                <span>o</span>
+                                <span>c</span>
+                                <span>k</span>
+                                <span>u</span>
+                                <span>p</span>
+                            </h4>
+                            <h4 class="down">
+                                <span>M</span>
+                                <span>o</span>
+                                <span>c</span>
+                                <span>k</span>
+                                <span>u</span>
+                                <span>p</span>
+                            </h4>
+                            <div class="outline"></div>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="https://r-kimyong.github.io/chubblife/"  target="_blank" class="but" data-text="바로가기">
+                            <h4 class="front">
+                                <span>바</span>
+                                <span>로</span>
+                                <span>가</span>
+                                <span>기</span>   
+                            </h4>
+                            <h4 class="down">
+                                <span>바</span>
+                                <span>로</span>
+                                <span>가</span>
+                                <span>기</span>
+                            </h4>
+                            <div class="outline"></div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="youjin">
+                    <li class="on">
+                        <button class="but" data-text="미리보기">
+                            <h4 class="front">
+                              <span>미</span>
+                              <span>리</span>
+                              <span>보</span>
+                              <span>기</span>
+                            </h4>
+                            <h4 class="down">
+                                <span>미</span>
+                                <span>리</span>
+                                <span>보</span>
+                                <span>기</span>
+                            </h4>
+                            <div class="outline"></div>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="but" data-text="기획안">
+                            <h4 class="front">
+                              <span>기</span>
+                              <span>획</span>
+                              <span>안</span>  
+                            </h4>
+                            <h4 class="down">
+                                <span>기</span>
+                                <span>획</span>
+                                <span>안</span>          
+                            </h4>
+                            <div class="outline"></div>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="but" data-text="Mockup">
+                            <h4 class="front">
+                                <span>M</span>
+                                <span>o</span>
+                                <span>c</span>
+                                <span>k</span>
+                                <span>u</span>
+                                <span>p</span>
+                            </h4>
+                            <h4 class="down">
+                                <span>M</span>
+                                <span>o</span>
+                                <span>c</span>
+                                <span>k</span>
+                                <span>u</span>
+                                <span>p</span>
+                            </h4>
+                            <div class="outline"></div>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="https://r-kimyong.github.io/youjin/"  target="_blank" class="but" data-text="바로가기">
+                            <h4 class="front">
+                                <span>바</span>
+                                <span>로</span>
+                                <span>가</span>
+                                <span>기</span>   
+                            </h4>
+                            <h4 class="down">
+                                <span>바</span>
+                                <span>로</span>
+                                <span>가</span>
+                                <span>기</span>
+                            </h4>
+                            <div class="outline"></div>
+                        </a>
+                    </li>
+                </ul>
             </div>
 
-            <ul class="device1">
-                <li class="on">
-                    <h3>미리보기</h3>
-                </li>
-                <li>
-                    <h3>기획안</h3>
-                </li>
-                <li>
-                    <h3>PC</h3>
-                </li>
-                <li>
-                    <h3>Tablet</h3>
-                </li>
-                <li>
-                    <h3>Phone</h3>
-                </li>
-            </ul>
-
-            <div class="page">
-                <h2>03</h2>
-            </div>
         </div>
-
-
-
-
         <div id="poster">
-
-            <div class="posterintro">
-                <div class="introbg"></div>
-                <div class="bouns">
-                    <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1237.23 233.27"><polyline class="introcls-1" points="0 121.89 339.58 121.89 349.12 95.47 358.66 129.97 369.18 121.89 388.51 229.8 414.69 3.96 436.71 156.39 450.41 94.98 459.96 132.41 468.76 114.31 474.97 121.89 770.31 121.89 779.77 94.49 788.81 129.97 800.32 121.65 819.65 229.8 845.1 3.96 866.63 155.66 880.33 95.22 891.1 132.66 899.66 114.31 906.15 121.89 1237.23 121.89"/></svg>
-                </div>
-                <div class="object">
-                    <div class="cir"></div>
-                    <div class="blackbg"></div>
-                </div>
-        
-            </div>
-
-            <div class="title2">
-                <h3>Poster</h3>
-            </div>
-
+            <h2><span>P</span>oster</h2>
             <div class="slidbut">
-                <button class="post2">
-                    <img class="p1" src="img/arrowleft.png" alt="arrow">
-                </button>
+
                 <div class="tit1">
                     <h3 class="t1">Poster Desgin</h3>
                     <h3 class="t2">포스터 디자인</h3>
                 </div>
-                <button class="post1">
-                    <img class="p2" src="img/arrowright.png" alt="arrow">
-                </button>
+
             </div>
 
             <div class="slide">
@@ -805,6 +898,18 @@
                     <ul class="slide_1">
                         <li>
                             <div class="content1 on">
+                                <h2>목표</h2>
+                                <p>'가상 브랜드' 여름 신상 제품</p>
+                                <h2>대상 연령층</h2>
+                                <p>남녀 상관없이 어떤 연령층에게도 맞는 제품을 소개합니다. 이 제품은 여름의 매서운 햇빛을 예방하기 위해 출시된 신상 썬크림입니다.</p>
+                                <h2>내용</h2>
+                                <p>제품의 효과적인 홍보를 위해 제품 내용물을 시각적으로 나타내어 고객들에게 제품의 특징과 효능을 직관적으로 전달합니다.</p>
+                                <h2>레이아웃</h2>
+                                <p>밝은 그라디언트와 블러 효과를 적용한 여름 배경에 중앙에 제품을 배치하고 내용물이 튀어나오는 효과를 시각적으로 표현하여 제품의 효과와 기능을 간접적으로 전달합니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content1">
                                 <h2>목표</h2>
                                 <p>영화 홍보포스터</p>
                                 <h2>대상 연령층</h2>
@@ -845,15 +950,13 @@
                         <li>
                             <div class="content1">
                                 <h2>목표</h2>
-                                <p>야간 문화행사(정동)</p>
+                                <p>'가상 브랜드' 10th 기념 제품 </p>
                                 <h2>대상 연령층</h2>
-                                <p>다양한 연령대의 관객들에게 호소하는 것을 목표로 합니다. 정동의 르네상스는 서울에서 대표적인 야간 문화행사로 손꼽히며, 3년 만에 돌아온다는 제작의도를
-                                    강조하고 이를 통해 정동의 르네상스가 오랜 기다림을 끝으로 다시 찾아온다는 기쁨과 흥분을 대중들에게 전달하고자 합니다.</p>
+                                <p>수분 충전이 필요한 소비자 또는 20~40대 여성이 주타겟으로 합니다. 창립 10주년을 기념하여 트렌드 마크 제품군인 세럼을 출시했다는 사실을 홍보하기 위한 목적을 가지고 있습니다.</p>
                                 <h2>내용</h2>
-                                <p>상하 5대5 비율로 균형을 이룬 레이아웃은 주목성을 높이기 위해 주요 정보, 로고, 이미지, 건축물을 상단에 배치합니다. 이로써 르네상스의 특징과 분위기를 전달합니다. 하단에는 한국 기와집을 그려 한국의 르네상스를 강조하며, 세부 내용, 일정, 지역 안내 등을 포함하여 필요한 정보를 쉽게 제공합니다.</p>
+                                <p>화려한 그래픽과 물방울로 가득한 배경을 통해 상쾌한 이미지를 전달하며, 제품과 10주년 기념 메시지를 조화롭게 표현하여 브랜드의 성과와 출시 제품의 매력을 강조합니다.</p>
                                 <h2>레이아웃</h2>
-                                <p>정동의 르네상스의 복고풍이나 독특한 분위기를 시각적으로 표현하고, 대중들에게 이 행사의 매력과 기대를 고조시키는 역할을 기대하고또한, 포스터 전체적으로 표현되는 디자인과 컬러 조합은 르네상스의 아름다움과 흥미를 반영하여, 대상연령층을 매료시키고 참석하도록 유인합니다.
-                                </p>
+                                <p>수분을 연상시키는 그래픽과 물방울로 상쾌하고 수분이 가득한 느낌을 배경에 전달하며, 제품은 화면 비율의 6부분에 주요하게 배치하여 매력을 강조합니다. 10주년을 강조하는 텍스트는 화면 비율의 4부분에 배치하여 창립 10주년을 축하하는 메시지를 전달합니다. 제품 출시와 브랜드의 성취를 강조하며, 기념의 의미를 고객들에게 전달합니다.</p>
                             </div>
                         </li>
                         <li>
@@ -906,93 +1009,210 @@
                                 <p>화창한 날씨와 시장 풍경을 5대5 비율로 나누어 밸런스를 맞춘 포스터입니다. 상단에는 밝은 하늘과 빛나는 해로 즐거운 여름 분위기와 시장 축제의 활기를 전달하고, 하단에는 전통시장의 시끌벅적한 장면으로 지역 시장의 특색과 활발한 활동을 강조합니다. 경제 활성화를 목표로 합니다.</p>
                             </div>
                         </li>
+
                         <li>
                             <div class="content1">
                                 <h2>목표</h2>
-                                <p>'가상 브랜드' 10th 기념 제품 </p>
+                                <p>야간 문화행사(정동)</p>
                                 <h2>대상 연령층</h2>
-                                <p>수분 충전이 필요한 소비자 또는 20~40대 여성이 주타겟으로 합니다. 창립 10주년을 기념하여 트렌드 마크 제품군인 세럼을 출시했다는 사실을 홍보하기 위한 목적을 가지고 있습니다.</p>
+                                <p>다양한 연령대의 관객들에게 호소하는 것을 목표로 합니다. 정동의 르네상스는 서울에서 대표적인 야간 문화행사로 손꼽히며, 3년 만에 돌아온다는 제작의도를
+                                    강조하고 이를 통해 정동의 르네상스가 오랜 기다림을 끝으로 다시 찾아온다는 기쁨과 흥분을 대중들에게 전달하고자 합니다.</p>
                                 <h2>내용</h2>
-                                <p>화려한 그래픽과 물방울로 가득한 배경을 통해 상쾌한 이미지를 전달하며, 제품과 10주년 기념 메시지를 조화롭게 표현하여 브랜드의 성과와 출시 제품의 매력을 강조합니다.</p>
+                                <p>상하 5대5 비율로 균형을 이룬 레이아웃은 주목성을 높이기 위해 주요 정보, 로고, 이미지, 건축물을 상단에 배치합니다. 이로써 르네상스의 특징과 분위기를 전달합니다. 하단에는 한국 기와집을 그려 한국의 르네상스를 강조하며, 세부 내용, 일정, 지역 안내 등을 포함하여 필요한 정보를 쉽게 제공합니다.</p>
                                 <h2>레이아웃</h2>
-                                <p>수분을 연상시키는 그래픽과 물방울로 상쾌하고 수분이 가득한 느낌을 배경에 전달하며, 제품은 화면 비율의 6부분에 주요하게 배치하여 매력을 강조합니다. 10주년을 강조하는 텍스트는 화면 비율의 4부분에 배치하여 창립 10주년을 축하하는 메시지를 전달합니다. 제품 출시와 브랜드의 성취를 강조하며, 기념의 의미를 고객들에게 전달합니다.</p>
+                                <p>정동의 르네상스의 복고풍이나 독특한 분위기를 시각적으로 표현하고, 대중들에게 이 행사의 매력과 기대를 고조시키는 역할을 기대하고또한, 포스터 전체적으로 표현되는 디자인과 컬러 조합은 르네상스의 아름다움과 흥미를 반영하여, 대상연령층을 매료시키고 참석하도록 유인합니다.
+                                </p>
                             </div>
                         </li>
-                        <li>
-                            <div class="content1">
-                                <h2>목표</h2>
-                                <p>'가상 브랜드' 여름 신상 제품</p>
-                                <h2>대상 연령층</h2>
-                                <p>남녀 상관없이 어떤 연령층에게도 맞는 제품을 소개합니다. 이 제품은 여름의 매서운 햇빛을 예방하기 위해 출시된 신상 썬크림입니다.</p>
-                                <h2>내용</h2>
-                                <p>제품의 효과적인 홍보를 위해 제품 내용물을 시각적으로 나타내어 고객들에게 제품의 특징과 효능을 직관적으로 전달합니다.</p>
-                                <h2>레이아웃</h2>
-                                <p>밝은 그라디언트와 블러 효과를 적용한 여름 배경에 중앙에 제품을 배치하고 내용물이 튀어나오는 효과를 시각적으로 표현하여 제품의 효과와 기능을 간접적으로 전달합니다.</p>
-                            </div>
-                        </li>
+
                     </ul>
                 </div>
 
-                <ul class="poster1">
-                    <li>
+                <ul class="poster2">
+                    <li class="bor">
+                        <div class="blackbg"></div>
+                        <div class="fullbut">
+                            <ul>
+                                <li>↖</li>
+                                <li>↗</li>
+                                <li>↙</li>
+                                <li>↘</li>
+                            </ul>
+                        </div>
+                        <img src="img/poster7.jpg" alt="포스터6">
+                    </li>
+                    <li class="on">
+                        <div class="blackbg"></div>
+                        <div class="fullbut">
+                            <ul>
+                                <li>↖</li>
+                                <li>↗</li>
+                                <li>↙</li>
+                                <li>↘</li>
+                            </ul>
+                        </div>
+                        <img src="img/joker.jpg" alt="조커">
+                    </li>
+                    <li class="on">
+                        <div class="blackbg"></div>
+                        <div class="fullbut">
+                            <ul>
+                                <li>↖</li>
+                                <li>↗</li>
+                                <li>↙</li>
+                                <li>↘</li>
+                            </ul>
+                        </div>
+                        <img src="img/hera.jpg" alt="헤라">
+                    </li>
+                    <li class="on">
+                        <div class="blackbg"></div>
+                        <div class="fullbut">
+                            <ul>
+                                <li>↖</li>
+                                <li>↗</li>
+                                <li>↙</li>
+                                <li>↘</li>
+                            </ul>
+                        </div>
+                        <img src="img/cosmetic1.jpg" alt="화장품2">
+                    </li>
+                    <li class="on">
+                        <div class="blackbg"></div>
+                        <div class="fullbut">
+                            <ul>
+                                <li>↖</li>
+                                <li>↗</li>
+                                <li>↙</li>
+                                <li>↘</li>
+                            </ul>
+                        </div>
+                        <img src="img/poster6.jpg" alt="포스터1">
+                    </li>
+                    <li class="on">
+                        <div class="blackbg"></div>
+                        <div class="fullbut">
+                            <ul>
+                                <li>↖</li>
+                                <li>↗</li>
+                                <li>↙</li>
+                                <li>↘</li>
+                            </ul>
+                        </div>
+                        <img src="img/poster2.jpg" alt="포스터2">
+                    </li>
+                    <li class="on">
+                        <div class="blackbg"></div>
+                        <div class="fullbut">
+                            <ul>
+                                <li>↖</li>
+                                <li>↗</li>
+                                <li>↙</li>
+                                <li>↘</li>
+                            </ul>
+                        </div>
+                        <img src="img/poster3.jpg" alt="포스터3">
+                    </li>
+                    <li class="on">
+                        <div class="blackbg"></div>
+                        <div class="fullbut">
+                            <ul>
+                                <li>↖</li>
+                                <li>↗</li>
+                                <li>↙</li>
+                                <li>↘</li>
+                            </ul>
+                        </div>
+                        <img src="img/poster4.jpg" alt="포스터4">
+                    </li>
+                    <li class="on">
+                        <div class="blackbg"></div>
+                        <div class="fullbut">
+                            <ul>
+                                <li>↖</li>
+                                <li>↗</li>
+                                <li>↙</li>
+                                <li>↘</li>
+                            </ul>
+                        </div>
+                        <img src="img/poster5.jpg" alt="포스터5">
+                    </li>
+                    <li class="on">
+                        <div class="blackbg"></div>
+                        <div class="fullbut">
+                            <ul>
+                                <li>↖</li>
+                                <li>↗</li>
+                                <li>↙</li>
+                                <li>↘</li>
+                            </ul>
+                        </div>
+                        <img src="img/poster1.jpg" alt="포스터6">
+                    </li>
+                </ul>
+            </div>
+            <div class="postermodal">
+                <ul class="poster3">
+                    <li class="left">
                         <ul class="poster1_1">
+                            <li><img src="img/poster1.jpg" alt="포스터1"></li>
                             <li><img src="img/poster7.jpg" alt="포스터6"></li>
                             <li><img src="img/joker.jpg" alt="조커"></li>
                             <li><img src="img/hera.jpg" alt="헤라"></li>
                             <li><img src="img/cosmetic1.jpg" alt="화장품2"></li>
-                            <li><img src="img/poster1.jpg" alt="포스터1"></li>
+                            <li><img src="img/poster6.jpg" alt="포스터6"></li>
                             <li><img src="img/poster2.jpg" alt="포스터2"></li>
                             <li><img src="img/poster3.jpg" alt="포스터3"></li>
                             <li><img src="img/poster4.jpg" alt="포스터4"></li>
                             <li><img src="img/poster5.jpg" alt="포스터5"></li>
-                            <li><img src="img/poster6.jpg" alt="포스터6"></li>
-
+                            <li><img src="img/poster1.jpg" alt="포스터1"></li>
                         </ul>
                     </li>
                     <li>
                         <ul class="poster1_2">
+                            <li><img src="img/poster7.jpg" alt="포스터6"></li>
                             <li><img src="img/joker.jpg" alt="조커"></li>
                             <li><img src="img/hera.jpg" alt="헤라"></li>
                             <li><img src="img/cosmetic1.jpg" alt="화장품2"></li>
-                            <li><img src="img/poster1.jpg" alt="포스터1"></li>
+                            <li><img src="img/poster6.jpg" alt="포스터6"></li>
                             <li><img src="img/poster2.jpg" alt="포스터2"></li>
                             <li><img src="img/poster3.jpg" alt="포스터3"></li>
                             <li><img src="img/poster4.jpg" alt="포스터4"></li>
                             <li><img src="img/poster5.jpg" alt="포스터5"></li>
-                            <li><img src="img/poster6.jpg" alt="포스터6"></li>
+                            <li><img src="img/poster1.jpg" alt="포스터1"></li>
                             <li><img src="img/poster7.jpg" alt="포스터6"></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="right">
                         <ul class="poster1_3">
-
+                            <li><img src="img/joker.jpg" alt="조커"></li>
                             <li><img src="img/hera.jpg" alt="헤라"></li>
                             <li><img src="img/cosmetic1.jpg" alt="화장품2"></li>
-                            <li><img src="img/poster1.jpg" alt="포스터1"></li>
+                            <li><img src="img/poster6.jpg" alt="포스터6"></li>
                             <li><img src="img/poster2.jpg" alt="포스터2"></li>
                             <li><img src="img/poster3.jpg" alt="포스터3"></li>
                             <li><img src="img/poster4.jpg" alt="포스터4"></li>
                             <li><img src="img/poster5.jpg" alt="포스터5"></li>
-                            <li><img src="img/poster6.jpg" alt="포스터6"></li>
+                            <li><img src="img/poster1.jpg" alt="포스터1"></li>
                             <li><img src="img/poster7.jpg" alt="포스터6"></li>
                             <li><img src="img/joker.jpg" alt="조커"></li>
                         </ul>
                     </li>
                 </ul>
-                <div class="slidbut2">
-                    <div class="leftslide"></div>
-                    <div class="rightslide"></div>
-                </div>
+                <div class="close"><h2>+</h2></div>
+                <ul class="arrow">
+                    <li class="post2">
+                        <img class="p1" src="img/arrowleft_0801.png" alt="left">
+                    </li>
+                    <li class="post1">
+                        <img class="p2" src="img/arrowright_0801.png" alt="right">
+                    </li>
+                </ul>
             </div>
 
-            <div class="page">
-                <h2>04</h2>
-            </div>
         </div>
         <div id="contact">
-            <div class="title2">
-                <h3>Contact</h3>
-            </div>
+            <h2><span>C</span>ontact</h2>
             <div class="con4">
                 <ul class="sns">
                     <li>
@@ -1021,26 +1241,10 @@
                     </li>
                     <li>
                         <div class="icon1">
-                            <img src="img/http.svg" alt="홈페이지">
-                        </div>
-                        <div class="info">
-                            <p>r-kimyong.github.io/its_me</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="icon1">
                             <img src="img/face.svg" alt="페이스북">
                         </div>
                         <div class="info">
                             <p>010.3945.4570</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="icon1">
-                            <img src="img/ins.svg" alt="인스타">
-                        </div>
-                        <div class="info">
-                            <p>kim.yong4</h3>
                         </div>
                     </li>
                     <li>
@@ -1053,7 +1257,7 @@
                     </li>
                     <li>
                         <div class="icon1">
-                            <img src="img/kakao.svg" alt="위챗">
+                            <img src="img/kakao.svg" alt="katalk">
                         </div>
                         <div class="info">
                             <p>right1532114@gmail.com</p>
@@ -1062,7 +1266,7 @@
                 </ul>
                 <div class="my">
                     <div class="m1">
-                        <img src="img/mynamewhite.svg" alt="myname">
+                        <img src="img/mynamewhite_0801.png" alt="myname">
                     </div>
                     <div class="m2">
                         <img src="img/my.png" alt="자화상">
@@ -1070,8 +1274,45 @@
 
                 </div>
             </div>
-            <div class="page">
-                <h2>05</h2>
+            <div class="ball">
+                <div class="bgball1">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+
+                <div class="bgball2">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+
+                <div class="bgball3">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+
+                <div class="bgball4">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+                <div class="bgball5">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+
+                <div class="bgball6">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+
+                <div class="bgball7">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
+
+                <div class="bgball8">
+                    <div class="orgball"></div>
+                    <div class="blueball"></div>
+                </div>
             </div>
         </div>
     </div>
