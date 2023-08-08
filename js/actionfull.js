@@ -56,7 +56,7 @@ $(function(){
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(1).addClass("on");
                 $("#about .bg h2").stop().fadeIn();              
-                $("#about .profil").stop().animate({left:"200px", opacity:"1"},function(){
+                $("#about .profil").stop().animate({left:"10%", opacity:"1"},function(){
                 $("#about .profil").stop().delay(1000).addClass("on")                    
                 $("#about .profil .introductioninfo").children("p").animate({opacity:"1"}).fadeIn();
                 });
@@ -132,10 +132,7 @@ $(function(){
                     $(".graph img").animate({ opacity: "0" });
                     $(".hobby").removeClass("on");                    
                 }
-            },4000) 
-                $(".posterintro").stop().removeClass("on")
-                $(".posterintro").fadeIn();
-                $("#contact .con4 .my .m2").children("img").removeClass("on")
+            },4000)           
             } else if (scroll >= pos3 && scroll < pos4) {
                 $("#project .projectname>li").addClass("in");
                 $("#project .but").delay(1500).addClass("in");
@@ -147,7 +144,8 @@ $(function(){
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(3).addClass("on");
                 $("#poster>h2").stop().fadeIn();
-                $("#poster .poster2>li").stop().addClass("in");
+                $("#poster .poster2>li").stop().addClass("in");    
+                         
             } else {
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(4).addClass("on");
@@ -735,18 +733,24 @@ $(function(){
         })
         
         let clickedLi = 0; 
-        $(".poster2 li .fullbut").click(function() {
+        $(".slide_1 li .but").click(function() {
              clickedLi = $(this).closest("li").index();
             var modalposter = $(".poster3>li .poster1_2 li").index();
-            $(".postermodal").stop().fadeIn();
+            $(".postermodal").fadeIn();
             $(".poster3 .poster1_2").animate({"left":-clickedLi*100+"%"})
             $(".poster3 .poster1_1").animate({"left":-clickedLi*100+"%"})
             $(".poster3 .poster1_3").animate({"left":-clickedLi*100+"%"})
         })
 
+        /*포스터 모달 종료버튼*/   
+        $(".postermodal .close,.postermodal .close h2").on("click",function(){
+            $(".postermodal").fadeOut();
+        })
+        /*포스터 모달 종료버튼*/   
+
         /*포스터 우 슬라이드*/ 
         let content = 0;
-        let total = 10;
+        let total = 8;
         let slidposter = 0
         $(".postermodal .post1,.postermodal .right").on("click", function() {
 
@@ -779,17 +783,16 @@ $(function(){
                     //$(".poster3 .poster1_3").css({left:"0%"});
                 })            
             }
-            console.log("이것이 content : " + content)
-            console.log("이것이 clickedLi : " + clickedLi)
-            console.log("이것이 slid : " + slid)
         });
+
+
 
         /*포스터 좌 슬라이드*/ 
         $(".postermodal  .post2,.postermodal .left").on("click", function() {
 
             let content = --clickedLi 
             if(content == 0){ 
-                clickedLi = 10;
+                clickedLi = 8;
                 slidposter = 0;      
                 
                 $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
@@ -817,42 +820,29 @@ $(function(){
                     //$(".poster3 .poster1_3").css({left:"0%"});
                 })            
             }
-            console.log("이것이 content : " + content)
-            console.log("이것이 clickedLi : " + clickedLi)
-            console.log("이것이 slid : " + slid)
         });   
         /*포스터 좌우 슬라이드*/ 
-
-
-
-
-        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
-        $("#poster .poster2>li .blackbg").on("click",function(){
-            $(".poster2>li").addClass("on").removeClass("bor")
-            $(this).parent(".poster2>li").removeClass("on").addClass("bor");
-        })
-        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
-
-
-        /*해당 포스터에 대한 설명 fadeIn*/
-        posterlist()
-        function posterlist(){            
-            $(".poster2 li").on("click",function(){
-                let list = $(this).index();
-                $(".slide_1 li").children(".content1").removeClass("on")
-                $(".slide_1 li").eq(list).children(".content1").addClass("on");
-            })
+        posterslide();   
+        function posterslide(){
+            /*포스터 자동슬라이드*/
+        let posterslide = 0;
+        let postertotal = $(".poster2>li").length;
+        console.log(postertotal)
+        autoposterslide=setInterval(function(){
+            posterslide++;
+            if(posterslide >= postertotal-1){                
+                $(".poster2").animate({"left":-posterslide*100+"%"},function(){
+                    $(".poster2").css({left:"0%"});
+                })  
+                posterslide=0;              
+            }else{
+                $(".poster2").animate({"left":-posterslide*100+"%"});
+            }  
+            $(".slide .slide_1>li").stop().fadeOut("on");
+            $(".slide .slide_1>li").eq(posterslide).stop().fadeIn("on");
+        },3000);
+        /*포스터 자동슬라이드*/
         }
-        /*해당 포스터에 대한 설명 fadeIn*/
-
-
-        
-        /*포스터 모달 종료버튼*/   
-        $(".postermodal .close").on("click",function(){
-            $(".postermodal").stop().fadeOut();
-        })
-        /*포스터 모달 종료버튼*/   
-
     };
     if(matchMedia("screen and (max-width:1439px) and (min-width:768px)").matches){
         var video = $("video");
@@ -1595,14 +1585,20 @@ $(function(){
         })
         
         let clickedLi = 0; 
-        $(".poster2 li .fullbut").click(function() {
+        $(".slide_1 li .but").click(function() {
              clickedLi = $(this).closest("li").index();
             var modalposter = $(".poster3>li .poster1_2 li").index();
-            $(".postermodal").stop().fadeIn();
+            $(".postermodal").fadeIn();
             $(".poster3 .poster1_2").animate({"left":-clickedLi*100+"%"})
             $(".poster3 .poster1_1").animate({"left":-clickedLi*100+"%"})
             $(".poster3 .poster1_3").animate({"left":-clickedLi*100+"%"})
         })
+
+        /*포스터 모달 종료버튼*/   
+        $(".postermodal .close,.postermodal .close h2").on("click",function(){
+            $(".postermodal").fadeOut();
+        })
+        /*포스터 모달 종료버튼*/   
 
         /*포스터 우 슬라이드*/ 
         let content = 0;
@@ -1674,41 +1670,33 @@ $(function(){
                     //$(".poster3 .poster1_3").css({left:"0%"});
                 })            
             }
-            console.log("이것이 content : " + content)
-            console.log("이것이 clickedLi : " + clickedLi)
-            console.log("이것이 slid : " + slid)
         });   
+        /*포스터 좌우 슬라이드*/
+
+       
         /*포스터 좌우 슬라이드*/ 
-
-
-
-
-        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
-        $("#poster .poster2>li .blackbg").on("click",function(){
-            $(".poster2>li").addClass("on").removeClass("bor")
-            $(this).parent(".poster2>li").removeClass("on").addClass("bor");
-        })
-        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
-
-
-        /*해당 포스터에 대한 설명 fadeIn*/
-        posterlist()
-        function posterlist(){            
-            $(".poster2 li").on("click",function(){
-                let list = $(this).index();
-                $(".slide_1 li").children(".content1").removeClass("on")
-                $(".slide_1 li").eq(list).children(".content1").addClass("on");
-            })
+        posterslide();   
+        function posterslide(){
+            /*포스터 자동슬라이드*/
+        let posterslide = 0;
+        let postertotal = $(".poster2>li").length;
+        console.log(postertotal)
+        autoposterslide=setInterval(function(){
+            posterslide++;
+            if(posterslide >= postertotal-1){                
+                $(".poster2").animate({"left":-posterslide*100+"%"},function(){
+                    $(".poster2").css({left:"0%"});
+                })  
+                posterslide=0;              
+            }else{
+                $(".poster2").animate({"left":-posterslide*100+"%"});
+            }  
+            $(".slide .slide_1>li").stop().fadeOut("on");
+            $(".slide .slide_1>li").eq(posterslide).stop().fadeIn("on");
+        },3000);
+        /*포스터 자동슬라이드*/
         }
-        /*해당 포스터에 대한 설명 fadeIn*/
 
-
-        
-        /*포스터 모달 종료버튼*/   
-        $(".postermodal .close").on("click",function(){
-            $(".postermodal").stop().fadeOut();
-        })
-        /*포스터 모달 종료버튼*/   
     };
     if(matchMedia("screen and (max-width:767px)").matches){
         var video = $("video");
@@ -2451,14 +2439,20 @@ $(function(){
         })
         
         let clickedLi = 0; 
-        $(".poster2 li .fullbut").click(function() {
+        $(".slide_1 li .but").click(function() {
              clickedLi = $(this).closest("li").index();
             var modalposter = $(".poster3>li .poster1_2 li").index();
-            $(".postermodal").stop().fadeIn();
+            $(".postermodal").fadeIn();
             $(".poster3 .poster1_2").animate({"left":-clickedLi*100+"%"})
             $(".poster3 .poster1_1").animate({"left":-clickedLi*100+"%"})
             $(".poster3 .poster1_3").animate({"left":-clickedLi*100+"%"})
         })
+
+        /*포스터 모달 종료버튼*/   
+        $(".postermodal .close,.postermodal .close h2").on("click",function(){
+            $(".postermodal").fadeOut();
+        })
+        /*포스터 모달 종료버튼*/   
 
         /*포스터 우 슬라이드*/ 
         let content = 0;
@@ -2534,37 +2528,28 @@ $(function(){
             console.log("이것이 clickedLi : " + clickedLi)
             console.log("이것이 slid : " + slid)
         });   
-        /*포스터 좌우 슬라이드*/ 
-
-
-
-
-        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
-        $("#poster .poster2>li .blackbg").on("click",function(){
-            $(".poster2>li").addClass("on").removeClass("bor")
-            $(this).parent(".poster2>li").removeClass("on").addClass("bor");
-        })
-        /*클릭 통해 선택한 포스터의 검은색 가리게 없애기*/
-
-
-        /*해당 포스터에 대한 설명 fadeIn*/
-        posterlist()
-        function posterlist(){            
-            $(".poster2 li").on("click",function(){
-                let list = $(this).index();
-                $(".slide_1 li").children(".content1").removeClass("on")
-                $(".slide_1 li").eq(list).children(".content1").addClass("on");
-            })
+        /*포스터 좌우 슬라이드*/      
+        posterslide();   
+        function posterslide(){
+            /*포스터 자동슬라이드*/
+        let posterslide = 0;
+        let postertotal = $(".poster2>li").length;
+        console.log(postertotal)
+        autoposterslide=setInterval(function(){
+            posterslide++;
+            if(posterslide >= postertotal-1){                
+                $(".poster2").animate({"left":-posterslide*100+"%"},function(){
+                    $(".poster2").css({left:"0%"});
+                })  
+                posterslide=0;              
+            }else{
+                $(".poster2").animate({"left":-posterslide*100+"%"});
+            }  
+            $(".slide .slide_1>li").stop().fadeOut("on");
+            $(".slide .slide_1>li").eq(posterslide).stop().fadeIn("on");
+        },3000);
+        /*포스터 자동슬라이드*/
         }
-        /*해당 포스터에 대한 설명 fadeIn*/
-
-
-        
-        /*포스터 모달 종료버튼*/   
-        $(".postermodal .close").on("click",function(){
-            $(".postermodal").stop().fadeOut();
-        })
-        /*포스터 모달 종료버튼*/   
 
     };
 })
