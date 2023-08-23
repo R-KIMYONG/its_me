@@ -56,12 +56,12 @@ $(function(){
                 $("#nav li").removeClass("on");
                 $("#nav li").eq(1).addClass("on");
                 $("#about .bg h2").stop().fadeIn();              
-                $("#about .profil").stop().animate({left:"10%", opacity:"1"},function(){
+                $("#about .profil").stop().animate({left:"210px", opacity:"1"},function(){
                 $("#about .profil").stop().delay(1000).addClass("on")                    
                 $("#about .profil .introductioninfo").children("p").animate({opacity:"1"}).fadeIn();
                 });
 
-                $("#about .content .con1").stop().delay(1000).addClass("on");
+                //$("#about .content .con1").stop().delay(1000).addClass("on");
                 $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").stop().delay(1200).addClass("on");                
                 skill1();
                 skill2();
@@ -72,67 +72,7 @@ $(function(){
                 skill7();
                 skill8();
                 skill9();
-                skill10();
-                let totalcontent = $(".content .cont").length;
-                let aboutme = 0;
-                currentaboutme = setInterval(function(){
-                aboutme++;                
-                if(aboutme == totalcontent){
-                    aboutme=0;
-
-                }else{           
-                }
-                $(".kategorie ul li").stop().removeClass("fon");
-                $(".kategorie ul li").stop().eq(aboutme).addClass("fon");
-                $(".kategorie ul li").stop().removeClass("on");
-                $(".kategorie ul li").stop().eq(aboutme).addClass("on");
-            
-                // "fon" 클래스를 찾은 경우 실행되는 코드 블록
-                $(".content .cont").stop().animate({left: "-100%"});
-                $(".content .cont").eq(aboutme).stop().animate({left: "0%"});
-                if($(".kategorie ul li").eq(0).hasClass("fon")){                        
-                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on");
-                    skill1();
-                    skill2();
-                    skill3();
-                    skill4();
-                    skill5();
-                    skill6();
-                    skill7();
-                    skill8();
-                    skill9();
-                    skill10();
-                }else{
-                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
-                }
-                if ($(".kategorie ul li").eq(1).hasClass("fon")) {                       
-                    $(".con2 ul").addClass("on");
-                    $(".con2 .map").delay(500).animate({ opacity: "0.3" });
-                }
-                if ($(".kategorie ul li").eq(2).hasClass("fon")) {
-                    $(".con3 ul").addClass("on");
-                    $(".con3 .cert").addClass("on");
-                }
-                if ($(".kategorie ul li").eq(3).hasClass("fon")) {
-                    $(".word").delay(1500).addClass("on");
-                    $(".graph img").delay(1500).animate({ opacity: "1" });
-                    $(".hobby").delay(500).addClass("on");
-                }                
-                // "fon" 클래스를 찾지 못한 경우 실행되는 코드 블록
-                if ($(".kategorie ul li").eq(1).hasClass("fon") == false) {
-                    $(".con2 ul").removeClass("on");
-                    $(".con2 .map").delay(1400).animate({ opacity: "0" });
-                }
-                if ($(".kategorie ul li").eq(2).hasClass("fon") == false) {
-                    $(".con3 ul").delay(1000).removeClass("on");
-                    $(".con3 .cert").delay(1000).removeClass("on");
-                }
-                if ($(".kategorie ul li").eq(3).hasClass("fon") == false) {
-                    $(".word").removeClass("on");
-                    $(".graph img").animate({ opacity: "0" });
-                    $(".hobby").removeClass("on");                    
-                }
-            },4000)           
+                skill10();          
             } else if (scroll >= pos3 && scroll < pos4) {
                 $("#project .projectname>li").addClass("in");
                 $("#project .but").delay(1500).addClass("in");
@@ -160,6 +100,78 @@ $(function(){
         $(".kategorie ul li .outline,.kategorie ul li .but,.kategorie ul li,.kategorie ul li .front,.kategorie ul li .down").on("click",function(){
             clearInterval(currentaboutme);
         })
+
+
+
+
+        let totalcontent = $(".content .cont").length;
+        let aboutme = 0;
+        currentaboutme = setInterval(function(){
+        aboutme++;    
+        $(".content .cont").stop().animate({opacity: "0"});
+        $(".content>div").eq(aboutme).stop().animate({opacity: "1"});
+        
+        
+        if(aboutme == totalcontent){
+            aboutme=0;
+            $(".kategorie ul li").stop().removeClass("fon on");
+            $(".kategorie ul li").eq(aboutme).stop().addClass("fon on");
+        }else{          
+            $(".kategorie ul li").stop().removeClass("fon on");
+            $(".kategorie ul li").eq(aboutme).stop().addClass("fon on");
+        }
+
+    
+        // "fon" 클래스를 찾은 경우 실행되는 코드 블록
+
+        if($(".kategorie ul li").eq(0).hasClass("fon")){    
+            $("#about .content .con1").animate({opacity:"1"});                    
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on");
+            skill1();
+            skill2();
+            skill3();
+            skill4();
+            skill5();
+            skill6();
+            skill7();
+            skill8();
+            skill9();
+            skill10();
+        }else{
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")                    
+        }
+        if ($(".kategorie ul li").eq(1).hasClass("fon")) {                       
+            $(".con2 ul").addClass("on");
+            $(".con2 .map img").delay(500).addClass("on");
+        }
+        if ($(".kategorie ul li").eq(2).hasClass("fon")) {
+            $(".con3 ul").addClass("on");
+            $(".con3 .cert").addClass("on");
+        }
+        if ($(".kategorie ul li").eq(3).hasClass("fon")) {
+            $(".word").delay(1500).addClass("on");
+            $(".graph img").delay(1000).animate({ opacity: "1" });
+            $(".hobby").delay(500).addClass("on");
+        }                
+        // "fon" 클래스를 찾지 못한 경우 실행되는 코드 블록
+        if ($(".kategorie ul li").eq(0).hasClass("fon") == false) {
+            $(".content .con1").removeClass("on")
+        }
+
+        if ($(".kategorie ul li").eq(1).hasClass("fon") == false) {
+            $(".con2 ul").removeClass("on");
+            $(".con2 .map img").removeClass("on");
+        }
+        if ($(".kategorie ul li").eq(2).hasClass("fon") == false) {
+            $(".con3 ul").delay(1000).removeClass("on");
+            $(".con3 .cert").delay(1000).removeClass("on");
+        }
+        if ($(".kategorie ul li").eq(3).hasClass("fon") == false) {
+            $(".word").removeClass("on");
+            $(".graph img").animate({ opacity: "0" });
+            $(".hobby").removeClass("on");                    
+        }
+    },4000) 
         /*스킬페이지 좌우 슬라이드*/ 
 
         let b = 0;
@@ -181,7 +193,7 @@ $(function(){
         $(".kategorie li").stop().eq(aboutme).addClass("on");
         if(b == true){
         $(".kategorie li").removeClass("fon")  ;      
-        $(".content .cont").eq(aboutme).stop().animate({left:"-100%"});        
+        $(".content .cont").eq(aboutme).stop().animate({opacity:"0"});        
         e1=$(".kategorie li").eq(3).hasClass("fon");
         if(e1==false){
             $(".word").removeClass("on")
@@ -197,6 +209,7 @@ $(function(){
         if(d==false){
             $(".con2 ul").delay(1000).removeClass("on")        
             $(".con2 .map").animate({opacity:"0"})
+            $(".con2 .map img").removeClass("on");
         }
         c = $(".kategorie li").eq(0).hasClass("fon");
         if(c==false){
@@ -208,8 +221,8 @@ $(function(){
         $(".kategorie li").removeClass("fon");
         $(".kategorie li").eq(aboutme).addClass("fon");
         $(".kategorie .line1").stop().animate({width:"0%"});        
-        $(".content .cont").stop().animate({left:"-100%"});
-        $(".content .cont").eq(aboutme).stop().animate({left:"0%"});
+        $(".content .cont").stop().animate({opacity:"0"});
+        $(".content .cont").eq(aboutme).stop().animate({opacity:"1"});
      
     
         e1=$(".kategorie li").eq(3).hasClass("fon");
@@ -234,6 +247,7 @@ $(function(){
         if(d==true){            
             $(".con2 ul").addClass("on");
             $(".con2 .map").delay(500).animate({opacity:"0.3"})
+            $(".con2 .map img").delay(500).addClass("on");
         }else{
             $(".con2 ul").removeClass("on")
             $(".con2 .map").delay(1400).animate({opacity:"0"})
