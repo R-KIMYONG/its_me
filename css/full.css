@@ -738,7 +738,7 @@ box-shadow:0px 0px 3px #101010;cursor: pointer;transition:0.5s;overflow: hidden;
 }
 
 
-#project .downloadbut{width:10%;height:3%;position:absolute;left:5%; top:5%;transform: translate(-5%,-5%);color:#fff;z-index:5;cursor: pointer;border:1px solid #fff;padding:5px 10px;box-sizing: border-box;border-radius:500px;font-size:0.5vw;line-height:100%;}
+#project .downloadbut{width:10%;height:3%;position:absolute;left:5%; top:5%;transform: translate(-5%,-5%);color:#fff;z-index:5;cursor: pointer;border:1px solid #fff;padding:5px 10px;box-sizing: border-box;border-radius:500px;font-size:0.5vw;line-height:100%;text-align:center;}
 #project .downloadbut .borderline{position:absolute;left:50%;top:50%;transform: translate(-50%,-50%);width:100%;height:100%;border:1px solid #fff;border-radius:500px;animation:butborder linear infinite 0.5s;}
 @keyframes butborder {
     0%{width:100%;height:100%;opacity: 1;}
