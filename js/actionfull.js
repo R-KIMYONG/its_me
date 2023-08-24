@@ -174,87 +174,43 @@ $(function(){
     },4000) 
         /*스킬페이지 좌우 슬라이드*/ 
 
-        let b = 0;
-        let c = 0;
-        let d = 0;
-        let e = 0;
-        let e1 = 0;
-        let cli = 0;
-        $(".kategorie li").on("click",function(){        
-        aboutme = $(this).index();
-        b = $(this).hasClass("fon");
-        //alert(a)
-        if(cli == 0){
-            cli = 1;
-        }else{
-            cli = 0;
-        }
-        $(".kategorie li").stop().removeClass("on");
-        $(".kategorie li").stop().eq(aboutme).addClass("on");
-        if(b == true){
-        $(".kategorie li").removeClass("fon")  ;      
-        $(".content .cont").eq(aboutme).stop().animate({opacity:"0"});        
-        e1=$(".kategorie li").eq(3).hasClass("fon");
-        if(e1==false){
-            $(".word").removeClass("on")
-            $(".graph img").animate({opacity:"0"})
-            $(".hobby").removeClass("on")
-        }
-        e=$(".kategorie li").eq(2).hasClass("fon");
-        if(e==false){
-            $(".con3 ul").delay(1000).removeClass("on")
-            $(".con3 .cert").delay(1000).removeClass("on")
-        }
-        d = $(".kategorie li").eq(1).hasClass("fon");
-        if(d==false){
-            $(".con2 ul").delay(1000).removeClass("on")        
-            $(".con2 .map").animate({opacity:"0"})
-            $(".con2 .map img").removeClass("on");
-        }
-        c = $(".kategorie li").eq(0).hasClass("fon");
-        if(c==false){
-            $(".stat").stop().text(0);
-            $(".bar>div").delay(1000).removeClass("on")
-        }
-    
-        }else{
-        $(".kategorie li").removeClass("fon");
-        $(".kategorie li").eq(aboutme).addClass("fon");
-        $(".kategorie .line1").stop().animate({width:"0%"});        
-        $(".content .cont").stop().animate({opacity:"0"});
-        $(".content .cont").eq(aboutme).stop().animate({opacity:"1"});
-     
-    
-        e1=$(".kategorie li").eq(3).hasClass("fon");
-        if(e1==true){
-            $(".word").delay(1500).addClass("on")
-            $(".graph img").delay(1500).animate({opacity:"1"})
-            $(".hobby").delay(500).addClass("on")
-        }else{
-            $(".word").removeClass("on")
-            $(".graph img").animate({opacity:"0"})
-            $(".hobby").removeClass("on")
-        }
-        e=$(".kategorie li").eq(2).hasClass("fon");
-        if(e==true){
-            $(".con3 ul").addClass("on")
-            $(".con3 .cert").addClass("on")
-        }else{
-            $(".con3 ul").delay(1000).removeClass("on")
-            $(".con3 .cert").delay(1000).removeClass("on")
-        }
-        d = $(".kategorie li").eq(1).hasClass("fon");
-        if(d==true){            
-            $(".con2 ul").addClass("on");
-            $(".con2 .map").delay(500).animate({opacity:"0.3"})
-            $(".con2 .map img").delay(500).addClass("on");
-        }else{
-            $(".con2 ul").removeClass("on")
-            $(".con2 .map").delay(1400).animate({opacity:"0"})
-        }
-        c = $(".kategorie li").eq(0).hasClass("fon");
-        if(c==true){
 
+        $(".kategorie li").on("click",function(){        
+        aboutme = $(this).index();        
+        $(".kategorie li").stop().removeClass("fon on");        
+        $(".kategorie li").eq(aboutme).stop().addClass("fon on");
+
+        if($(".kategorie li").hasClass("fon on") == true){
+        $(".content .cont").stop().animate({opacity:"0"});              
+        $(".content .cont").eq(aboutme).stop().animate({opacity:"1"});
+
+        if($(".kategorie li").eq(3).hasClass("fon on")==true){
+            $(".word").stop().delay(1500).addClass("on")
+            $(".graph img").stop().delay(1500).animate({opacity:"1"})
+            $(".hobby").stop().delay(500).addClass("on")
+        }else{
+            $(".word").stop().removeClass("on")
+            $(".graph img").stop().animate({opacity:"0"})
+            $(".hobby").stop().removeClass("on")
+        }
+
+        if($(".kategorie li").eq(2).hasClass("fon on") == true){
+            $(".con3 ul").stop().addClass("on")
+            $(".con3 .cert").stop().addClass("on")
+        }else{
+            $(".con3 ul").stop().delay(1000).removeClass("on")
+            $(".con3 .cert").stop().delay(1000).removeClass("on")
+        }
+
+        if($(".kategorie li").eq(1).hasClass("fon on")==true){            
+            $(".con2 ul").stop().addClass("on");
+            $(".con2 .map img").stop().delay(500).addClass("on");
+        }else{
+            $(".con2 ul").stop().delay(1000).removeClass("on");
+            $(".con2 .map img").stop().removeClass("on");
+        }
+
+        if($(".kategorie li").eq(0).hasClass("fon on")==true){
             $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on")
             skill1();
             skill2();
@@ -267,17 +223,8 @@ $(function(){
             skill9();
             skill10();
         }else{
-            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
-            skill1();
-            skill2();
-            skill3();
-            skill4();
-            skill5();
-            skill6();
-            skill7();
-            skill8();
-            skill9();
-            skill10();
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on");
+            $(".bar>div").stop().delay(1000).removeClass("on");
         }
         }
     })
@@ -403,6 +350,7 @@ $(function(){
             }
         },20)
     }  
+
     /*스킬 페이지 툴 사용 숙련도 바*/
 
 
@@ -413,8 +361,8 @@ $(function(){
         let wheeldefult=e.originalEvent.wheelDelta;
         wheel1+=wheeldefult
         clearInterval(auto1);
-        $('#project .item1').css('transform', 'translateY(' + (wheel1 / 500) + 'px)');
-        $('#project .item2').css('transform', 'translateY(' + (-wheel1 / 500) + 'px)');
+        $('#project .item1').stop().css('transform', 'translateY(' + (wheel1 / 1000) + 'px)');
+        $('#project .item2').stop().css('transform', 'translateY(' + (-wheel1 / 1000) + 'px)');
         autowheel();    
         return false;
     })
@@ -427,14 +375,15 @@ $(function(){
         let item1 =$('#project .item1').height();
         let item2 =$("#project .item2").height();
         let scrollbox=$(".scrollbox").height();   
-        endpoint1=item1-scrollbox
-        endpoint2=item2-scrollbox        
+        let endpoint1=item1-scrollbox
+        let endpoint2=item2-scrollbox   
+             
         auto1 = setInterval(function(){ 
-           if(wheel1<=endpoint1){
-            wheel1++;
             
+           if(wheel1<endpoint1){   
+            wheel1++;         
             $('#project .item1').stop().css('transform', 'translateY(' + (-wheel1) + 'px)');
-            $('#project .item2').stop().css('transform', 'translateY(' + (wheel1) + 'px)');
+            $('#project .item2').stop().css('transform', 'translateY(' + (+wheel1) + 'px)');
     
            }else if (endpoint1<=wheel1 && endpoint1>0) {              
             endpoint1--;
@@ -449,16 +398,17 @@ $(function(){
             clearInterval(auto1);
           }
     
-        },50)
+        },20)
     }
     /*자동 스크롤 chubb 페이지*/
+
+
 
     /*자동 스크롤 youjin 페이지*/
     let wheel2 = 0;
     $(".scrollbox1_1").on("mousewheel",function(e){
         let wheeldefult1=e.originalEvent.wheelDelta;
-        wheel2+=wheeldefult1
-        clearInterval(auto2);
+        wheel2+=wheeldefult1        
         $('#project .item1_1').css('transform', 'translateY(' - (wheel2 / 50) + 'px)');
         autowheel1();    
         return false;
@@ -480,10 +430,8 @@ $(function(){
           }else if(endpoint3==0){
             wheel2=0;
             endpoint3=item3-scrollbox1            
-          } else {
-            clearInterval(auto2);
-          }    
-        },50)
+          } 
+        },20)
     }
     /*자동 스크롤 youjin 페이지*/
 
@@ -704,7 +652,7 @@ $(function(){
     /*자동 스크롤 youjin 페이지*/
 
     /*기획안 다운로드*/
-    $("#project .view .proposal .chubb").on("click", function () {
+    $("#project .view .proposal .downloadbut1").on("click", function () {
         var filePath = "img/chubblife(리뉴얼기획안)_0802.pdf"; 
         var fileName = "chubblife(리뉴얼기획안).pdf"; 
 
@@ -717,7 +665,7 @@ $(function(){
             .click();       
     });
 
-    $("#project .view1 .proposal1 .youjin").on("click", function () {
+    $("#project .view1 .proposal1 .downloadbut").on("click", function () {
         var filePath = "img/youjin(리뉴얼기획안)_0802.pdf"; 
         var fileName = "youjin(리뉴얼기획안).pdf"; 
 
@@ -805,21 +753,24 @@ $(function(){
         $(".postermodal  .post2,.postermodal .left").on("click", function() {
 
             let content = --clickedLi 
-            if(content == 0){ 
+            console.log(content)
+            if(content <= 0){ 
                 clickedLi = 8;
-                slidposter = 0;      
+                slidposter = 0;    
+                content = 0;  
                 
                 $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
-                    $(".poster3 .poster1_1").css({left:"-1000%"})
-                })                
+                    $(".poster3 .poster1_1").css({left:"-800%"})
+                })
 
                 $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
-                    $(".poster3 .poster1_2").css({left:"-1000%"});
+                    $(".poster3 .poster1_2").css({left:"-800%"});
                 })
                 
                 $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
-                    $(".poster3 .poster1_3").css({left:"-1000%"});
-                });                
+                    $(".poster3 .poster1_3").css({left:"-800%"});
+                });
+                
             }else{    
                 $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
                     //$(".poster3 .poster1_1 li").first().appendTo(".poster1_1")
@@ -919,78 +870,9 @@ $(function(){
                 $("#about .profil .introductioninfo").children("p").animate({opacity:"1"}).fadeIn();
                 });
 
-                $("#about .content .con1").stop().delay(1000).addClass("on");
+                //$("#about .content .con1").stop().delay(1000).addClass("on");
                 $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").stop().delay(1200).addClass("on");                
-                skill1();
-                skill2();
-                skill3();
-                skill4();
-                skill5();
-                skill6();
-                skill7();
-                skill8();
-                skill9();
-                skill10();
-                let totalcontent = $(".content .cont").length;
-                let aboutme = 0;
-                currentaboutme = setInterval(function(){
-                aboutme++;                
-                if(aboutme == totalcontent){
-                    aboutme=0;
 
-                }else{           
-                }
-                $(".kategorie ul li").stop().removeClass("fon");
-                $(".kategorie ul li").stop().eq(aboutme).addClass("fon");
-                $(".kategorie ul li").stop().removeClass("on");
-                $(".kategorie ul li").stop().eq(aboutme).addClass("on");
-            
-                // "fon" 클래스를 찾은 경우 실행되는 코드 블록
-                $(".content .cont").stop().animate({left: "-100%"});
-                $(".content .cont").eq(aboutme).stop().animate({left: "0%"});
-                if($(".kategorie ul li").eq(0).hasClass("fon")){                        
-                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on");
-                    skill1();
-                    skill2();
-                    skill3();
-                    skill4();
-                    skill5();
-                    skill6();
-                    skill7();
-                    skill8();
-                    skill9();
-                    skill10();
-                }else{
-                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
-                }
-                if ($(".kategorie ul li").eq(1).hasClass("fon")) {                       
-                    $(".con2 ul").addClass("on");
-                    $(".con2 .map").delay(500).animate({ opacity: "0.3" });
-                }
-                if ($(".kategorie ul li").eq(2).hasClass("fon")) {
-                    $(".con3 ul").addClass("on");
-                    $(".con3 .cert").addClass("on");
-                }
-                if ($(".kategorie ul li").eq(3).hasClass("fon")) {
-                    $(".word").delay(1500).addClass("on");
-                    $(".graph img").delay(1500).animate({ opacity: "1" });
-                    $(".hobby").delay(500).addClass("on");
-                }                
-                // "fon" 클래스를 찾지 못한 경우 실행되는 코드 블록
-                if ($(".kategorie ul li").eq(1).hasClass("fon") == false) {
-                    $(".con2 ul").removeClass("on");
-                    $(".con2 .map").delay(1400).animate({ opacity: "0" });
-                }
-                if ($(".kategorie ul li").eq(2).hasClass("fon") == false) {
-                    $(".con3 ul").delay(1000).removeClass("on");
-                    $(".con3 .cert").delay(1000).removeClass("on");
-                }
-                if ($(".kategorie ul li").eq(3).hasClass("fon") == false) {
-                    $(".word").removeClass("on");
-                    $(".graph img").animate({ opacity: "0" });
-                    $(".hobby").removeClass("on");                    
-                }
-            },4000) 
                 $(".posterintro").stop().removeClass("on")
                 $(".posterintro").fadeIn();
                 $("#contact .con4 .my .m2").children("img").removeClass("on")
@@ -1020,87 +902,116 @@ $(function(){
         $(".kategorie ul li .outline,.kategorie ul li .but,.kategorie ul li,.kategorie ul li .front,.kategorie ul li .down").on("click",function(){
             clearInterval(currentaboutme);
         })
+
+
+
+        let totalcontent = $(".content .cont").length;
+        let aboutme = 0;
+        currentaboutme = setInterval(function(){
+        aboutme++;    
+        $(".content .cont").stop().animate({opacity: "0"});
+        $(".content>div").eq(aboutme).stop().animate({opacity: "1"});
+        
+        
+        if(aboutme == totalcontent){
+            aboutme=0;
+            $(".kategorie ul li").stop().removeClass("fon on");
+            $(".kategorie ul li").eq(aboutme).stop().addClass("fon on");
+        }else{          
+            $(".kategorie ul li").stop().removeClass("fon on");
+            $(".kategorie ul li").eq(aboutme).stop().addClass("fon on");
+        }
+
+    
+        // "fon" 클래스를 찾은 경우 실행되는 코드 블록
+
+        if($(".kategorie ul li").eq(0).hasClass("fon")){    
+            $("#about .content .con1").animate({opacity:"1"});                    
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on");
+            skill1();
+            skill2();
+            skill3();
+            skill4();
+            skill5();
+            skill6();
+            skill7();
+            skill8();
+            skill9();
+            skill10();
+        }else{
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")                    
+        }
+        if ($(".kategorie ul li").eq(1).hasClass("fon")) {                       
+            $(".con2 ul").addClass("on");
+            $(".con2 .map img").delay(500).addClass("on");
+        }
+        if ($(".kategorie ul li").eq(2).hasClass("fon")) {
+            $(".con3 ul").addClass("on");
+            $(".con3 .cert").addClass("on");
+        }
+        if ($(".kategorie ul li").eq(3).hasClass("fon")) {
+            $(".word").delay(1500).addClass("on");
+            $(".graph img").delay(1000).animate({ opacity: "1" });
+            $(".hobby").delay(500).addClass("on");
+        }                
+        // "fon" 클래스를 찾지 못한 경우 실행되는 코드 블록
+        if ($(".kategorie ul li").eq(0).hasClass("fon") == false) {
+            $(".content .con1").removeClass("on")
+        }
+
+        if ($(".kategorie ul li").eq(1).hasClass("fon") == false) {
+            $(".con2 ul").removeClass("on");
+            $(".con2 .map img").removeClass("on");
+        }
+        if ($(".kategorie ul li").eq(2).hasClass("fon") == false) {
+            $(".con3 ul").delay(1000).removeClass("on");
+            $(".con3 .cert").delay(1000).removeClass("on");
+        }
+        if ($(".kategorie ul li").eq(3).hasClass("fon") == false) {
+            $(".word").removeClass("on");
+            $(".graph img").stop().animate({ opacity: "0" });
+            $(".hobby").removeClass("on");                    
+        }
+    },4000) 
         /*스킬페이지 좌우 슬라이드*/ 
 
-        let b = 0;
-        let c = 0;
-        let d = 0;
-        let e = 0;
-        let e1 = 0;
-        let cli = 0;
-        $(".kategorie li").on("click",function(){        
-        aboutme = $(this).index();
-        b = $(this).hasClass("fon");
-        //alert(a)
-        if(cli == 0){
-            cli = 1;
-        }else{
-            cli = 0;
-        }
-        $(".kategorie li").stop().removeClass("on");
-        $(".kategorie li").stop().eq(aboutme).addClass("on");
-        if(b == true){
-        $(".kategorie li").removeClass("fon")  ;      
-        $(".content .cont").eq(aboutme).stop().animate({left:"-100%"});        
-        e1=$(".kategorie li").eq(3).hasClass("fon");
-        if(e1==false){
-            $(".word").removeClass("on")
-            $(".graph img").animate({opacity:"0"})
-            $(".hobby").removeClass("on")
-        }
-        e=$(".kategorie li").eq(2).hasClass("fon");
-        if(e==false){
-            $(".con3 ul").delay(1000).removeClass("on")
-            $(".con3 .cert").delay(1000).removeClass("on")
-        }
-        d = $(".kategorie li").eq(1).hasClass("fon");
-        if(d==false){
-            $(".con2 ul").delay(1000).removeClass("on")        
-            $(".con2 .map").animate({opacity:"0"})
-        }
-        c = $(".kategorie li").eq(0).hasClass("fon");
-        if(c==false){
-            $(".stat").stop().text(0);
-            $(".bar>div").delay(1000).removeClass("on")
-        }
-    
-        }else{
-        $(".kategorie li").removeClass("fon");
-        $(".kategorie li").eq(aboutme).addClass("fon");
-        $(".kategorie .line1").stop().animate({width:"0%"});        
-        $(".content .cont").stop().animate({left:"-100%"});
-        $(".content .cont").eq(aboutme).stop().animate({left:"0%"});
-     
-    
-        e1=$(".kategorie li").eq(3).hasClass("fon");
-        if(e1==true){
-            $(".word").delay(1500).addClass("on")
-            $(".graph img").delay(1500).animate({opacity:"1"})
-            $(".hobby").delay(500).addClass("on")
-        }else{
-            $(".word").removeClass("on")
-            $(".graph img").animate({opacity:"0"})
-            $(".hobby").removeClass("on")
-        }
-        e=$(".kategorie li").eq(2).hasClass("fon");
-        if(e==true){
-            $(".con3 ul").addClass("on")
-            $(".con3 .cert").addClass("on")
-        }else{
-            $(".con3 ul").delay(1000).removeClass("on")
-            $(".con3 .cert").delay(1000).removeClass("on")
-        }
-        d = $(".kategorie li").eq(1).hasClass("fon");
-        if(d==true){            
-            $(".con2 ul").addClass("on");
-            $(".con2 .map").delay(500).animate({opacity:"0.3"})
-        }else{
-            $(".con2 ul").removeClass("on")
-            $(".con2 .map").delay(1400).animate({opacity:"0"})
-        }
-        c = $(".kategorie li").eq(0).hasClass("fon");
-        if(c==true){
 
+        $(".kategorie li").on("click",function(){        
+        aboutme = $(this).index();        
+        $(".kategorie li").stop().removeClass("fon on");        
+        $(".kategorie li").eq(aboutme).stop().addClass("fon on");
+
+        if($(".kategorie li").hasClass("fon on") == true){
+        $(".content .cont").stop().animate({opacity:"0"});              
+        $(".content .cont").eq(aboutme).stop().animate({opacity:"1"});
+
+        if($(".kategorie li").eq(3).hasClass("fon on")==true){
+            $(".word").stop().delay(1500).addClass("on")
+            $(".graph img").stop().delay(1500).animate({opacity:"1"})
+            $(".hobby").stop().delay(500).addClass("on")
+        }else{
+            $(".word").stop().removeClass("on")
+            $(".graph img").stop().animate({opacity:"0"})
+            $(".hobby").stop().removeClass("on")
+        }
+
+        if($(".kategorie li").eq(2).hasClass("fon on") == true){
+            $(".con3 ul").stop().addClass("on")
+            $(".con3 .cert").stop().addClass("on")
+        }else{
+            $(".con3 ul").stop().delay(1000).removeClass("on")
+            $(".con3 .cert").stop().delay(1000).removeClass("on")
+        }
+
+        if($(".kategorie li").eq(1).hasClass("fon on")==true){            
+            $(".con2 ul").stop().addClass("on");
+            $(".con2 .map img").stop().delay(500).addClass("on");
+        }else{
+            $(".con2 ul").stop().delay(1000).removeClass("on");
+            $(".con2 .map img").stop().removeClass("on");
+        }
+
+        if($(".kategorie li").eq(0).hasClass("fon on")==true){
             $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on")
             skill1();
             skill2();
@@ -1113,17 +1024,8 @@ $(function(){
             skill9();
             skill10();
         }else{
-            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
-            skill1();
-            skill2();
-            skill3();
-            skill4();
-            skill5();
-            skill6();
-            skill7();
-            skill8();
-            skill9();
-            skill10();
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on");
+            $(".bar>div").stop().delay(1000).removeClass("on");
         }
         }
     })
@@ -1334,7 +1236,7 @@ $(function(){
     /*자동 스크롤 youjin 페이지*/
 
     /*기획안 다운로드*/
-    $("#project .view .proposal .chubb").on("click", function () {
+    $("#project .view .proposal .downloadbut1").on("click", function () {
         var filePath = "img/chubblife(리뉴얼기획안)_0802.pdf"; 
         var fileName = "chubblife(리뉴얼기획안).pdf"; 
 
@@ -1347,7 +1249,7 @@ $(function(){
             .click();       
     });
 
-    $("#project .view1 .proposal1 .youjin").on("click", function () {
+    $("#project .view1 .proposal1 .downloadbut").on("click", function () {
         var filePath = "img/youjin(리뉴얼기획안)_0802.pdf"; 
         var fileName = "youjin(리뉴얼기획안).pdf"; 
 
@@ -1616,7 +1518,7 @@ $(function(){
 
         /*포스터 우 슬라이드*/ 
         let content = 0;
-        let total = 10;
+        let total = 8;
         let slidposter = 0
         $(".postermodal .post1,.postermodal .right").on("click", function() {
 
@@ -1651,25 +1553,30 @@ $(function(){
             }
         });
 
+
+
         /*포스터 좌 슬라이드*/ 
         $(".postermodal  .post2,.postermodal .left").on("click", function() {
 
             let content = --clickedLi 
-            if(content == 0){ 
-                clickedLi = 10;
-                slidposter = 0;      
+            console.log(content)
+            if(content <= 0){ 
+                clickedLi = 8;
+                slidposter = 0;    
+                content = 0;  
                 
                 $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
-                    $(".poster3 .poster1_1").css({left:"-1000%"})
-                })                
+                    $(".poster3 .poster1_1").css({left:"-800%"})
+                })
 
                 $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
-                    $(".poster3 .poster1_2").css({left:"-1000%"});
+                    $(".poster3 .poster1_2").css({left:"-800%"});
                 })
                 
                 $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
-                    $(".poster3 .poster1_3").css({left:"-1000%"});
-                });                
+                    $(".poster3 .poster1_3").css({left:"-800%"});
+                });
+                
             }else{    
                 $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
                     //$(".poster3 .poster1_1 li").first().appendTo(".poster1_1")
@@ -1684,8 +1591,7 @@ $(function(){
                     //$(".poster3 .poster1_3").css({left:"0%"});
                 })            
             }
-        });   
-        /*포스터 좌우 슬라이드*/
+        });  
 
        
         /*포스터 좌우 슬라이드*/ 
@@ -1773,78 +1679,9 @@ $(function(){
                 $("#about .profil .introductioninfo").children("p").animate({opacity:"1"}).fadeIn();
                 });
 
-                $("#about .content .con1").stop().delay(1000).addClass("on");
+                //$("#about .content .con1").stop().delay(1000).addClass("on");
                 $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").stop().delay(1200).addClass("on");                
-                skill1();
-                skill2();
-                skill3();
-                skill4();
-                skill5();
-                skill6();
-                skill7();
-                skill8();
-                skill9();
-                skill10();
-                let totalcontent = $(".content .cont").length;
-                let aboutme = 0;
-                currentaboutme = setInterval(function(){
-                aboutme++;                
-                if(aboutme == totalcontent){
-                    aboutme=0;
-
-                }else{           
-                }
-                $(".kategorie ul li").stop().removeClass("fon");
-                $(".kategorie ul li").stop().eq(aboutme).addClass("fon");
-                $(".kategorie ul li").stop().removeClass("on");
-                $(".kategorie ul li").stop().eq(aboutme).addClass("on");
-            
-                // "fon" 클래스를 찾은 경우 실행되는 코드 블록
-                $(".content .cont").stop().animate({left: "-100%"});
-                $(".content .cont").eq(aboutme).stop().animate({left: "0%"});
-                if($(".kategorie ul li").eq(0).hasClass("fon")){                        
-                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on");
-                    skill1();
-                    skill2();
-                    skill3();
-                    skill4();
-                    skill5();
-                    skill6();
-                    skill7();
-                    skill8();
-                    skill9();
-                    skill10();
-                }else{
-                    $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
-                }
-                if ($(".kategorie ul li").eq(1).hasClass("fon")) {                       
-                    $(".con2 ul").addClass("on");
-                    $(".con2 .map").delay(500).animate({ opacity: "0.3" });
-                }
-                if ($(".kategorie ul li").eq(2).hasClass("fon")) {
-                    $(".con3 ul").addClass("on");
-                    $(".con3 .cert").addClass("on");
-                }
-                if ($(".kategorie ul li").eq(3).hasClass("fon")) {
-                    $(".word").delay(1500).addClass("on");
-                    $(".graph img").delay(1500).animate({ opacity: "1" });
-                    $(".hobby").delay(500).addClass("on");
-                }                
-                // "fon" 클래스를 찾지 못한 경우 실행되는 코드 블록
-                if ($(".kategorie ul li").eq(1).hasClass("fon") == false) {
-                    $(".con2 ul").removeClass("on");
-                    $(".con2 .map").delay(1400).animate({ opacity: "0" });
-                }
-                if ($(".kategorie ul li").eq(2).hasClass("fon") == false) {
-                    $(".con3 ul").delay(1000).removeClass("on");
-                    $(".con3 .cert").delay(1000).removeClass("on");
-                }
-                if ($(".kategorie ul li").eq(3).hasClass("fon") == false) {
-                    $(".word").removeClass("on");
-                    $(".graph img").animate({ opacity: "0" });
-                    $(".hobby").removeClass("on");                    
-                }
-            },4000) 
+              
                 $(".posterintro").stop().removeClass("on")
                 $(".posterintro").fadeIn();
                 $("#contact .con4 .my .m2").children("img").removeClass("on")
@@ -1876,85 +1713,113 @@ $(function(){
         })
         /*스킬페이지 좌우 슬라이드*/ 
 
-        let b = 0;
-        let c = 0;
-        let d = 0;
-        let e = 0;
-        let e1 = 0;
-        let cli = 0;
-        $(".kategorie li").on("click",function(){        
-        aboutme = $(this).index();
-        b = $(this).hasClass("fon");
-        //alert(a)
-        if(cli == 0){
-            cli = 1;
-        }else{
-            cli = 0;
+        let totalcontent = $(".content .cont").length;
+        let aboutme = 0;
+        currentaboutme = setInterval(function(){
+        aboutme++;    
+        $(".content .cont").stop().animate({opacity: "0"});
+        $(".content>div").eq(aboutme).stop().animate({opacity: "1"});
+        
+        
+        if(aboutme == totalcontent){
+            aboutme=0;
+            $(".kategorie ul li").stop().removeClass("fon on");
+            $(".kategorie ul li").eq(aboutme).stop().addClass("fon on");
+        }else{          
+            $(".kategorie ul li").stop().removeClass("fon on");
+            $(".kategorie ul li").eq(aboutme).stop().addClass("fon on");
         }
-        $(".kategorie li").stop().removeClass("on");
-        $(".kategorie li").stop().eq(aboutme).addClass("on");
-        if(b == true){
-        $(".kategorie li").removeClass("fon")  ;      
-        $(".content .cont").eq(aboutme).stop().animate({left:"-100%"});        
-        e1=$(".kategorie li").eq(3).hasClass("fon");
-        if(e1==false){
-            $(".word").removeClass("on")
-            $(".graph img").animate({opacity:"0"})
-            $(".hobby").removeClass("on")
-        }
-        e=$(".kategorie li").eq(2).hasClass("fon");
-        if(e==false){
-            $(".con3 ul").delay(1000).removeClass("on")
-            $(".con3 .cert").delay(1000).removeClass("on")
-        }
-        d = $(".kategorie li").eq(1).hasClass("fon");
-        if(d==false){
-            $(".con2 ul").delay(1000).removeClass("on")        
-            $(".con2 .map").animate({opacity:"0"})
-        }
-        c = $(".kategorie li").eq(0).hasClass("fon");
-        if(c==false){
-            $(".stat").stop().text(0);
-            $(".bar>div").delay(1000).removeClass("on")
-        }
-    
-        }else{
-        $(".kategorie li").removeClass("fon");
-        $(".kategorie li").eq(aboutme).addClass("fon");
-        $(".kategorie .line1").stop().animate({width:"0%"});        
-        $(".content .cont").stop().animate({left:"-100%"});
-        $(".content .cont").eq(aboutme).stop().animate({left:"0%"});
-     
-    
-        e1=$(".kategorie li").eq(3).hasClass("fon");
-        if(e1==true){
-            $(".word").delay(1500).addClass("on")
-            $(".graph img").delay(1500).animate({opacity:"1"})
-            $(".hobby").delay(500).addClass("on")
-        }else{
-            $(".word").removeClass("on")
-            $(".graph img").animate({opacity:"0"})
-            $(".hobby").removeClass("on")
-        }
-        e=$(".kategorie li").eq(2).hasClass("fon");
-        if(e==true){
-            $(".con3 ul").addClass("on")
-            $(".con3 .cert").addClass("on")
-        }else{
-            $(".con3 ul").delay(1000).removeClass("on")
-            $(".con3 .cert").delay(1000).removeClass("on")
-        }
-        d = $(".kategorie li").eq(1).hasClass("fon");
-        if(d==true){            
-            $(".con2 ul").addClass("on");
-            $(".con2 .map").delay(500).animate({opacity:"0.3"})
-        }else{
-            $(".con2 ul").removeClass("on")
-            $(".con2 .map").delay(1400).animate({opacity:"0"})
-        }
-        c = $(".kategorie li").eq(0).hasClass("fon");
-        if(c==true){
 
+    
+        // "fon" 클래스를 찾은 경우 실행되는 코드 블록
+
+        if($(".kategorie ul li").eq(0).hasClass("fon")){    
+            $("#about .content .con1").animate({opacity:"1"});                    
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on");
+            skill1();
+            skill2();
+            skill3();
+            skill4();
+            skill5();
+            skill6();
+            skill7();
+            skill8();
+            skill9();
+            skill10();
+        }else{
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")                    
+        }
+        if ($(".kategorie ul li").eq(1).hasClass("fon")) {                       
+            $(".con2 ul").addClass("on");
+            $(".con2 .map img").delay(500).addClass("on");
+        }
+        if ($(".kategorie ul li").eq(2).hasClass("fon")) {
+            $(".con3 ul").addClass("on");
+            $(".con3 .cert").addClass("on");
+        }
+        if ($(".kategorie ul li").eq(3).hasClass("fon")) {
+            $(".word").delay(1500).addClass("on");
+            $(".graph img").delay(1000).animate({ opacity: "1" });
+            $(".hobby").delay(500).addClass("on");
+        }                
+        // "fon" 클래스를 찾지 못한 경우 실행되는 코드 블록
+        if ($(".kategorie ul li").eq(0).hasClass("fon") == false) {
+            $(".content .con1").removeClass("on")
+        }
+
+        if ($(".kategorie ul li").eq(1).hasClass("fon") == false) {
+            $(".con2 ul").removeClass("on");
+            $(".con2 .map img").removeClass("on");
+        }
+        if ($(".kategorie ul li").eq(2).hasClass("fon") == false) {
+            $(".con3 ul").delay(1000).removeClass("on");
+            $(".con3 .cert").delay(1000).removeClass("on");
+        }
+        if ($(".kategorie ul li").eq(3).hasClass("fon") == false) {
+            $(".word").removeClass("on");
+            $(".graph img").stop().animate({ opacity: "0" });
+            $(".hobby").removeClass("on");                    
+        }
+    },4000) 
+        /*스킬페이지 좌우 슬라이드*/ 
+
+
+        $(".kategorie li").on("click",function(){        
+        aboutme = $(this).index();        
+        $(".kategorie li").stop().removeClass("fon on");        
+        $(".kategorie li").eq(aboutme).stop().addClass("fon on");
+
+        if($(".kategorie li").hasClass("fon on") == true){
+        $(".content .cont").stop().animate({opacity:"0"});              
+        $(".content .cont").eq(aboutme).stop().animate({opacity:"1"});
+
+        if($(".kategorie li").eq(3).hasClass("fon on")==true){
+            $(".word").stop().delay(1500).addClass("on")
+            $(".graph img").stop().delay(1500).animate({opacity:"1"})
+            $(".hobby").stop().delay(500).addClass("on")
+        }else{
+            $(".word").stop().removeClass("on")
+            $(".graph img").stop().animate({opacity:"0"})
+            $(".hobby").stop().removeClass("on")
+        }
+
+        if($(".kategorie li").eq(2).hasClass("fon on") == true){
+            $(".con3 ul").stop().addClass("on")
+            $(".con3 .cert").stop().addClass("on")
+        }else{
+            $(".con3 ul").stop().delay(1000).removeClass("on")
+            $(".con3 .cert").stop().delay(1000).removeClass("on")
+        }
+
+        if($(".kategorie li").eq(1).hasClass("fon on")==true){            
+            $(".con2 ul").stop().addClass("on");
+            $(".con2 .map img").stop().delay(500).addClass("on");
+        }else{
+            $(".con2 ul").stop().delay(1000).removeClass("on");
+            $(".con2 .map img").stop().removeClass("on");
+        }
+
+        if($(".kategorie li").eq(0).hasClass("fon on")==true){
             $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").addClass("on")
             skill1();
             skill2();
@@ -1967,17 +1832,8 @@ $(function(){
             skill9();
             skill10();
         }else{
-            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on")
-            skill1();
-            skill2();
-            skill3();
-            skill4();
-            skill5();
-            skill6();
-            skill7();
-            skill8();
-            skill9();
-            skill10();
+            $(".bar1,.bar2,.bar3,.bar4,.bar5,.bar6,.bar7,.bar8,.bar9,.bar10").removeClass("on");
+            $(".bar>div").stop().delay(1000).removeClass("on");
         }
         }
     })
@@ -2188,7 +2044,7 @@ $(function(){
     /*자동 스크롤 youjin 페이지*/
 
     /*기획안 다운로드*/
-    $("#project .view .proposal .chubb").on("click", function () {
+    $("#project .view .proposal .downloadbut1").on("click", function () {
         var filePath = "img/chubblife(리뉴얼기획안)_0802.pdf"; 
         var fileName = "chubblife(리뉴얼기획안).pdf"; 
 
@@ -2201,7 +2057,7 @@ $(function(){
             .click();       
     });
 
-    $("#project .view1 .proposal1 .youjin").on("click", function () {
+    $("#project .view1 .proposal1 .downloadbut").on("click", function () {
         var filePath = "img/youjin(리뉴얼기획안)_0802.pdf"; 
         var fileName = "youjin(리뉴얼기획안).pdf"; 
 
@@ -2470,7 +2326,7 @@ $(function(){
 
         /*포스터 우 슬라이드*/ 
         let content = 0;
-        let total = 10;
+        let total = 8;
         let slidposter = 0
         $(".postermodal .post1,.postermodal .right").on("click", function() {
 
@@ -2505,25 +2361,30 @@ $(function(){
             }
         });
 
+
+
         /*포스터 좌 슬라이드*/ 
         $(".postermodal  .post2,.postermodal .left").on("click", function() {
 
             let content = --clickedLi 
-            if(content == 0){ 
-                clickedLi = 10;
-                slidposter = 0;      
+            console.log(content)
+            if(content <= 0){ 
+                clickedLi = 8;
+                slidposter = 0;    
+                content = 0;  
                 
                 $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
-                    $(".poster3 .poster1_1").css({left:"-1000%"})
-                })                
+                    $(".poster3 .poster1_1").css({left:"-800%"})
+                })
 
                 $(".poster3 .poster1_2").stop().animate({"left":-content*100+"%"},function(){
-                    $(".poster3 .poster1_2").css({left:"-1000%"});
+                    $(".poster3 .poster1_2").css({left:"-800%"});
                 })
                 
                 $(".poster3 .poster1_3").stop().animate({"left":-content*100+"%"},function(){
-                    $(".poster3 .poster1_3").css({left:"-1000%"});
-                });                
+                    $(".poster3 .poster1_3").css({left:"-800%"});
+                });
+                
             }else{    
                 $(".poster3 .poster1_1").stop().animate({"left":-content*100+"%"},function(){
                     //$(".poster3 .poster1_1 li").first().appendTo(".poster1_1")
@@ -2538,10 +2399,7 @@ $(function(){
                     //$(".poster3 .poster1_3").css({left:"0%"});
                 })            
             }
-            console.log("이것이 content : " + content)
-            console.log("이것이 clickedLi : " + clickedLi)
-            console.log("이것이 slid : " + slid)
-        });   
+        });  
         /*포스터 좌우 슬라이드*/      
         posterslide();   
         function posterslide(){
