@@ -1131,7 +1131,7 @@ $(function(){
         let bar9 = 0; 
         start9 = setInterval(function(){
             bar9++;
-            if(bar9<=30){                
+            if(bar9<=60){                
             $(".stat").stop().eq(8).text(bar9);
             //$(".bar1").stop().animate({width:"90%"},5000)
             }else{
@@ -1939,7 +1939,7 @@ $(function(){
         let bar9 = 0; 
         start9 = setInterval(function(){
             bar9++;
-            if(bar9<=30){                
+            if(bar9<=60){                
             $(".stat").stop().eq(8).text(bar9);
             //$(".bar1").stop().animate({width:"90%"},5000)
             }else{
