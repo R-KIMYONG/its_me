@@ -327,7 +327,7 @@ box-shadow:0px 0px 3px #101010;cursor: pointer;transition:0.5s;left:50%;transfor
 #about .content .con1 ul li .bar9.on{animation:bar9 linear 2s;animation-fill-mode:forwards;}
 @keyframes bar9 {
     0%{width:0%;}
-    100%{width:30%}
+    100%{width:60%}
 }
 #about .content .con1 ul li .bar10.on{animation:bar10 linear 2s;animation-fill-mode:forwards;}
 @keyframes bar10 {
@@ -1312,7 +1312,7 @@ box-shadow:0px 0px 3px #101010;cursor: pointer;transition:0.5s;left:50%;transfor
 #about .content .con1 ul li .bar9.on{animation:bar9 linear 2s;animation-fill-mode:forwards;}
 @keyframes bar9 {
     0%{width:0%;}
-    100%{width:30%}
+    100%{width:60%}
 }
 #about .content .con1 ul li .bar10.on{animation:bar10 linear 2s;animation-fill-mode:forwards;}
 @keyframes bar10 {
@@ -2316,7 +2316,7 @@ box-shadow:0px 0px 3px #101010;cursor: pointer;transition:0.5s;left:50%;transfor
 #about .content .con1 ul li .bar9.on{animation:bar9 linear 2s;animation-fill-mode:forwards;}
 @keyframes bar9 {
     0%{width:0%;}
-    100%{width:30%}
+    100%{width:60%}
 }
 #about .content .con1 ul li .bar10.on{animation:bar10 linear 2s;animation-fill-mode:forwards;}
 @keyframes bar10 {
